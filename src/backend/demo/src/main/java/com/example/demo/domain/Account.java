@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "account")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Account {
