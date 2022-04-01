@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Account {
     @Id
     @SequenceGenerator(
@@ -27,18 +28,4 @@ public class Account {
     private String login;
     @Column(name = "password")
     private String password;
-
-    public Account() {
-    }
-
-    public Account(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return AccountId + "" + login + "" + password;
-    }
-
 }
