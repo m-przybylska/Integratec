@@ -1,9 +1,9 @@
-package com.example.demo.controllers;
+package com.integratec.controllers;
 
 import java.util.List;
 
-import com.example.demo.model.domain.Account;
-import com.example.demo.services.AccountService;
+import com.integratec.model.domain.Account;
+import com.integratec.services.AccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

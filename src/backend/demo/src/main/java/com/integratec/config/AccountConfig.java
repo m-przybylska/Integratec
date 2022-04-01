@@ -1,9 +1,9 @@
-package com.example.demo.config;
+package com.integratec.config;
 
 import java.util.List;
 
-import com.example.demo.model.domain.Account;
-import com.example.demo.model.repositories.AccountRepository;
+import com.integratec.model.domain.Account;
+import com.integratec.model.repositories.AccountRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

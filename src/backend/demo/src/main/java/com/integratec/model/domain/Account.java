@@ -1,7 +1,8 @@
-package com.example.demo.model.domain;
+package com.integratec.model.domain;
 
 
 import lombok.*;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
 import javax.persistence.*;
 
@@ -28,4 +29,7 @@ public class Account {
     private String login;
     @Column(name = "password")
     private String password;
+
+    public Account(String login3, String password3) { //tutaj mam problem, bo na mnie krzyczy ze chce taki kontruktor
+    }
 }

@@ -1,8 +1,8 @@
-package com.example.demo.model.repositories;
+package com.integratec.model.repositories;
 
-import com.example.demo.*;
+import com.integratec.*;
 
-import com.example.demo.model.domain.Account;
+import com.integratec.model.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
