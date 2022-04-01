@@ -1,7 +1,8 @@
-package com.example.demo.repositories;
+package com.example.demo.model.repositories;
 
-import com.example.demo.domain.*;
+import com.example.demo.*;
 
+import com.example.demo.model.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
