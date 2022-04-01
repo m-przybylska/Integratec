@@ -1,13 +1,11 @@
 package com.example.demo.services;
 
-import java.util.List;
-
-import com.example.demo.*;
 import com.example.demo.model.domain.Account;
 import com.example.demo.model.repositories.AccountRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountService {
