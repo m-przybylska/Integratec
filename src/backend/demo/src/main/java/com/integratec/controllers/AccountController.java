@@ -27,13 +27,13 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/2")
+    @GetMapping("/accounts")
 	public ResponseEntity<List<Account>> getAccount(){
         System.out.println(accountService.getAccounts());
 		return ResponseEntity.ok(accountService.getAccounts());
 	}
 
-    @PostMapping("/account")
+    @PostMapping("/accounts")
     public Account postAccount(@RequestBody Account newAccount){
         return accountService.postAccount(newAccount);
     }

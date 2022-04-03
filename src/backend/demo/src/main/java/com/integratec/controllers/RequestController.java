@@ -27,13 +27,13 @@ public class RequestController {
         this.requestService = requestService;
     }
 
-    @GetMapping("/1")
+    @GetMapping("/requests")
 	public ResponseEntity<List<Request>> getRequests(){
         System.out.println(requestService.getRequests());
 		return ResponseEntity.ok(requestService.getRequests());
 	}
 
-    @PostMapping("/requeset")
+    @PostMapping("/requests")
     public Request postRequest(@RequestBody Request newRequest){
         return requestService.postRequest(newRequest);
     }

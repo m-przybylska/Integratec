@@ -16,13 +16,13 @@ import javax.persistence.*;
 public class Account {
     @Id
     @SequenceGenerator(
-            name = "account_sequence",
-            sequenceName = "account_sequence",
+            name = "accountSequence",
+            sequenceName = "accountSequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "account_sequence"
+            generator = "accountSequence"
     )
     private Long AccountId;
     @Column(name = "login")

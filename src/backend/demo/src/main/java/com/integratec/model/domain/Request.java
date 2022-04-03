@@ -11,11 +11,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Request {
     @Id
-    @SequenceGenerator(name = "request_sequence", sequenceName = "request_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_sequence")
+    @SequenceGenerator(name = "requestSequence", sequenceName = "requestSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestSequence")
     private Long requestId;
     @Column(name = "Receiver")
     private Long receiver;
@@ -38,9 +39,6 @@ public class Request {
     private Long requestCategory;
     @Column(name = "RequestPriority")
     private Long requestPriority;
-
-    public Request() {
-    }
 
     public Request(Long requestid, Long receiver, Long sender, String title, String text, String comment) {
         this.requestId = requestid;
