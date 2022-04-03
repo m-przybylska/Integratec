@@ -13,11 +13,16 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository)
+    {
         this.accountRepository = accountRepository;
     }
-
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    
+    public List<Account> getAccounts(){
+		return accountRepository.findAll();
+	}
+    
+    public Account postAccount(Account newAccount){
+        return accountRepository.save(newAccount);
     }
 }

@@ -30,6 +30,8 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    public Account(String login3, String password3) { //tutaj mam problem, bo na mnie krzyczy ze chce taki kontruktor
-    }
+    public Account(String login, String password) {
+        this.login = login;
+        this.password = password;
+     }
 }

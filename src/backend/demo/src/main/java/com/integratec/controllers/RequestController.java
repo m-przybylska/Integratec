@@ -2,8 +2,8 @@ package com.integratec.controllers;
 
 import java.util.List;
 
-import com.integratec.model.domain.Account;
-import com.integratec.services.AccountService;
+import com.integratec.model.domain.Request;
+import com.integratec.services.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 @CrossOrigin("*")
-public class AccountController {
+public class RequestController {
 
-    private final AccountService accountService;
+    private final RequestService requestService;
 
     @Autowired
-    public AccountController(AccountService accountService)
+    public RequestController(RequestService requestService)
     {
-        this.accountService = accountService;
+        this.requestService = requestService;
     }
 
-    @GetMapping("/2")
-	public ResponseEntity<List<Account>> getAccount(){
-        System.out.println(accountService.getAccounts());
-		return ResponseEntity.ok(accountService.getAccounts());
+    @GetMapping("/1")
+	public ResponseEntity<List<Request>> getRequests(){
+        System.out.println(requestService.getRequests());
+		return ResponseEntity.ok(requestService.getRequests());
 	}
 
-    @PostMapping("/account")
-    public Account postAccount(@RequestBody Account newAccount){
-        return accountService.postAccount(newAccount);
+    @PostMapping("/requeset")
+    public Request postRequest(@RequestBody Request newRequest){
+        return requestService.postRequest(newRequest);
     }
 }
