@@ -1,8 +1,14 @@
-# About the Integratec
+## Table of contents
+* [About the Integratec](#About the Integratec)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
+
+## About the Integratec
 
 Project implemented as part of the academic subject - Team Project. An application supporting communication between employees and the HR department through the possibility of managing requests and tasks. It allows the HR department to better plan its work and set priorities. Implemented in the form of a ticket system. 
 
-# Technologies
+## Technologies
 
 <ul>  
 <li> Backend: Maven project in Java, Spring Boot 2.6.6, Hibernate 5.6.5 </li>
@@ -10,6 +16,7 @@ Project implemented as part of the academic subject - Team Project. An applicati
 <li> Data Base: </li>
 </ul>
 
+## Setup
 # How to run frontend
 
 In src/main/frontend directory run:\
