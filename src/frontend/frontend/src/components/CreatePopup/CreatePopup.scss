@@ -1,0 +1,60 @@
+@import "../../assets/scss/colors.scss";
+.CreatePopup {
+  position: absolute;
+  background-color: $color-iteragenta-normal;
+  width: 534px;
+  height: 328px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  box-sizing: border-box;
+  padding: 22px;
+  &.hidden {
+    display: none;
+  }
+  &-FirstPart {
+    display: flex;
+    flex-direction: column;
+
+    &-Desc,
+    &-Subject {
+      margin-bottom: 14px;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+    }
+
+    &-Desc {
+      margin-bottom: 14px;
+
+      min-height: 191px;
+      max-height: 191px;
+      resize: none;
+    }
+  }
+
+  &-SecondPart {
+    display: flex;
+    justify-content: space-between;
+    &-Button {
+      max-width: 155px;
+      min-width: 155px;
+      max-height: 27px;
+      box-sizing: border-box;
+      padding: 2px 6px;
+      border: none;
+      text-align: left;
+      &.mint {
+        background-color: $color-mint-dark;
+        color: $color-white;
+      }
+      &.gelb {
+        background-color: $color-gelb-dark;
+      }
+      &.iteragenta {
+        background-color: $color-iteragenta-dark;
+        color: $color-white;
+      }
+    }
+  }
+}

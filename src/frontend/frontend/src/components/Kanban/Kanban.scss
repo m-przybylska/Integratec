@@ -1,0 +1,10 @@
+@import "../../assets/scss/colors.scss";
+
+.Kanban {
+  position: relative;
+  min-width: 100%;
+  min-height: 100vh;
+  background-color: $color-white;
+  box-sizing: border-box;
+  //   padding: 0 30px;
+}
