@@ -27,7 +27,7 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    private void isValid(Request request){
+    private void isValid(Request request) {
         Validator validator = createValidator();
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if (violations.size() == 0) {
@@ -36,6 +36,7 @@ public class RequestService {
 
         }
     }
+
     public static Validator createValidator() {
         Configuration<?> config = Validation.byDefaultProvider().configure();
         ValidatorFactory factory = config.buildValidatorFactory();

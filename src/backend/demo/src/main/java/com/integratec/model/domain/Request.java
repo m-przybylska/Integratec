@@ -4,8 +4,10 @@ import lombok.*;
 
 import java.util.Date;
 import javax.validation.constraints.*;
+
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 
 @Entity
@@ -40,7 +42,7 @@ public class Request {
     @Size(max = 500)
     @Column(name = "Comment")
     private String comment;
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "SendDate")
     @Temporal(TemporalType.DATE)
     private Date sendDate;
