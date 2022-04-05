@@ -6,9 +6,10 @@ Project implemented as part of the academic subject - Team Project. An applicati
 
 <ul>  
 <li> Backend: Maven project in Java, Spring Boot 2.6.6, Hibernate 5.6.5 </li>
-</li> Frontend: </li>
-</li> Data Base: </li>
+<li> Frontend: </li>
+<li> Data Base: </li>
 </ul>
+
 # How to run frontend
 
 In src/main/frontend directory run:\
