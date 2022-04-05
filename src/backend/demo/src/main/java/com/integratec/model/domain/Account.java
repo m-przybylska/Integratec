@@ -2,7 +2,6 @@ package com.integratec.model.domain;
 
 
 import lombok.*;
-import org.springframework.boot.context.properties.ConstructorBinding;
 
 import javax.persistence.*;
 
@@ -16,15 +15,15 @@ import javax.persistence.*;
 public class Account {
     @Id
     @SequenceGenerator(
-            name = "accountSequence",
-            sequenceName = "accountSequence",
+            name = "account_sequence",
+            sequenceName = "account_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "accountSequence"
+            generator = "account_sequence"
     )
-    private Long AccountId;
+    private Long accountId;
     @Column(name = "login")
     private String login;
     @Column(name = "password")
