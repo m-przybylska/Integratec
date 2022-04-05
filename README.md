@@ -16,9 +16,7 @@ In Intellij:
 In backend/demo right click on the *pom.xml* file, next click on *Build Module 'demo'*, next click on *Maven > Reload project*  
 Run scr/main/java/com.integratec/Main
 
-# Dla nas
+# For us
 
-Ustalenia:
 https://docs.google.com/document/d/1GdKW1UmhlmO0-_V3cbJVHxq56NKQSRcqmIjDuBGonCs/edit?usp=sharing
 
-Zmiany mergowane najpierw do brancha develop.
