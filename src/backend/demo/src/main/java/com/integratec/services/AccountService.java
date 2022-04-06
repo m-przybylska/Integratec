@@ -25,4 +25,9 @@ public class AccountService {
     public Account postAccount(Account newAccount){
         return accountRepository.save(newAccount);
     }
+
+    public Account updateAccount(Long accountId, Account account) {
+        account.setAccountId(accountId);
+        return accountRepository.save(account);
+    }
 }
