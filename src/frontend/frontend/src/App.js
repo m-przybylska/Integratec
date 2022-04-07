@@ -57,11 +57,6 @@ class App extends PureComponent {
             />
           </Routes>
         </Router>
-
-        <h1 className="App-header">Hello World!</h1>
-        <h1 className="App-header">
-          <AccountProfiles />
-        </h1>
       </div>
     );
   }

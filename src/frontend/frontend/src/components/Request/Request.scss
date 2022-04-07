@@ -1,0 +1,42 @@
+@import "../../assets/scss/colors.scss";
+
+.Request {
+  max-width: 289px;
+  max-height: 209px;
+  box-sizing: border-box;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  background-color: $color-iteragenta-normal;
+  &-User {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .la-user {
+      font-size: 36px;
+    }
+  }
+  &-Title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 56px;
+    min-height: 56px;
+    margin-bottom: 20px;
+  }
+  &-Tags {
+    display: flex;
+    justify-content: space-between;
+    &-Priority,
+    &-Category {
+      padding: 2px 6px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    &-Priority {
+      background-color: $color-iteragenta-dark;
+    }
+    &-Category {
+      background-color: $color-mint-dark;
+    }
+  }
+}
