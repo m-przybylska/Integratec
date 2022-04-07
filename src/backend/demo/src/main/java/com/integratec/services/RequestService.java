@@ -33,7 +33,7 @@ public class RequestService {
         Validator validator = createValidator();
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if (violations.size() == 0) {
-            return ResponseEntity.ok(request);
+            return ResponseEntity.ok(request.toString());
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
