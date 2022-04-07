@@ -8,6 +8,8 @@ import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.RequestRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -27,13 +29,13 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    private void isValid(Request request) {
+    private ResponseEntity isValid(Request request) {
         Validator validator = createValidator();
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if (violations.size() == 0) {
-            return;
+            return ResponseEntity.ok(request);
         } else {
-
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
@@ -46,7 +48,7 @@ public class RequestService {
     }
 
     public Request postRequest(@Valid Request newRequest) {
-        isValid(newRequest);
+        //isValid(newRequest);
         return requestRepository.save(newRequest);
     }
 }
