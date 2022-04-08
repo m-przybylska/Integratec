@@ -18,6 +18,7 @@
 
 		&-Column {
 			margin-top: 10px;
+			margin-bottom: 30px;
 			&-Title {
 				position: fixed;
 				min-height: 29px;
@@ -26,14 +27,16 @@
 				margin-left: 10px;
 				text-align: left;
 				font-weight: bold;
+				z-index: 0;
 			}
 
 			&-Content {
 				max-height: 100vh;
 				margin-top: 50px;
+				margin-right: 12px;
+				margin-bottom: 30px;
 				overflow-y: scroll;
 				scrollbar-width: none;
-				margin-right: 12px;
 			}
 			&-Content::-webkit-scrollbar {
 				display: none; /* for Chrome, Safari, and Opera */
