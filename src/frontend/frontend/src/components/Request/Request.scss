@@ -1,0 +1,50 @@
+@import '../../assets/scss/colors.scss';
+
+.Request {
+	max-width: 289px;
+	max-height: 209px;
+	box-sizing: border-box;
+	padding: 20px 22px;
+	margin-bottom: 14px;
+	background-color: $color-iteragenta-normal;
+	font-weight: bold;
+	cursor: pointer;
+	&-User {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+		.la-user {
+			font-size: 36px;
+			margin-right: 16px;
+		}
+	}
+	&-Title {
+		text-align: left;
+		// white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: 56px;
+		min-height: 56px;
+		margin-bottom: 20px;
+	}
+	&-Tags {
+		display: flex;
+		text-transform: uppercase;
+		color: $color-white;
+		// justify-content: space-between;
+		&-Priority,
+		&-Category {
+			padding: 2px 6px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		&-Priority {
+			background-color: $color-iteragenta-dark;
+			margin-right: 12px; // or set some margins for both? I set this like that because right now we know there are only this two tags
+		}
+		&-Category {
+			background-color: $color-mint-dark;
+		}
+	}
+}
