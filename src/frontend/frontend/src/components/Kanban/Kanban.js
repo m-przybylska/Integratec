@@ -3,11 +3,12 @@ import './Kanban.scss';
 import CreatePopup from '../CreatePopup/CreatePopup';
 import PopupBackGround from '../PopupBackGround/PopupBackGround';
 import Request from '../Request/Request';
+import PreviewPopup from '../PreviewPopup/PreviewPopup';
 class Kanban extends PureComponent {
 	constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = { previewPopupIsVisible: false };
 	}
 
 	render() {
@@ -50,7 +51,9 @@ class Kanban extends PureComponent {
 					setPopupVisibility={this.props.setPopupVisibility}
 					popupIsVisible={this.props.popupIsVisible}
 				/>
-				<CreatePopup popupIsVisible={this.props.popupIsVisible} />
+				{/* <CreatePopup popupIsVisible={this.props.popupIsVisible} /> //uncomment this */}
+				<PreviewPopup popupIsVisible={this.props.popupIsVisible} />{' '}
+				{/*TODO: Remove PreviewPopup ^ */}
 				<div className='Kanban-Container'>
 					<div className='Kanban-Container-Column'>
 						<div className='Kanban-Container-Column-Title'>NEW REQUESTS</div>
