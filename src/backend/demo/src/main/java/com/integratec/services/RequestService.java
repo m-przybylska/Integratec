@@ -28,7 +28,7 @@ public class RequestService {
         return requestRepository.save(newRequest);
     }
 
-    public Request updateReqeust(Long requestId, Request request) {
+    public Request updateRequest(Long requestId, Request request) {
         request.setRequestId(requestId);
         return requestRepository.save(request);
     }

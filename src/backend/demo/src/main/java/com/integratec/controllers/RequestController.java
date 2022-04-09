@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +38,10 @@ public class RequestController {
     @PostMapping("/requests")
     public Request postRequest(@RequestBody Request newRequest){
         return requestService.postRequest(newRequest);
+    }
+
+    @PutMapping("/requests/{requestId}")
+    public Request updateReqeust(@PathVariable("requestId") Long requestId, @RequestBody Request request) {
+       return requestService.updateRequest(requestId,request);
     }
 }
