@@ -7,6 +7,7 @@ import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.RequestRepository;
 
+import com.integratec.services.RequestService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AccountConfig {
     @Bean
     CommandLineRunner commandLineRunner(AccountRepository accountRepository, RequestRepository requestRepository,
-            AccountController controller) {
+                                        AccountController controller, RequestService requestService) {
         return args -> {
             Account account1 = new Account(
                     "login1",
@@ -40,6 +41,7 @@ public class AccountConfig {
                     "title",
                     "text",
                     "comment");
+            //requestService.postRequest(request);
             requestRepository.save(request);
         };
 

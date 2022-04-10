@@ -29,7 +29,7 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    private ResponseEntity isValid(Request request) {
+    private ResponseEntity isValid(@Valid Request request) {
         Validator validator = createValidator();
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if (violations.size() == 0) {
@@ -47,8 +47,8 @@ public class RequestService {
         return validator;
     }
 
-    public Request postRequest(@Valid Request newRequest) {
-        //isValid(newRequest);
+    public Request postRequest(Request newRequest) {
+        isValid(newRequest);
         return requestRepository.save(newRequest);
     }
 }
