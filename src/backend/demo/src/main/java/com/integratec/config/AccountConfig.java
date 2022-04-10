@@ -2,6 +2,7 @@ package com.integratec.config;
 import java.util.List;
 
 import com.integratec.controllers.AccountController;
+import com.integratec.controllers.RequestController;
 import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
@@ -17,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AccountConfig {
     @Bean
     CommandLineRunner commandLineRunner(AccountRepository accountRepository, RequestRepository requestRepository,
-            AccountController controller) {
+                                        AccountController controller, RequestController RController) {
         return args -> {
             Account account1 = new Account(
                     "login1",
@@ -33,6 +34,14 @@ public class AccountConfig {
             accountRepository.saveAll(
                     List.of(account1, account2));
                     controller.postAccount(account3);
+            Request request1 = new Request(
+                    1L,
+                    2L,
+                    3L,
+                    "t",
+                    "text",
+                    "comment");
+                    RController.postRequest(request1);
             Request request = new Request(
                     1L,
                     2L,
