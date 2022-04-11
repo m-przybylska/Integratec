@@ -19,27 +19,27 @@ import java.util.Date;
 @ToString
 public class Request {
     @Id
-    @NotNull(message = "some error message")
-    @Range(min = 1, max = 999999, message = "some error message")
+    @NotNull(message = "requestId cannot be null")
+    @Range(min = 1, max = 999999, message = "the requestId size must be in the range 1-999999")
     @SequenceGenerator(name = "requestSequence", sequenceName = "requestSequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestSequence")
     private Long requestId;
-    @NotNull(message = "some error message")
-    @Range(min = 1, max = 999, message = "some error message")
+    @NotNull(message = "reciverId cannot be null ")
+    @Range(min = 1, max = 999, message = "the reciverId size must be in the range 1-999")
     @Column(name = "Receiver")
     private Long receiver;
-    @NotNull(message = "some error message")
-    @Range(min = 1, max = 999, message = "some error message")
+    @NotNull(message = "senderId cannot be null")
+    @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
     @Column(name = "Sender")
     private Long sender;
-    @NotEmpty(message = "some error message")
-    @Size(min = 3, max = 70, message = "some error message")
+    @NotEmpty(message = "title cannot be empty")
+    @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
     @Column(name = "Title")
     private String title;
-    @Size(max = 1000, message = "some error message")
+    @Size(max = 1000, message = "the maximum size for text is 1000")
     @Column(name = "Text")
     private String text;
-    @Size(max = 500, message = "some error message")
+    @Size(max = 500, message = "the maximum size for comment is 500")
     @Column(name = "Comment")
     private String comment;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
