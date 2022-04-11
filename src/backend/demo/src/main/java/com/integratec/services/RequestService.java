@@ -1,23 +1,25 @@
 package com.integratec.services;
 
-import java.util.List;
-import java.util.Set;
-
-
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.RequestRepository;
-
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.validation.*;
+import javax.validation.Valid;
+import java.util.List;
 
 @Service
+@Validated
 public class RequestService {
 
+    @Autowired
     private final RequestRepository requestRepository;
 
     @Autowired
@@ -29,26 +31,16 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    private ResponseEntity isValid(@Valid Request request) {
-        Validator validator = createValidator();
-        Set<ConstraintViolation<Request>> violations = validator.validate(request);
-        if (violations.size() == 0) {
-            return ResponseEntity.ok(request.toString());
-        } else {
+    public ResponseEntity isValid(@Valid Request request, BindingResult result) {
+        if (result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } else {
+            return ResponseEntity.ok(request);
         }
     }
 
-    public static Validator createValidator() {
-        Configuration<?> config = Validation.byDefaultProvider().configure();
-        ValidatorFactory factory = config.buildValidatorFactory();
-        Validator validator = factory.getValidator();
-        factory.close();
-        return validator;
-    }
-
-    public Request postRequest(Request newRequest) {
-        isValid(newRequest);
+    public Request postRequest(@Valid Request newRequest) {
+        //isValid();
         return requestRepository.save(newRequest);
     }
 }

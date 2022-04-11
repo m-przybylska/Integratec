@@ -1,14 +1,14 @@
 package com.integratec.model.domain;
 
 import lombok.*;
-
-import java.util.Date;
-import javax.validation.constraints.*;
-
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "request")
@@ -19,27 +19,27 @@ import javax.persistence.*;
 @ToString
 public class Request {
     @Id
-    @NotNull
-    @Range(min = 1, max = 999999)
+    @NotNull(message = "some error message")
+    @Range(min = 1, max = 999999, message = "some error message")
     @SequenceGenerator(name = "requestSequence", sequenceName = "requestSequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestSequence")
     private Long requestId;
-    @NotNull
-    @Range(min = 1, max = 999)
+    @NotNull(message = "some error message")
+    @Range(min = 1, max = 999, message = "some error message")
     @Column(name = "Receiver")
     private Long receiver;
-    @NotNull
-    @Range(min = 1, max = 999)
+    @NotNull(message = "some error message")
+    @Range(min = 1, max = 999, message = "some error message")
     @Column(name = "Sender")
     private Long sender;
-    @NotEmpty
-    @Size(min = 3, max = 70)
+    @NotEmpty(message = "some error message")
+    @Size(min = 3, max = 70, message = "some error message")
     @Column(name = "Title")
     private String title;
-    @Size(max = 1000)
+    @Size(max = 1000, message = "some error message")
     @Column(name = "Text")
     private String text;
-    @Size(max = 500)
+    @Size(max = 500, message = "some error message")
     @Column(name = "Comment")
     private String comment;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
