@@ -4,6 +4,7 @@ import CreatePopup from '../CreatePopup/CreatePopup';
 import PopupBackGround from '../PopupBackGround/PopupBackGround';
 import Request from '../Request/Request';
 import PreviewPopup from '../PreviewPopup/PreviewPopup';
+import * as TestingData from '../../assets/data/TestingData';
 class Kanban extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -12,53 +13,25 @@ class Kanban extends PureComponent {
 	}
 
 	render() {
-		let requestList = [
-			{
-				name: 'Jan Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdas',
-				priority: 'Today',
-				category: 'Kitchen',
-			},
-			{
-				name: 'Andrzej Kowalski',
-				title:
-					'Engage Jupiter Express asdasdasdasdasddddddddddddddddddddddddddddddddddddddddddddd',
-				priority: 'Taaaaaaaaaaaaaaaaaaaaaaa',
-				category: 'aaaaaaaaaaaaaaaaaaaaaaaa',
-			},
-			{
-				name: 'Maciej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'aaaaaaaaaaaaaaaa',
-				category: 'Kitchen',
-			},
-			{
-				name: 'Andrzej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'Taaaaaaaaaaaaaaaaaaaaaaa',
-				category: 'aaaaaaaaaaaaaaaaaaaaaaaa',
-			},
-			{
-				name: 'Maciej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'Today',
-				category: 'aaaaaaaaaaaaa',
-			},
-		];
+		let newRequestsList = TestingData.newRequestsList;
+		let todoRequestsList = TestingData.todoRequestsList;
+		let inProgressRequestsList = TestingData.inProgressRequestsList;
+		let doneRequestsList = TestingData.doneRequestsList;
 		return (
 			<div className='Kanban'>
 				<PopupBackGround
 					setPopupVisibility={this.props.setPopupVisibility}
 					popupIsVisible={this.props.popupIsVisible}
 				/>
-				{/* <CreatePopup popupIsVisible={this.props.popupIsVisible} /> //uncomment this */}
+				{/* <CreatePopup popupIsVisible={this.props.popupIsVisible} /> //uncomment */}
+				this
 				<PreviewPopup popupIsVisible={this.props.popupIsVisible} />{' '}
 				{/*TODO: Remove PreviewPopup ^ */}
 				<div className='Kanban-Container'>
 					<div className='Kanban-Container-Column'>
 						<div className='Kanban-Container-Column-Title'>NEW REQUESTS</div>
 						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
+							{newRequestsList.map((item) => {
 								return <Request data={item} />;
 							})}
 						</div>
@@ -67,7 +40,7 @@ class Kanban extends PureComponent {
 					<div className='Kanban-Container-Column'>
 						<div className='Kanban-Container-Column-Title'>TO DO</div>
 						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
+							{todoRequestsList.map((item) => {
 								return <Request data={item} />;
 							})}
 						</div>
@@ -76,7 +49,7 @@ class Kanban extends PureComponent {
 					<div className='Kanban-Container-Column'>
 						<div className='Kanban-Container-Column-Title'>IN PROGRESS</div>
 						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
+							{inProgressRequestsList.map((item) => {
 								return <Request data={item} />;
 							})}
 						</div>
@@ -85,7 +58,7 @@ class Kanban extends PureComponent {
 					<div className='Kanban-Container-Column'>
 						<div className='Kanban-Container-Column-Title'>DONE</div>
 						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
+							{doneRequestsList.map((item) => {
 								return <Request data={item} />;
 							})}
 						</div>

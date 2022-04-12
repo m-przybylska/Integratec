@@ -2,11 +2,12 @@
 
 .Request {
 	max-width: 289px;
+	min-height: 209px;
 	max-height: 209px;
 	box-sizing: border-box;
 	padding: 20px 22px;
 	margin-bottom: 14px;
-	background-color: $color-iteragenta-normal;
+	background-color: $color-iteragenta-light;
 	font-weight: bold;
 	cursor: pointer;
 	&-User {

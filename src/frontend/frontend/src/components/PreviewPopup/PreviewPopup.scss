@@ -1,7 +1,7 @@
 @import "../../assets/scss/colors.scss";
 .PreviewPopup {
     position: absolute;
-    background-color: $color-iteragenta-normal;
+    background-color: $color-iteragenta-light;
     width: 533px;
     height: 519px;
     top: 50%;
@@ -79,16 +79,20 @@
                 white-space: nowrap;
 			    overflow: hidden;
 			    text-overflow: ellipsis;
+                
                 &.mint {
-                background-color: $color-mint-dark;
-                color: $color-white;
+                    background-color: $color-mint-normal;
+                    color: $color-white;
                 }
                 &.gelb {
-                background-color: $color-gelb-dark;
+                    background-color: $color-gelb-normal;
                 }
                 &.iteragenta {
-                background-color: $color-iteragenta-dark;
-                color: $color-white;
+                    background-color: $color-iteragenta-normal;
+                    color: $color-white;
+                }
+                &:hover {
+                    border: 1px solid $color-black;
                 }
             }        
         }
