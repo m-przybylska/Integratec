@@ -17,6 +17,7 @@ class Kanban extends PureComponent {
 		let todoRequestsList = TestingData.todoRequestsList;
 		let inProgressRequestsList = TestingData.inProgressRequestsList;
 		let doneRequestsList = TestingData.doneRequestsList;
+
 		return (
 			<div className='Kanban'>
 				<PopupBackGround

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import './PreviewPopup.scss';
+import * as TestingData from '../../assets/data/TestingData';
 
 class PreviewPopup extends PureComponent {
 	constructor(props) {
@@ -9,18 +10,8 @@ class PreviewPopup extends PureComponent {
 	}
 
 	render() {
-		let request = {
-			name: 'Jan Kowalski',
-			date: 'Mar. 13 1:16 PM',
-			subject:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			priority: 'Today',
-			category: 'Kitchen',
-			status: 'New',
-			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-			comment: '',
-		};
+		let request = TestingData.request;
+
 		return (
 			<div
 				className={
