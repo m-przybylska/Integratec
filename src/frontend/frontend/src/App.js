@@ -1,11 +1,10 @@
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import React, { useState, useEffect, PureComponent } from 'react';
-import axios from 'axios';
-import Kanban from './components/Kanban/Kanban';
-import * as Constants from './assets/data/Constants';
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect, PureComponent } from "react";
+import axios from "axios";
+import Kanban from "./components/Kanban/Kanban";
+import * as Constants from "./assets/data/Constants";
 
 const AccountProfiles = () => {
 	const [accountProfiles, setAccountProfiles] = useState([]);
@@ -43,12 +42,12 @@ class App extends PureComponent {
 
 	render() {
 		return (
-			<div className='App'>
+			<div className="App">
 				<Router>
 					<Navbar setPopupVisibility={this.setPopupVisibility} />
 					<Routes>
 						<Route
-							path='/'
+							path="/"
 							element={
 								<Kanban
 									popupIsVisible={this.state.popupIsVisible}

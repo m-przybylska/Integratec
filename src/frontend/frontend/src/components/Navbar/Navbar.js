@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
-import './Navbar.scss';
-import logo from '../../assets/images/logo.svg';
+import React, { PureComponent } from "react";
+import "./Navbar.scss";
+import logo from "../../assets/images/logo.svg";
 
 class Navbar extends PureComponent {
 	constructor(props) {
@@ -11,21 +11,21 @@ class Navbar extends PureComponent {
 
 	render() {
 		return (
-			<div className='Navbar'>
-				<div className='Navbar-leftSide'>
-					<img src={logo} className='Navbar-leftSide-logo' />
+			<div className="Navbar">
+				<div className="Navbar-leftSide">
+					<img src={logo} className="Navbar-leftSide-logo" />
 				</div>
-				<div className='Navbar-rightSide'>
-					<div className='Navbar-rightSide-option'>my requests</div>
+				<div className="Navbar-rightSide">
+					<div className="Navbar-rightSide-option">my requests</div>
 					<div
-						className='Navbar-rightSide-option'
+						className="Navbar-rightSide-option"
 						onClick={() => this.props.setPopupVisibility()}
 					>
 						add task
 					</div>
-					<div className='Navbar-rightSide-option'>my account</div>
-					<div className='Navbar-rightSide-option'>settings</div>
-					<div className='Navbar-rightSide-option'>logout</div>
+					<div className="Navbar-rightSide-option">my account</div>
+					<div className="Navbar-rightSide-option">settings</div>
+					<div className="Navbar-rightSide-option">logout</div>
 				</div>
 			</div>
 		);
