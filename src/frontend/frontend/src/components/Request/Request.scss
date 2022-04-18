@@ -11,6 +11,11 @@
   font-weight: bold;
   cursor: pointer;
 
+  &:hover {
+    padding: 15px 17px;
+    border: 1px solid $color-black;
+  }
+
   &.grey {
     background-color: $color-grey;
   }
