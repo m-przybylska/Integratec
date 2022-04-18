@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import "./Request.scss";
+import CustomButton from "../CustomButton/CustomButton";
+import * as TestingData from "../../assets/data/TestingData";
 
 class Request extends PureComponent {
 	constructor(props) {
@@ -13,7 +15,6 @@ class Request extends PureComponent {
 	};
 
 	render() {
-		console.log(this.props.setPreviewPopupVisibility);
 		const { name, title, priority, category } = this.props.data;
 		return (
 			<div
@@ -26,8 +27,16 @@ class Request extends PureComponent {
 				</div>
 				<div className="Request-Title">{title}</div>
 				<div className="Request-Tags">
-					<div className="Request-Tags-Priority">{priority}</div>
-					<div className="Request-Tags-Category">{category}</div>
+					<CustomButton
+						contentSelected={priority}
+						buttonType="priority"
+						isTag="true"
+					/>
+					<CustomButton
+						contentSelected={category}
+						buttonType="category"
+						isTag="true"
+					/>
 				</div>
 			</div>
 		);

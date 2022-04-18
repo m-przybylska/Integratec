@@ -1,58 +1,78 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-//import { Test } from './CustomButton.styles';
+import React, { PureComponent } from "react";
+import "./CustomButton.scss";
 
-class CustomButton extends PureComponent { 
-  constructor(props) {
-    super(props);
+class CustomButton extends PureComponent {
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      hasError: false,
-    };
-  }
+		this.state = {
+			hasError: false,
+			buttonClassName: "",
+			isTag: true,
+		};
+	}
 
-  componentWillMount = () => {
-    console.log('CustomButton will mount');
-  }
+	setDataFromType = () => {
+		console.log(this.props.isTag);
+		if (this.props.isTag == "true") {
+			switch (this.props.buttonType) {
+				case "priority":
+					this.setState({
+						buttonClassName: "CustomButton-Tag-Priority",
+					});
+					break;
+				case "category":
+					this.setState({
+						buttonClassName: "CustomButton-Tag-Category",
+					});
+					break;
+				case "status":
+					this.setState({
+						buttonClassName: "CustomButton-Tag-Status",
+					});
+					break;
+				default:
+					break;
+			}
+		} else if (this.props.isTag == "false") {
+			console.log(this.props.buttonType);
+			switch (this.props.buttonType) {
+				case "priority":
+					this.setState({
+						buttonClassName: "CustomButton-Button-Priority",
+					});
+					break;
+				case "category":
+					this.setState({
+						buttonClassName: "CustomButton-Button-Category",
+					});
+					break;
+				case "status":
+					this.setState({
+						buttonClassName: "CustomButton-Button-Status",
+					});
+					break;
+				case "create":
+					this.setState({
+						buttonClassName: "CustomButton-Button-Create",
+					});
+				default:
+					break;
+			}
+		}
+	};
 
-  componentDidMount = () => {
-    console.log('CustomButton mounted');
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    console.log('CustomButton will receive props', nextProps);
-  }
-
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log('CustomButton will update', nextProps, nextState);
-  }
-
-  componentDidUpdate = () => {
-    console.log('CustomButton did update');
-  }
-
-  componentWillUnmount = () => {
-    console.log('CustomButton will unmount');
-  }
-
-  render () {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-    return (
-      <div className="CustomButtonWrapper">
-        Test content
-      </div>
-    );
-  }
+	render() {
+		this.setDataFromType();
+		if (this.state.hasError) {
+			return <h1>Something went wrong.</h1>;
+		}
+		return (
+			<div className={this.state.buttonClassName}>
+				{this.props.contentSelected}
+			</div>
+		);
+	}
 }
-
-CustomButton.propTypes = {
-  // bla: PropTypes.string,
-};
-
-CustomButton.defaultProps = {
-  // bla: 'test',
-};
 
 export default CustomButton;

@@ -1,1 +1,82 @@
-/* your css code */
+@import '../../assets/scss/colors.scss';
+
+.CustomButton {
+    &-Tag {
+        display: flex;
+        text-transform: uppercase;
+        color: $color-white;
+        // justify-content: space-between;
+        &-Priority,
+        &-Category,
+        &-Status {
+          padding: 2px 6px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        &-Priority {
+          background-color: $color-iteragenta-dark;
+          margin-right: 12px; // or set some margins for both? I set this like that because right now we know there are only this two tags
+          color: $color-white;
+        }
+        &-Category {
+          background-color: $color-mint-dark;
+          color: $color-white;
+        }
+        &-Status {
+          background-color: $color-gelb-dark;
+          color: $color-black;
+        }
+    }
+
+    &-Button {
+        text-transform: uppercase;
+
+        &-Priority,
+        &-Category,
+        &-Status,
+        &-Create {
+            box-sizing: border-box;
+            border: none;
+            padding: 2px 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+            max-width: 155px;
+            min-width: 155px;
+            max-height: 27px;
+            min-height: 27px;
+                            
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 20px;
+            
+            cursor: pointer;
+            &:hover {
+                padding: 1px 6px;
+                border: 1px solid $color-black;
+              }
+            
+        }
+        &-Priority {
+            background-color: $color-iteragenta-normal;
+            color: $color-white;
+        }
+        &-Category {
+            background-color: $color-mint-normal;
+            color: $color-white;
+        }
+        &-Status {
+            background-color: $color-gelb-normal;
+            color: $color-black;
+        }
+        &-Create {
+            background-color: $color-gelb-normal;
+            color: $color-black;
+        }
+    }
+
+
+}

@@ -119,7 +119,7 @@ export const requestsList = [
 	},
 	{
 		name: "Zenon Zenonski",
-		title: "Ja to bym chciał kartę multisport...",
+		title: "Ja to bym chciał kartę multisport",
 		priority: "This month",
 		category: "benefits",
 		status: "done",
@@ -133,7 +133,7 @@ export const requestsList = [
 	},
 	{
 		name: "Zenon Zenonski",
-		title: "Ja to bym chciał kartę benefity w Empiku...",
+		title: "Ja to bym chciał kartę benefity w Empiku",
 		priority: "This month",
 		category: "benefits",
 		status: "done",
