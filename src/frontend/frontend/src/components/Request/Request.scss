@@ -7,9 +7,23 @@
   box-sizing: border-box;
   padding: 16px 18px;
   margin-bottom: 14px;
-  background-color: $color-iteragenta-light;
+  // background-color: $color-iteragenta-light;
   font-weight: bold;
   cursor: pointer;
+
+  &.grey {
+    background-color: $color-grey;
+  }
+  &.iteragenta {
+    background-color: $color-iteragenta-light;
+  }
+  &.gelb {
+    background-color: $color-gelb-light;
+  }
+  &.mint {
+    background-color: $color-mint-light;
+  }
+
   &-User {
     display: flex;
     align-items: center;
