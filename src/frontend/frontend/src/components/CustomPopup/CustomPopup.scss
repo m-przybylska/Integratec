@@ -42,27 +42,6 @@
     &-SecondPart {
       display: flex;
       justify-content: space-between;
-      &-Button {
-        max-width: 155px;
-        min-width: 155px;
-        max-height: 27px;
-        box-sizing: border-box;
-        padding: 2px 6px;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        &.mint {
-          background-color: $color-mint-dark;
-          color: $color-white;
-        }
-        &.gelb {
-          background-color: $color-gelb-dark;
-        }
-        &.iteragenta {
-          background-color: $color-iteragenta-dark;
-          color: $color-white;
-        }
-      }
     }
   }
   &-previewRequest {
@@ -115,39 +94,6 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 14px;
-        &-Button {
-          max-width: 155px;
-          min-width: 155px;
-          max-height: 27px;
-          min-height: 27px;
-          box-sizing: border-box;
-          padding: 2px 6px;
-          border: none;
-          text-align: center;
-          text-transform: uppercase;
-          font-weight: bold;
-          font-size: 20px;
-          cursor: pointer;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-
-          &.mint {
-            background-color: $color-mint-normal;
-            color: $color-white;
-          }
-          &.gelb {
-            background-color: $color-gelb-normal;
-          }
-          &.iteragenta {
-            background-color: $color-iteragenta-normal;
-            color: $color-white;
-          }
-          &:hover {
-            padding: 1px 6px;
-            border: 1px solid $color-black;
-          }
-        }
       }
     }
 

@@ -30,12 +30,12 @@ class Request extends PureComponent {
 					<CustomButton
 						contentSelected={priority}
 						buttonType="priority"
-						isTag="true"
+						isTag={true}
 					/>
 					<CustomButton
 						contentSelected={category}
 						buttonType="category"
-						isTag="true"
+						isTag={true}
 					/>
 				</div>
 			</div>

@@ -45,17 +45,17 @@ class CustomPopup extends PureComponent {
 							<CustomButton
 								contentSelected="priority"
 								buttonType="priority"
-								isTag="false"
+								isTag={false}
 							/>
 							<CustomButton
 								contentSelected="category"
 								buttonType="category"
-								isTag="false"
+								isTag={false}
 							/>
 							<CustomButton
 								contentSelected="create"
 								buttonType="create"
-								isTag="false"
+								isTag={false}
 							/>
 						</div>
 					</React.Fragment>
@@ -81,24 +81,24 @@ class CustomPopup extends PureComponent {
 								<CustomButton
 									contentSelected={this.props.popupData.priority}
 									buttonType="priority"
-									isTag="false"
+									isTag={false}
 								/>
 								<CustomButton
 									contentSelected={this.props.popupData.category}
 									buttonType="category"
-									isTag="false"
+									isTag={false}
 								/>
 								<CustomButton
 									contentSelected={this.props.popupData.status}
 									buttonType="status"
-									isTag="false"
+									isTag={false}
 								/>
 							</div>
 						</div>
 
 						<div className="CustomPopup-previewRequest-ThirdPart">
 							<div className="CustomPopup-previewRequest-ThirdPart-Desc">
-								...
+								{this.props.popupData.description}
 							</div>
 
 							<textarea

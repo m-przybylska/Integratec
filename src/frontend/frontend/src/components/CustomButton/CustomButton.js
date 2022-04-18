@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import "./CustomButton.scss";
+import * as TestingData from "../../assets/data/TestingData";
 
 class CustomButton extends PureComponent {
 	constructor(props) {
@@ -8,13 +9,12 @@ class CustomButton extends PureComponent {
 		this.state = {
 			hasError: false,
 			buttonClassName: "",
-			isTag: true,
+			contentsList: {},
 		};
 	}
 
 	setDataFromType = () => {
-		console.log(this.props.isTag);
-		if (this.props.isTag == "true") {
+		if (this.props.isTag == true) {
 			switch (this.props.buttonType) {
 				case "priority":
 					this.setState({
@@ -34,27 +34,30 @@ class CustomButton extends PureComponent {
 				default:
 					break;
 			}
-		} else if (this.props.isTag == "false") {
-			console.log(this.props.buttonType);
+		} else {
 			switch (this.props.buttonType) {
 				case "priority":
 					this.setState({
 						buttonClassName: "CustomButton-Button-Priority",
+						contentsList: TestingData.prioritiesList,
 					});
 					break;
 				case "category":
 					this.setState({
 						buttonClassName: "CustomButton-Button-Category",
+						contentsList: TestingData.categoriesList,
 					});
 					break;
 				case "status":
 					this.setState({
 						buttonClassName: "CustomButton-Button-Status",
+						contentsList: TestingData.statusesList,
 					});
 					break;
 				case "create":
 					this.setState({
 						buttonClassName: "CustomButton-Button-Create",
+						contentsList: TestingData.createList,
 					});
 				default:
 					break;

@@ -74,7 +74,16 @@
         }
         &-Create {
             background-color: $color-gelb-normal;
-            color: $color-black;
+            color: $color-grey;
+            &:visited {
+                color: $color-black;
+            }
+            &:focus {
+                color: $color-black;
+            }
+            &:active {
+                color: $color-black;
+            }
         }
     }
 
