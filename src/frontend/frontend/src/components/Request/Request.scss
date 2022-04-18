@@ -1,11 +1,11 @@
 @import "../../assets/scss/colors.scss";
 
 .Request {
+  font-size: 14px;
   max-width: 289px;
-  min-height: 209px;
-  max-height: 209px;
+  min-width: 289px;
   box-sizing: border-box;
-  padding: 20px 22px;
+  padding: 16px 18px;
   margin-bottom: 14px;
   background-color: $color-iteragenta-light;
   font-weight: bold;
@@ -13,10 +13,10 @@
   &-User {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     .la-user {
       font-size: 36px;
-      margin-right: 16px;
+      margin-right: 10px;
     }
   }
   &-Title {
@@ -25,7 +25,7 @@
     text-overflow: ellipsis;
     max-height: 56px;
     min-height: 56px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
   &-Tags {
     display: flex;

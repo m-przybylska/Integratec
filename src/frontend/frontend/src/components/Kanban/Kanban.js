@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import "./Kanban.scss";
-import CreatePopup from "../CreatePopup/CreatePopup";
+
 import PopupBackGround from "../PopupBackGround/PopupBackGround";
 import Request from "../Request/Request";
-import PreviewPopup from "../PreviewPopup/PreviewPopup";
+
 import * as TestingData from "../../assets/data/TestingData";
 import CustomPopup from "../CustomPopup/CustomPopup";
 
