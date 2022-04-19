@@ -30,7 +30,7 @@ $ npm start
 Create database connection named *integratec*
 
 In Intellij:  
-Change in *resources/application.properties* file *spring.datasource.password="your databse password"* to your own database password
+Change in *resources/application.properties* file *spring.datasource.password="your databse password"* to your own database password  
 In backend/demo right click on the *pom.xml* file, next click on *Build Module 'demo'*, next click on *Maven > Reload project*  
 Run scr/main/java/com.integratec/Main
 
