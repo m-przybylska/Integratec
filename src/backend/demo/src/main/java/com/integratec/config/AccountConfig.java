@@ -42,6 +42,14 @@ public class AccountConfig {
                     "text",
                     "comment");
             requestRepository.save(request);
+            Request request1 = new Request(
+                    2L,
+                    2L,
+                    3L,
+                    "tit",
+                    "text",
+                    "comment");
+            requestRepository.save(request1);
         };
 
     }

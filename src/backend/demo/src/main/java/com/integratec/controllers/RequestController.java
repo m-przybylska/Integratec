@@ -6,6 +6,7 @@ import com.integratec.model.domain.Request;
 import com.integratec.services.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,8 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Request>> getRequests() {
-        return ResponseEntity.ok(requestService.getRequests());
+    public ResponseEntity<List<Request>> getRequests(@Param("keyword") String keyword) {
+        return ResponseEntity.ok(requestService.getRequests(keyword));
     }
 
     @PostMapping

@@ -13,16 +13,18 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository)
-    {
+    public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-    
-    public List<Account> getAccounts(){
-		return accountRepository.findAll();
-	}
-    
-    public Account postAccount(Account newAccount){
+
+    public List<Account> getAccounts(String keyword) {
+        if (keyword != null) {
+            return accountRepository.findAll(keyword);
+        }
+        return accountRepository.findAll();
+    }
+
+    public Account postAccount(Account newAccount) {
         return accountRepository.save(newAccount);
     }
 

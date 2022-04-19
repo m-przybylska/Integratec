@@ -20,8 +20,11 @@ public class RequestService {
         this.requestRepository= requestRepository;
     }
     
-    public List<Request> getRequests(){
-		return requestRepository.findAll();
+    public List<Request> getRequests(String keyword){
+        if (keyword != null) {
+            return requestRepository.findAll(keyword);
+        }
+        return requestRepository.findAll();
 	}
 
     public Request postRequest( Request newRequest){
