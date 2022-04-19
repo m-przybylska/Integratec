@@ -2,6 +2,7 @@ package com.integratec.config;
 import java.util.List;
 
 import com.integratec.controllers.AccountController;
+import com.integratec.controllers.RequestController;
 import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
@@ -20,7 +21,7 @@ import javax.validation.Validator;
 public class AccountConfig {
     @Bean
     CommandLineRunner commandLineRunner(AccountRepository accountRepository, RequestRepository requestRepository,
-                                        AccountController controller, RequestService requestService) {
+                                        AccountController controller, RequestController requestController) throws Exception {
         return args -> {
             Account account1 = new Account(
                     "login1",
@@ -43,8 +44,12 @@ public class AccountConfig {
                     "title",
                     "text",
                     "comment");
-            requestService.postRequest(request);
-            //requestRepository.save(request);
+            Request request1= new Request(
+                    2L, 3L, 4L, "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", "f", "");
+            Request request2= new Request(
+                    5L, 0L, 10001L, "bjjjjj", "a", "");
+            requestRepository.saveAll(List.of(request, request1, request2));
+
         };
 
     }

@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Service
-@Validated
 public class RequestService {
 
     @Autowired
@@ -31,16 +30,7 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    public ResponseEntity isValid(@Valid Request request, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        } else {
-            return ResponseEntity.ok(request);
-        }
-    }
-
-    public Request postRequest(@Valid Request newRequest) {
-        //isValid();
+    public Request postRequest(Request newRequest) {
         return requestRepository.save(newRequest);
     }
 }
