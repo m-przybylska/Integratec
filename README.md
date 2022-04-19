@@ -14,7 +14,7 @@ Project implemented as part of the academic subject - Team Project. An applicati
 <ul>  
 <li> Backend: Maven project in Java, Spring Boot 2.6.6, Hibernate 5.6.5 </li>
 <li> Frontend: React, sass, axios, react-router-dom, Node.js</li>
-<li> Data Base: </li>
+<li> Data Base: MySQL Database </li>
 </ul>
 
  
@@ -27,7 +27,10 @@ $ npm start
 
 # How to run backend
 
+Create database connection named integratec
+
 In Intellij:  
+Change in resources/application.properties file spring.datasource.password="your databse password"
 In backend/demo right click on the *pom.xml* file, next click on *Build Module 'demo'*, next click on *Maven > Reload project*  
 Run scr/main/java/com.integratec/Main
 
