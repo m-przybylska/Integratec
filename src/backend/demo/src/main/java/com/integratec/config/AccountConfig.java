@@ -42,9 +42,9 @@ public class AccountConfig {
                     "text",
                     "comment");
             Request request1= new Request(
-                    2L, 3L, 4L, "", "fhhh", "");
+                    2L, 3L, 4L, "ggg", "fhhh", "");
             Request request2= new Request(
-                    5L, 0L, 10001L, "title2", "agghhgh", "");
+                    5L, 2L, 10L, "title2", "agghhgh", "");
             requestRepository.saveAll(List.of(request, request1, request2));
         };
 
