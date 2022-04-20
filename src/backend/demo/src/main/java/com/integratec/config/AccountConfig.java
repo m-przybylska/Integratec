@@ -1,5 +1,4 @@
 package com.integratec.config;
-import java.util.List;
 
 import com.integratec.controllers.AccountController;
 import com.integratec.controllers.RequestController;
@@ -7,14 +6,12 @@ import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.RequestRepository;
-
-import com.integratec.services.RequestService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.validation.Validator;
+import java.util.List;
 
 @Configuration
 @EnableSwagger2
@@ -45,11 +42,10 @@ public class AccountConfig {
                     "text",
                     "comment");
             Request request1= new Request(
-                    2L, 3L, 4L, "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", "f", "");
+                    2L, 3L, 4L, "", "fhhh", "");
             Request request2= new Request(
-                    5L, 0L, 10001L, "bjjjjj", "a", "");
+                    5L, 0L, 10001L, "title2", "agghhgh", "");
             requestRepository.saveAll(List.of(request, request1, request2));
-
         };
 
     }
