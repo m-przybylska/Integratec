@@ -1,37 +1,53 @@
 package com.integratec.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-/*what a demonstrative SpringSecurity class might look like,
-requires adding a mapping in the controller */
+// https://www.youtube.com/watch?v=her_7pa0vrg
+// localhost:8080 -> login permission pops up as expected
+// consult with team & technical supervisor on how to proceed
 
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        User.UserBuilder user = User.withDefaultPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .withUser(user.username("login1").password("password1").roles("ADMIN"))
-                .withUser(user.username("login2").password("password2").roles("ADMIN"))
-                .withUser(user.username("login3").password("password3").roles("ADMIN"));
+
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public SpringSecurityConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
+        http
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .formLogin().loginPage("login/login-page")
-                .loginProcessingUrl("/authenticateUser")
-                .defaultSuccessUrl("/requests")
-                .and()
-                .logout()
-                .logoutSuccessUrl("login/login-page").permitAll();
+                .httpBasic();
+    }
+
+    @Override
+    @Bean
+    protected UserDetailsService userDetailsService() {
+        UserDetails user1 = User.builder()
+                .username("user1")
+                .password(passwordEncoder.encode("password"))
+                .roles("ADMIN") // ROLE_ADMIN
+                .build();
+
+        return new InMemoryUserDetailsManager(
+                user1
+        );
     }
 }
