@@ -12,10 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-// https://www.youtube.com/watch?v=her_7pa0vrg
-// localhost:8080 -> login permission pops up as expected
-// consult with team & technical supervisor on how to proceed
-
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
