@@ -1,52 +1,55 @@
 /* your css code */
-@import '../../assets/scss/colors.scss';
+@import "../../assets/scss/colors.scss";
 
 .KanbanColumn {
-    margin-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  &-Title {
+    position: fixed;
+    min-height: 29px;
+    max-height: 29px;
+    padding-top: 0px;
+    margin-left: 10px;
+    text-align: left;
+    font-weight: bold;
+    z-index: 0;
+  }
+
+  &-TitleWithBefore {
+    position: fixed;
+    min-height: 29px;
+    max-height: 29px;
+    padding-top: 0px;
+    margin-left: 10px;
+    text-align: left;
+    font-weight: bold;
+    z-index: 0;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      background-color: $color-black;
+      height: 24px;
+      width: 2px;
+      right: calc(100% + 15px);
+      top: 50%;
+      transform: translateY(-75%);
+    }
+  }
+
+  &-Content {
+    max-height: 95%; //TODO: change this?
+    margin-top: 30px;
+    margin-right: 12px;
     margin-bottom: 30px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
 
-    &-Title {
-        position: fixed;
-        min-height: 29px;
-        max-height: 29px;
-        padding-top: 0px;
-        margin-left: 10px;
-        text-align: left;
-        font-weight: bold;
-        z-index: 0;
-    }
-
-    &-TitleWithBefore {
-        position: fixed;
-        min-height: 29px;
-        max-height: 29px;
-        padding-top: 0px;
-        margin-left: 10px;
-        text-align: left;
-        font-weight: bold;
-        z-index: 0;
-
-        &::before {
-            content: '\f45c';
-            font-family: 'Line Awesome Free';
-            font-weight: 900;
-            position: absolute;
-            font-size: 10px;
-            right: calc(100% + 10px);
-        }
-    }
-
-    &-Content {
-        max-height: 95%; //TODO: change this?
-        margin-top: 30px;
-        margin-right: 12px;
-        margin-bottom: 30px;
-        overflow-y: scroll;
-        scrollbar-width: none;
-    }
-
-    &-Content::-webkit-scrollbar {
-        display: none;
-        /* for Chrome, Safari, and Opera */
-    }
+  &-Content::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+  }
 }

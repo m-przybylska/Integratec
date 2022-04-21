@@ -19,7 +19,7 @@ class Navbar extends PureComponent {
           <div className="Navbar-rightSide-option">my requests</div>
           <div
             className="Navbar-rightSide-option"
-            onClick={() => this.props.setPopup("addTask", null)}
+            onClick={() => this.props.setPopup("addTask", null, "iteragenta")}
           >
             add task
           </div>

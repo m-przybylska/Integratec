@@ -2,7 +2,7 @@
 
 .CustomPopup {
   position: absolute;
-  background-color: $color-iteragenta-light;
+
   width: 534px;
 
   height: 519px;
@@ -12,6 +12,19 @@
   box-sizing: border-box;
   padding: 22px;
   z-index: 1;
+
+  &.iteragenta {
+    background-color: $color-iteragenta-light;
+  }
+  &.gelb {
+    background-color: $color-gelb-light;
+  }
+  &.mint {
+    background-color: $color-mint-light;
+  }
+  &.grey {
+    background-color: $color-grey;
+  }
 
   &.addTask {
     height: 328px;

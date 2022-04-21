@@ -16,7 +16,7 @@ class PopupBackGround extends PureComponent {
             ? "PopupBackGround"
             : "PopupBackGround hidden"
         }
-        onClick={() => this.props.setPopup("", {})}
+        onClick={() => this.props.setPopup("", {}, "iteragenta")}
       ></div>
     );
   }

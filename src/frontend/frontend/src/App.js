@@ -33,13 +33,21 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { popupIsVisible: false, popupType: "", popupData: {} };
+    this.state = {
+      popupIsVisible: false,
+      popupType: "",
+      popupData: {},
+      popupColor: "iteragenta",
+    };
   }
 
-  setPopup = (type, data) => {
-    this.setState({ popupType: type, popupData: data }, () => {
-      this.setState({ popupIsVisible: !this.state.popupIsVisible });
-    });
+  setPopup = (type, data, color) => {
+    this.setState(
+      { popupType: type, popupData: data, popupColor: color },
+      () => {
+        this.setState({ popupIsVisible: !this.state.popupIsVisible });
+      }
+    );
   };
 
   render() {
@@ -55,6 +63,7 @@ class App extends PureComponent {
                   popupIsVisible={this.state.popupIsVisible}
                   popupType={this.state.popupType}
                   popupData={this.state.popupData}
+                  popupColor={this.state.popupColor}
                   setPopup={this.setPopup}
                 />
               }
