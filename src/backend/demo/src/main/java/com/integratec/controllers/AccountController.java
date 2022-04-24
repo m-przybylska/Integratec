@@ -5,6 +5,7 @@ import java.util.List;
 import com.integratec.model.domain.Account;
 import com.integratec.services.AccountService;
 
+import org.hibernate.annotations.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/accounts")
@@ -28,18 +31,21 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping("/accounts")
     public ResponseEntity<List<Account>> getAccount() {
+        System.out.println(accountService.getAccounts());
         return ResponseEntity.ok(accountService.getAccounts());
     }
 
-    @PostMapping
-    public Account postAccount(@RequestBody Account newAccount) {
+    @PostMapping("/accounts")
+    public Account postAccount(@Valid @RequestBody Account newAccount) {
         return accountService.postAccount(newAccount);
     }
+}
 
     @PutMapping("/{accountId}")
     public Account updateAccount(@PathVariable("accountId") Long accountId, @RequestBody Account account) {
         return accountService.updateAccount(accountId, account);
     }
 }
+

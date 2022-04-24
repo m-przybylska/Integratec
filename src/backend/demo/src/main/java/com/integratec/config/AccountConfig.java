@@ -1,23 +1,24 @@
 package com.integratec.config;
-import java.util.List;
 
 import com.integratec.controllers.AccountController;
+import com.integratec.controllers.RequestController;
 import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.RequestRepository;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.List;
 
 @Configuration
 @EnableSwagger2
 public class AccountConfig {
     @Bean
     CommandLineRunner commandLineRunner(AccountRepository accountRepository, RequestRepository requestRepository,
-            AccountController controller) {
+                                        AccountController controller, RequestController requestController) throws Exception {
         return args -> {
             Account account1 = new Account(
                     "login1",
@@ -41,7 +42,11 @@ public class AccountConfig {
                     "title",
                     "text",
                     "comment");
-            requestRepository.save(request);
+            Request request1= new Request(
+                    2L, 3L, 4L, "ggg", "fhhh", "");
+            Request request2= new Request(
+                    5L, 2L, 10L, "title2", "agghhgh", "");
+            requestRepository.saveAll(List.of(request, request1, request2));
         };
 
     }
