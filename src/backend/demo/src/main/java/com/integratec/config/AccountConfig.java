@@ -34,6 +34,7 @@ public class AccountConfig {
             accountRepository.saveAll(
                     List.of(account1, account2));
                     controller.postAccount(account3);
+                    controller.updateAccount(3L, account1);
             Request request = new Request(
                     1L,
                     2L,
