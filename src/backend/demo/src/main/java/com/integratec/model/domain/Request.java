@@ -53,9 +53,6 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @Column(name = "TaskList")
-    private Long taskList;
-
     @Column(name = "RequestStatus")
     private Long requestStatus;
 
