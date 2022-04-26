@@ -91,31 +91,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-        </dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>3.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.relateddigital</groupId>
-			<artifactId>euromessage-android</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.relateddigital</groupId>
-			<artifactId>visilabs-android</artifactId>
-			<version>5.7.9</version>
-		</dependency>
-		<dependency>
-			<groupId>com.uber.motif</groupId>
-			<artifactId>motif-errormessage</artifactId>
-			<version>0.3.8</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
