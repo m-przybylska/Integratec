@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.integratec.model.domain.Account;
 import com.integratec.services.AccountService;
-
-import org.hibernate.annotations.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,7 +39,6 @@ public class AccountController {
     public Account postAccount(@Valid @RequestBody Account newAccount) {
         return accountService.postAccount(newAccount);
     }
-}
 
     @PutMapping("/{accountId}")
     public Account updateAccount(@PathVariable("accountId") Long accountId, @RequestBody Account account) {
