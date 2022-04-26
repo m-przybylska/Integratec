@@ -31,22 +31,20 @@ public class Request {
     @Column(name = "SendDate")
     @Temporal(TemporalType.DATE)
     private Date sendDate;
-    @Column(name = "TaskList")
-    private Long taskList;
-    @Column(name = "RequestStatusStatus")
-    private Long requestStatus;
-    @Column(name = "RequestCategoryCategory")
-    private Long requestCategory;
+    @Column(name = "RequestStatus")
+    private String requestStatus;
+    @Column(name = "RequestCategory")
+    private String requestCategory;
     @Column(name = "RequestPriority")
-    private Long requestPriority;
+    private String requestPriority;
 
-    public Request(Long requestid, Long receiver, Long sender, String title, String text, String comment) {
+/*    public Request(Long requestid, Long receiver, Long sender, String title, String text, String comment) {
         this.requestId = requestid;
         this.receiver = receiver;
         this.sender = sender;
         this.title = title;
         this.text = text;
         this.comment = comment;
-    }
+    }*/
 
 }

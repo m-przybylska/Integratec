@@ -1,4 +1,5 @@
 package com.integratec.config;
+import java.util.Date;
 import java.util.List;
 
 import com.integratec.controllers.AccountController;
@@ -31,16 +32,16 @@ public class AccountConfig {
                     "login3",
                     "password3");
             accountRepository.saveAll(
-                    List.of(account1, account2));
+                    List.of(account1, account2, account3));
                     controller.postAccount(account3);
                     controller.updateAccount(3L, account1);
             Request request = new Request(
                     1L,
                     2L,
                     3L,
-                    "title",
+                    "title1",
                     "text",
-                    "comment");
+                    "comment", new Date(), "in progress", "kitchen", "this week");
             requestRepository.save(request);
             Request request1 = new Request(
                     2L,
@@ -48,7 +49,7 @@ public class AccountConfig {
                     3L,
                     "tit",
                     "text",
-                    "comment");
+                    "comment", new Date(), "done", "benefits", "this month");
             requestRepository.save(request1);
         };
 
