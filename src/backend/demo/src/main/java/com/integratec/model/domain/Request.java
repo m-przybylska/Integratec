@@ -19,47 +19,44 @@ import java.util.Date;
 @ToString
 public class Request {
     @Id
-    @NotNull(message = "requestId cannot be null")
-    @Range(min = 1, max = 999999, message = "the requestId size must be in the range 1-999999")
-    @SequenceGenerator(name = "requestSequence", sequenceName = "requestSequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestSequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long requestId;
 
     @NotNull(message = "receiverId cannot be null ")
     @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
-    @Column(name = "Receiver")
+    @Column(name = "reciver_id")
     private Long receiver;
 
     @NotNull(message = "senderId cannot be null")
     @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
-    @Column(name = "Sender")
+    @Column(name = "sender_id")
     private Long sender;
 
     @NotEmpty(message = "title cannot be empty")
     @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
     @Size(max = 1000, message = "the maximum size for text is 1000")
-    @Column(name = "Text")
+    @Column(name = "text")
     private String text;
 
     @Size(max = 500, message = "the maximum size for comment is 500")
-    @Column(name = "Comment")
+    @Column(name = "comment")
     private String comment;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "SendDate")
+    @Column(name = "send_date")
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @Column(name = "RequestStatus")
+    @Column(name = "request_status_id")
     private Long requestStatus;
 
-    @Column(name = "RequestCategory")
+    @Column(name = "request_category_id")
     private Long requestCategory;
 
-    @Column(name = "RequestPriority")
+    @Column(name = "request_priority_id")
     private Long requestPriority;
 
     public Request(Long requestId, Long receiver, Long sender, String title, String text, String comment) {
