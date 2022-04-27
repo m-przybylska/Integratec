@@ -1,5 +1,6 @@
 package com.integratec.model.domain;
 
+import com.integratec.model.repositories.RequestPriorityRepository;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,14 +51,17 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @Column(name = "request_status_id")
-    private Long requestStatus;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "request_category_id")
+    private RequestCategory requestCategory;
 
-    @Column(name = "request_category_id")
-    private Long requestCategory;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "request_priority_id")
+    private RequestPriority requestPriority;
 
-    @Column(name = "request_priority_id")
-    private Long requestPriority;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "request_status_id")
+    private RequestStatus requestStatus;
 
     public Request(Long requestId, Long receiver, Long sender, String title, String text, String comment) {
         this.requestId = requestId;

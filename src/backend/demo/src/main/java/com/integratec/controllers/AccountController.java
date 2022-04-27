@@ -29,13 +29,13 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/accounts")
+    @GetMapping
     public ResponseEntity<List<Account>> getAccount() {
         System.out.println(accountService.getAccounts());
         return ResponseEntity.ok(accountService.getAccounts());
     }
 
-    @PostMapping("/accounts")
+    @PostMapping
     public Account postAccount(@Valid @RequestBody Account newAccount) {
         return accountService.postAccount(newAccount);
     }
