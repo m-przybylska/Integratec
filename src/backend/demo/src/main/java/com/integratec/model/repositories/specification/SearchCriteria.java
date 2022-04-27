@@ -1,4 +1,4 @@
-package com.integratec.model.repositories.spec;
+package com.integratec.model.repositories.specification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,5 @@
-package com.integratec.model.repositories.spec;
+package com.integratec.model.repositories.specification;
 
-import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import org.springframework.data.jpa.domain.Specification;
 

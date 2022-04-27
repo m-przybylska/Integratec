@@ -2,9 +2,9 @@ package com.integratec.services;
 
 import com.integratec.model.domain.Account;
 import com.integratec.model.repositories.AccountRepository;
-import com.integratec.model.repositories.spec.AccountSpecification;
-import com.integratec.model.repositories.spec.SearchCriteria;
-import com.integratec.model.repositories.spec.SearchOperation;
+import com.integratec.model.repositories.specification.AccountSpecification;
+import com.integratec.model.repositories.specification.SearchCriteria;
+import com.integratec.model.repositories.specification.SearchOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

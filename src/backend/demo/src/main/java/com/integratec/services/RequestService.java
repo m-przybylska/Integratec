@@ -3,14 +3,12 @@ package com.integratec.services;
 import java.util.List;
 
 
-import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.RequestRepository;
 
-import com.integratec.model.repositories.spec.AccountSpecification;
-import com.integratec.model.repositories.spec.RequestSpecification;
-import com.integratec.model.repositories.spec.SearchCriteria;
-import com.integratec.model.repositories.spec.SearchOperation;
+import com.integratec.model.repositories.specification.RequestSpecification;
+import com.integratec.model.repositories.specification.SearchCriteria;
+import com.integratec.model.repositories.specification.SearchOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
