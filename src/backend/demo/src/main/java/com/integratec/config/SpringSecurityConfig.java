@@ -9,41 +9,27 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public SpringSecurityConfig(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .csrf().disable()
+                .authorizeRequests().antMatchers("/register**")
+                .permitAll() .anyRequest().authenticated()
                 .and()
-                .httpBasic();
-    }
-
-    @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails user1 = User.builder()
-                .username("user1")
-                .password(passwordEncoder.encode("password"))
-                .roles("ADMIN") // ROLE_ADMIN
-                .build();
-
-        return new InMemoryUserDetailsManager(
-                user1
-        );
+                .formLogin() .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout() .invalidateHttpSession(true)
+                .clearAuthentication(true) .permitAll();
     }
 }

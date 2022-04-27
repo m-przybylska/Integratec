@@ -17,11 +17,11 @@ public class AccountService {
     {
         this.accountRepository = accountRepository;
     }
-    
+
     public List<Account> getAccounts(){
-		return accountRepository.findAll();
-	}
-    
+        return accountRepository.findAll();
+    }
+
     public Account postAccount(Account newAccount){
         return accountRepository.save(newAccount);
     }
