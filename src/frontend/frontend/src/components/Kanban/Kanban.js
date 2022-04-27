@@ -1,96 +1,77 @@
-import React, { PureComponent } from 'react';
-import './Kanban.scss';
-import CreatePopup from '../CreatePopup/CreatePopup';
-import PopupBackGround from '../PopupBackGround/PopupBackGround';
-import Request from '../Request/Request';
+import React, { PureComponent } from "react";
+import "./Kanban.scss";
+import PopupBackGround from "../PopupBackGround/PopupBackGround";
+import * as TestingData from "../../assets/data/TestingData";
+import CustomPopup from "../CustomPopup/CustomPopup";
+import KanbanColumn from "../KanbanColumn/KanbanColumn";
+
 class Kanban extends PureComponent {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {};
-	}
+    this.state = { previewPopupIsVisible: false };
+    this.setPreviewPopupVisibility = this.setPreviewPopupVisibility.bind(this);
+  }
 
-	render() {
-		let requestList = [
-			{
-				name: 'Jan Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdas',
-				priority: 'Today',
-				category: 'Kitchen',
-			},
-			{
-				name: 'Andrzej Kowalski',
-				title:
-					'Engage Jupiter Express asdasdasdasdasddddddddddddddddddddddddddddddddddddddddddddd',
-				priority: 'Taaaaaaaaaaaaaaaaaaaaaaa',
-				category: 'aaaaaaaaaaaaaaaaaaaaaaaa',
-			},
-			{
-				name: 'Maciej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'aaaaaaaaaaaaaaaa',
-				category: 'Kitchen',
-			},
-			{
-				name: 'Andrzej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'Taaaaaaaaaaaaaaaaaaaaaaa',
-				category: 'aaaaaaaaaaaaaaaaaaaaaaaa',
-			},
-			{
-				name: 'Maciej Kowalski',
-				title: 'Engage Jupiter Express asdasdasdasdasd',
-				priority: 'Today',
-				category: 'aaaaaaaaaaaaa',
-			},
-		];
-		return (
-			<div className='Kanban'>
-				<PopupBackGround
-					setPopupVisibility={this.props.setPopupVisibility}
-					popupIsVisible={this.props.popupIsVisible}
-				/>
-				<CreatePopup popupIsVisible={this.props.popupIsVisible} />
-				<div className='Kanban-Container'>
-					<div className='Kanban-Container-Column'>
-						<div className='Kanban-Container-Column-Title'>NEW REQUESTS</div>
-						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
-								return <Request data={item} />;
-							})}
-						</div>
-					</div>
+  setPreviewPopupVisibility = () => {
+    this.setState(
+      { previewPopupIsVisible: !this.state.previewPopupIsVisible },
+      () => console.log(this.state.previewPopupIsVisible)
+    );
+  };
 
-					<div className='Kanban-Container-Column'>
-						<div className='Kanban-Container-Column-Title'>TO DO</div>
-						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
-								return <Request data={item} />;
-							})}
-						</div>
-					</div>
+  render() {
+    let newRequestsList = TestingData.requestsList.filter(
+      (item) => item.status == "new"
+    );
+    let todoRequestsList = TestingData.requestsList.filter(
+      (item) => item.status == "todo"
+    );
+    let inProgressRequestsList = TestingData.requestsList.filter(
+      (item) => item.status == "progress"
+    );
+    let doneRequestsList = TestingData.requestsList.filter(
+      (item) => item.status == "done"
+    );
 
-					<div className='Kanban-Container-Column'>
-						<div className='Kanban-Container-Column-Title'>IN PROGRESS</div>
-						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
-								return <Request data={item} />;
-							})}
-						</div>
-					</div>
+    return (
+      <div className="Kanban">
+        <PopupBackGround
+          setPopup={this.props.setPopup}
+          popupIsVisible={this.props.popupIsVisible}
+        />
+        <CustomPopup
+          popupIsVisible={this.props.popupIsVisible}
+          popupType={this.props.popupType}
+          popupData={this.props.popupData}
+          popupColor={this.props.popupColor}
+        />
 
-					<div className='Kanban-Container-Column'>
-						<div className='Kanban-Container-Column-Title'>DONE</div>
-						<div className='Kanban-Container-Column-Content'>
-							{requestList.map((item) => {
-								return <Request data={item} />;
-							})}
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+        <div className="Kanban-Container">
+          <KanbanColumn
+            columnType="new"
+            contentList={newRequestsList}
+            setPopup={this.props.setPopup}
+          />
+          <KanbanColumn
+            columnType="todo"
+            contentList={todoRequestsList}
+            setPopup={this.props.setPopup}
+          />
+          <KanbanColumn
+            columnType="progress"
+            contentList={inProgressRequestsList}
+            setPopup={this.props.setPopup}
+          />
+          <KanbanColumn
+            columnType="done"
+            contentList={doneRequestsList}
+            setPopup={this.props.setPopup}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Kanban;
