@@ -30,8 +30,8 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Request>> getRequests(@Param("keyword") String keyword) {
-        return ResponseEntity.ok(requestService.getRequests(keyword));
+    public ResponseEntity<List<Request>> getRequests(String key, Object value) {
+        return ResponseEntity.ok(requestService.getRequests(key, value));
     }
 
     @PostMapping

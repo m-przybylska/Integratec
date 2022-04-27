@@ -32,5 +32,5 @@ public class Account {
     public Account(String login, String password) {
         this.login = login;
         this.password = password;
-     }
+    }
 }

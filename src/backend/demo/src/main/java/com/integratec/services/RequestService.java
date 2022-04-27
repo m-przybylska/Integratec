@@ -3,9 +3,14 @@ package com.integratec.services;
 import java.util.List;
 
 
+import com.integratec.model.domain.Account;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.RequestRepository;
 
+import com.integratec.model.repositories.spec.AccountSpecification;
+import com.integratec.model.repositories.spec.RequestSpecification;
+import com.integratec.model.repositories.spec.SearchCriteria;
+import com.integratec.model.repositories.spec.SearchOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +20,22 @@ public class RequestService {
     private final RequestRepository requestRepository;
 
     @Autowired
-    public RequestService(RequestRepository requestRepository)
-    {
-        this.requestRepository= requestRepository;
+    public RequestService(RequestRepository requestRepository) {
+        this.requestRepository = requestRepository;
     }
-    
-    public List<Request> getRequests(String keyword){
-        if (keyword != null) {
-            return requestRepository.findAll(keyword);
-        }
-        return requestRepository.findAll();
-	}
 
-    public Request postRequest( Request newRequest){
+    public List<Request> getRequests(String key, Object value) {
+        if (key != null && value != null) {
+            RequestSpecification specification = new RequestSpecification();
+            specification.add(new SearchCriteria(key, value, SearchOperation.EQUAL));
+            List<Request> reqestList = requestRepository.findAll(specification);
+            return reqestList;
+        } else {
+            return requestRepository.findAll();
+        }
+    }
+
+    public Request postRequest(Request newRequest) {
         return requestRepository.save(newRequest);
     }
 

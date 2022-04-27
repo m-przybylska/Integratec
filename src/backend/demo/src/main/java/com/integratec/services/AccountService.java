@@ -20,6 +20,11 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
+    //TODO more complex filters e.g. something like this, ('and' can be repleced
+    // by 'or' etc.)
+    // List<Account> accounts = accountRepository
+    // .findAll(Specification.where(specification1).and(specification2));
+
     public List<Account> getAccounts(String key, Object value) {
         if (key != null && value != null) {
             AccountSpecification specification = new AccountSpecification();

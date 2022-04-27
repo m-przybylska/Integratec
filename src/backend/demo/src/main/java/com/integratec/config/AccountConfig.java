@@ -41,7 +41,7 @@ public class AccountConfig {
                     2L,
                     3L,
                     "title1",
-                    "text",
+                    "text text",
                     "comment", new Date(), "in progress", "kitchen", "this week");
             requestRepository.save(request);
             Request request1 = new Request(
