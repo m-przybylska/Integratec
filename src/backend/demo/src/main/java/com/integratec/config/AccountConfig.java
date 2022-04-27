@@ -3,11 +3,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.integratec.controllers.AccountController;
-import com.integratec.model.domain.Account;
-import com.integratec.model.domain.Request;
+import com.integratec.model.domain.*;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.RequestRepository;
-
+import com.integratec.model.repositories.spec.AccountSpecification;
+import com.integratec.model.repositories.spec.SearchCriteria;
+import com.integratec.model.repositories.spec.SearchOperation;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -30,8 +30,8 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAccount(@Param("keyword") String keyword) {
-        return ResponseEntity.ok(accountService.getAccounts(keyword));
+    public ResponseEntity<List<Account>> getAccount(String key, Object value) {
+        return ResponseEntity.ok(accountService.getAccounts(key, value));
     }
 
     @PostMapping
