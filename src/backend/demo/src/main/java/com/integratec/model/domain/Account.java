@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_account_id")
     private Long accountId;     // we don't set this one manually in post, it's just generated
 
     @NotNull(message = "Login cannot be null")
