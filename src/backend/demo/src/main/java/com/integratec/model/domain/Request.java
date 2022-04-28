@@ -52,17 +52,14 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_category_id")
-    private RequestCategory requestCategory;
+    @Column(name = "request_category_id")
+    private Long requestCategory;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_priority_id")
-    private RequestPriority requestPriority;
+    @Column(name = "request_priority_id")
+    private Long requestPriority;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_status_id")
-    private RequestStatus requestStatus;
+    @Column(name = "request_status_id")
+    private Long requestStatus;
 
     public Request(Long requestId, Long receiver, Account sender, String title, String text, String comment) {
         this.requestId = requestId;
