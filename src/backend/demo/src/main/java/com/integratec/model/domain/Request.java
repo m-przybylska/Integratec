@@ -30,8 +30,9 @@ public class Request {
 
     @NotNull(message = "senderId cannot be null")
     @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
-    @Column(name = "sender_id")
-    private Long sender;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sender_id")
+    private Account sender;
 
     @NotEmpty(message = "title cannot be empty")
     @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
@@ -63,7 +64,7 @@ public class Request {
     @JoinColumn(name = "request_status_id")
     private RequestStatus requestStatus;
 
-    public Request(Long requestId, Long receiver, Long sender, String title, String text, String comment) {
+    public Request(Long requestId, Long receiver, Account sender, String title, String text, String comment) {
         this.requestId = requestId;
         this.receiver = receiver;
         this.sender = sender;
