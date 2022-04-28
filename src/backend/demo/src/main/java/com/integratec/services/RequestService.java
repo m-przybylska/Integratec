@@ -22,6 +22,27 @@ public class RequestService {
     }
 
     public Request postRequest(Request newRequest) {
+        switch(newRequest.getRequestCategory().getRequestCategory()) {
+            case "kitchen":
+            case "stationery":
+            case "benefits":
+            case "documents":
+            case "trainings":
+            case "time tracking & absences":
+            case "internal tools":
+            case "software":
+            case "hardware":
+            case "internal events & meetings":
+            case "financial matters":
+                newRequest.setReceiver(1L);
+                break;
+            case "recruiting":
+            case "marketing":
+            case "business travels":
+            case "breakdowns & technical matters":
+                newRequest.setReceiver(2L);
+                break;
+        }
         return requestRepository.save(newRequest);
     }
 
