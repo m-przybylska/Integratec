@@ -1,7 +1,5 @@
 package com.integratec.model.domain;
 
-
-import lombok.*;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,22 +8,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Account")
 public class Account implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
+    @Column(name = "user_account_id")
+    private Long user_account_id;
+    @Column(name = "login")
     private String login;
-    private String password; @Column(name = "account_non_locked")
-    private boolean accountNonLocked;
+    @Column(name = "password")
+    private String password;
 
     public Account() {
     }
-    public Account(String login, String password, boolean accountNonLocked) {
+    public Account(String login, String password) {
         this.login = login;
         this.password = password;
-        this.accountNonLocked = accountNonLocked;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return null;
     }
 
     public void setPassword(String password) {
@@ -58,12 +56,9 @@ public class Account implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return accountNonLocked;
+        return true;
     }
 
-    public void setAccountNonLocked(Boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
-    }
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

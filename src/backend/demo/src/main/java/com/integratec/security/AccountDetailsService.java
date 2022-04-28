@@ -16,9 +16,8 @@ public class AccountDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
-        Account account = accountRepository.findByLogin(login)
+        return accountRepository.findAccountByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));
-        return account;
     }
     public void createAccount(UserDetails account) {
         accountRepository.save((Account) account);
