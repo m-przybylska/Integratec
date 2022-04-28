@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS Request;
-DROP TABLE IF EXISTS UserAccount;
+DROP TABLE IF EXISTS Account;
 DROP TABLE IF EXISTS RequestCategory;
 DROP TABLE IF EXISTS RequestStatus;
 DROP TABLE IF EXISTS RequestPriority;
 
-CREATE TABLE `UserAccount` (
+CREATE TABLE `Account` (
 `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `login` varchar(30) NOT NULL,
 `password` varchar(30) NOT NULL
@@ -44,7 +44,7 @@ CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `
 CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
 );
 
-insert into UserAccount(login, password)
+insert into Account(login, password)
 values
 ("Stanley_Kubirick", "password123"),
 ("Quentin_Tarantino", "password123"),
@@ -75,12 +75,21 @@ values
 ("this week"),
 ("this month");
 
-insert into Request(title, sender_id, reciver_id, text, comment, send_date) 
-values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22"),  
-("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10"), 
-("monitor", "2", "4", "", "", "2022-04-19"), 
-("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05"),
-("owoce", "5", "6", "koncza sie owowce", "komentarz 4", "2022-03-18"),
-("faktura", "6", "2", "simple text", "komentarz komentatrz", "2022-04-22"),
-("rekrutacja", "1", "8", " ", "jutro sie tym zajme", "2022-04-22"),
-("wyjazd", "4", "3", "text 2", "jutro sie tym zajme", "2022-04-22");
+insert into RequestStatus(request_status)
+  values
+  ("new"),
+  ("received"),
+  ("in progress"),
+  ("action needed"),
+  ("reminder"),
+  ("resolved");
+
+insert into Request(title, sender_id, reciver_id, text, comment, send_date, request_status_id, request_category_id, request_priority_id)
+values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", 1, 2, 1),
+("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", 1, 2, 1),
+("monitor", "2", "4", "", "", "2022-04-19", 1, 2, 1),
+("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05", 1, 2, 1),
+("owoce", "5", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 1, 2, 1),
+("faktura", "6", "2", "simple text", "komentarz komentatrz", "2022-04-22", 1, 2, 1),
+("rekrutacja", "1", "8", " ", "jutro sie tym zajme", "2022-04-22", 1, 2, 1),
+("wyjazd", "4", "3", "text 2", "jutro sie tym zajme", "2022-04-22", 1, 2, 1);

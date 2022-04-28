@@ -1,0 +1,164 @@
+@import "../../assets/scss/colors.scss";
+
+.CustomPopup {
+  position: absolute;
+
+  width: 534px;
+
+  height: 519px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  box-sizing: border-box;
+  padding: 22px;
+  z-index: 1;
+
+  &.iteragenta {
+    background-color: $color-iteragenta-light;
+  }
+  &.gelb {
+    background-color: $color-gelb-light;
+  }
+  &.mint {
+    background-color: $color-mint-light;
+  }
+  &.grey {
+    background-color: $color-grey;
+  }
+
+  &.addTask {
+    height: 328px;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &-addTask {
+    &-FirstPart {
+      display: flex;
+      flex-direction: column;
+
+      &-Desc,
+      &-Subject {
+        margin-bottom: 14px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: none;
+      }
+
+      &-Desc {
+        margin-bottom: 14px;
+
+        min-height: 191px;
+        max-height: 191px;
+        resize: none;
+      }
+    }
+
+    &-SecondPart {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &-previewRequest {
+    &-FirstPart {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-weight: bold;
+
+      &-User {
+        display: flex;
+        align-items: center;
+
+        .la-user {
+          font-size: 36px;
+          margin-right: 16px;
+        }
+
+        &-Name {
+          font-size: 24px;
+        }
+      }
+
+      &-Date {
+        min-height: 28px;
+        max-height: 28px;
+        min-width: 90px;
+        max-width: 120px;
+      }
+    }
+
+    &-SecondPart {
+      display: flex;
+      flex-direction: column;
+
+      &-Subject {
+        min-height: 28px;
+        max-height: 28px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: none;
+        // &:hover {
+        //     overflow: visible;
+        //     white-space: normal;
+        // }
+      }
+
+      &-Buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+    }
+
+    &-ThirdPart {
+      display: flex;
+      flex-direction: column;
+
+      &-Desc {
+        min-height: 191px;
+        max-height: 191px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: none;
+        background-color: $color-white;
+        text-align: left;
+        margin-bottom: 14px;
+        resize: none;
+        overflow-y: scroll;
+        scrollbar-width: none;
+      }
+
+      &-Desc::-webkit-scrollbar {
+        display: none;
+        /* for Chrome, Safari, and Opera */
+      }
+
+      &-Com {
+        box-sizing: border-box;
+        margin-bottom: 14px;
+        min-height: 124px;
+        max-height: 124px;
+        padding: 10px;
+        resize: none;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        border: none;
+      }
+
+      &-Com::-webkit-scrollbar {
+        display: none;
+        /* for Chrome, Safari, and Opera */
+      }
+    }
+  }
+}
