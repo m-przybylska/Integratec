@@ -6,72 +6,82 @@ import axios from "axios";
 import Kanban from "./components/Kanban/Kanban";
 import * as Constants from "./assets/data/Constants";
 
-const AccountProfiles = () => {
-  const [accountProfiles, setAccountProfiles] = useState([]);
+// const AccountProfiles = () => {
+//   const [accountProfiles, setAccountProfiles] = useState([]);
 
-  const fetchAccountProfiles = () => {
-    axios.get(Constants.serverURL).then((res) => {
-      setAccountProfiles(res.data);
-    });
-  };
+//   const fetchAccountProfiles = () => {
+//     axios.get(Constants.serverURL).then((res) => {
+//       setAccountProfiles(res.data);
+//     });
+//   };
 
-  useEffect(() => {
-    fetchAccountProfiles();
-  }, []);
+//   useEffect(() => {
+//     fetchAccountProfiles();
+//   }, []);
 
-  return accountProfiles.map((accountProfile, index) => {
-    return (
-      <div key={index}>
-        <h1>{accountProfile.login}</h1>
-        <h1>{accountProfile.password}</h1>
-      </div>
-    );
-  });
-};
+//   return accountProfiles.map((accountProfile, index) => {
+//     return (
+//       <div key={index}>
+//         <h1>{accountProfile.login}</h1>
+//         <h1>{accountProfile.password}</h1>
+//       </div>
+//     );
+//   });
+// };
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      popupIsVisible: false,
-      popupType: "",
-      popupData: {},
-      popupColor: "iteragenta",
-    };
-  }
+		this.state = {
+			popupIsVisible: false,
+			popupType: "",
+			popupData: {},
+			popupColor: "iteragenta",
+			requestsList: [],
+		};
+	}
 
-  setPopup = (type, data, color) => {
-    this.setState(
-      { popupType: type, popupData: data, popupColor: color },
-      () => {
-        this.setState({ popupIsVisible: !this.state.popupIsVisible });
-      }
-    );
-  };
+	setPopup = (type, data, color) => {
+		this.setState(
+			{ popupType: type, popupData: data, popupColor: color },
+			() => {
+				this.setState({ popupIsVisible: !this.state.popupIsVisible });
+			}
+		);
+	};
 
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <Navbar setPopup={this.setPopup} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Kanban
-                  popupIsVisible={this.state.popupIsVisible}
-                  popupType={this.state.popupType}
-                  popupData={this.state.popupData}
-                  popupColor={this.state.popupColor}
-                  setPopup={this.setPopup}
-                />
-              }
-            />
-          </Routes>
-        </Router>
-      </div>
-    );
-  }
+	getRequestsList = () => {
+		axios.get("http://localhost:8080/requests").then((res) => {
+			console.log(res);
+			this.setState({ requestsList: res.data });
+			console.log(this.state.requestsList);
+		});
+	};
+
+	render() {
+		return (
+			<div className="App">
+				<Router>
+					<Navbar setPopup={this.setPopup} />
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<Kanban
+									popupIsVisible={this.state.popupIsVisible}
+									popupType={this.state.popupType}
+									popupData={this.state.popupData}
+									popupColor={this.state.popupColor}
+									setPopup={this.setPopup}
+								/>
+							}
+						/>
+					</Routes>
+					<button onClick={this.getRequestsList}>Click this</button>
+				</Router>
+			</div>
+		);
+	}
 }
 export default App;
