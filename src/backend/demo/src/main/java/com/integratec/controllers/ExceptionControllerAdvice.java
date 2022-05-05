@@ -24,11 +24,4 @@ class ExceptionControllerAdvice {
         return errors;
     }
 
-        /*@ExceptionHandler(value = {MethodArgumentNotValidException.class, Exception.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorMessage methodArgumentNotValidException(@NotNull MethodArgumentNotValidException ex, @NotNull WebRequest request) {
-        ErrorMessage message = new ErrorMessage(ex.getMessage(), request.getDescription(true));
-        return message;
-    }*/
-
 }

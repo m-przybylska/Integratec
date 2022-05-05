@@ -5,6 +5,7 @@ import java.util.List;
 import com.integratec.model.domain.Account;
 import com.integratec.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +31,8 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAccount() {
-        System.out.println(accountService.getAccounts());
-        return ResponseEntity.ok(accountService.getAccounts());
+    public ResponseEntity<List<Account>> getAccount(String key, Object value) {
+        return ResponseEntity.ok(accountService.getAccounts(key, value));
     }
 
     @PostMapping

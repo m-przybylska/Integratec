@@ -4,6 +4,7 @@ import com.integratec.model.domain.Request;
 import com.integratec.services.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
@@ -32,8 +33,8 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Request>> getRequests() {
-        return ResponseEntity.ok(requestService.getRequests());
+    public ResponseEntity<List<Request>> getRequests(String key, Object value) {
+        return ResponseEntity.ok(requestService.getRequests(key, value));
     }
 
     @PostMapping
