@@ -67,6 +67,9 @@ class App extends PureComponent {
 			popupData: {},
 			popupColor: "iteragenta",
 			requestsList: [],
+			categoriesList: [],
+			prioritiesList: [],
+			statusesList: [],
 		};
 	}
 
@@ -75,6 +78,24 @@ class App extends PureComponent {
 			// console.log(res);
 			this.setState({ requestsList: res.data });
 			console.log(this.state.requestsList);
+		});
+
+		axios.get("http://localhost:8080/categories").then((res) => {
+			// console.log(res);
+			this.setState({ categoriesList: res.data });
+			console.log(this.state.categoriesList);
+		});
+
+		axios.get("http://localhost:8080/priorities").then((res) => {
+			// console.log(res);
+			this.setState({ prioritiesList: res.data });
+			console.log(this.state.prioritiesList);
+		});
+
+		axios.get("http://localhost:8080/statuses").then((res) => {
+			// console.log(res);
+			this.setState({ statusesList: res.data });
+			console.log(this.state.statusesList);
 		});
 	};
 
