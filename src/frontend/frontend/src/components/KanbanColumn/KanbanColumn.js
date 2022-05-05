@@ -57,9 +57,10 @@ class KanbanColumn extends PureComponent {
 					{this.state.title}
 				</div>
 				<div className="KanbanColumn-Content">
-					{this.props.contentList.map((item) => {
+					{this.props.contentList.map((item, i) => {
 						return (
 							<Request
+								key={i}
 								data={item}
 								color={this.state.color}
 								setPopup={this.props.setPopup}

@@ -124,6 +124,9 @@ class App extends PureComponent {
 									popupColor={this.state.popupColor}
 									setPopup={this.setPopup}
 									requestsList={this.state.requestsList}
+									categoriesList={this.state.categoriesList}
+									prioritiesList={this.state.prioritiesList}
+									statusesList={this.state.statusesList}
 								/>
 							}
 						/>

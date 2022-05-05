@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import "./Request.scss";
 import CustomButton from "../CustomButton/CustomButton";
-import * as TestingData from "../../assets/data/TestingData";
+// import * as TestingData from "../../assets/data/TestingData";
 
 class Request extends PureComponent {
 	constructor(props) {
@@ -19,9 +19,15 @@ class Request extends PureComponent {
 		const name = this.props.data.sender.name;
 		const surname = this.props.data.sender.surname;
 		const title = this.props.data.title;
-		const priority = this.props.data.requestPriority.requestPriority;
-		const category = this.props.data.requestCategory.requestCategory;
+		const priority = this.props.data.requestPriority;
+		const category = this.props.data.requestCategory;
 		const date = this.props.data.sendDate;
+
+		// const categoryObj = this.props.categoriesList.find((element) => {
+		// 	return element.requestCategoryId === this.props.data.requestCategory;
+		// });
+
+		// const categoryA = categoryObj.requestCategory;
 
 		return (
 			<div

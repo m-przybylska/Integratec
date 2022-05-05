@@ -24,19 +24,41 @@ class Kanban extends PureComponent {
 		// this.props.setRequestsList();
 		let requestsList = this.props.requestsList;
 		console.log(requestsList);
+		console.log(this.props.statusesList);
+
+		let statusNew = this.props.statusesList.find((element) => {
+			if (element.requestStatus === "new") return element.requestStatusId;
+		});
+
+		// console.log(statusNew.requestStatusId);
+
+		// let statusTodo = this.props.statusesList.find((element) => {
+		// 	if (element.requestStatus === "received") return element.requestStatusId;
+		// });
+
+		// let statusInProgress = this.props.statusesList.find((element) => {
+		// 	if (element.requestStatus === "in progress")
+		// 		return element.requestStatusId;
+		// });
+
+		// let statusDone = this.props.statusesList.find((element) => {
+		// 	if (element.requestStatus === "resolved") return element.requestStatusId;
+		// });
 
 		let newRequestsList = requestsList.filter(
-			(item) => item.requestStatus.requestStatus == "new"
+			(item) => item.requestStatus == 1 //statusNew.requestStatusId
 		);
 		let todoRequestsList = requestsList.filter(
-			(item) => item.requestStatus.requestStatus == "received"
+			(item) => item.requestStatus == 2 //statusTodo.requestStatusId
 		);
 		let inProgressRequestsList = requestsList.filter(
-			(item) => item.requestStatus.requestStatus == "in progress"
+			(item) => item.requestStatus == 3 //statusInProgress.requestStatusId
 		);
 		let doneRequestsList = requestsList.filter(
-			(item) => item.requestStatus.requestStatus == "resolved"
+			(item) => item.requestStatus == 6 //statusDone.requestStatusId
 		);
+
+		console.log(doneRequestsList);
 
 		return (
 			<div className="Kanban">
@@ -50,27 +72,42 @@ class Kanban extends PureComponent {
 					popupType={this.props.popupType}
 					popupData={this.props.popupData}
 					popupColor={this.props.popupColor}
+					categoriesList={this.props.categoriesList}
+					prioritiesList={this.props.prioritiesList}
+					statusesList={this.props.statusesList}
 				/>
 				<div className="Kanban-Container">
 					<KanbanColumn
 						columnType="new"
 						contentList={newRequestsList}
 						setPopup={this.props.setPopup}
+						categoriesList={this.props.categoriesList}
+						prioritiesList={this.props.prioritiesList}
+						statusesList={this.props.statusesList}
 					/>
 					<KanbanColumn
 						columnType="todo"
 						contentList={todoRequestsList}
 						setPopup={this.props.setPopup}
+						categoriesList={this.props.categoriesList}
+						prioritiesList={this.props.prioritiesList}
+						statusesList={this.props.statusesList}
 					/>
 					<KanbanColumn
 						columnType="progress"
 						contentList={inProgressRequestsList}
 						setPopup={this.props.setPopup}
+						categoriesList={this.props.categoriesList}
+						prioritiesList={this.props.prioritiesList}
+						statusesList={this.props.statusesList}
 					/>
 					<KanbanColumn
 						columnType="done"
 						contentList={doneRequestsList}
 						setPopup={this.props.setPopup}
+						categoriesList={this.props.categoriesList}
+						prioritiesList={this.props.prioritiesList}
+						statusesList={this.props.statusesList}
 					/>
 				</div>
 			</div>
