@@ -1,11 +1,12 @@
 package com.integratec.services;
 
+import java.util.List;
+
 import com.integratec.model.domain.Account;
 import com.integratec.model.repositories.AccountRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AccountService {
