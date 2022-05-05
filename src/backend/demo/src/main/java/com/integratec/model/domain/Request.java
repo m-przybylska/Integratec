@@ -1,5 +1,6 @@
 package com.integratec.model.domain;
 
+import com.integratec.model.repositories.RequestPriorityRepository;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,8 +30,9 @@ public class Request {
 
     @NotNull(message = "senderId cannot be null")
     @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
-    @Column(name = "sender_id")
-    private Long sender;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sender_id")
+    private Account sender;
 
     @NotEmpty(message = "title cannot be empty")
     @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
@@ -50,16 +52,16 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @Column(name = "request_status_id")
-    private Long requestStatus;
-
     @Column(name = "request_category_id")
     private Long requestCategory;
 
     @Column(name = "request_priority_id")
     private Long requestPriority;
 
-    public Request(Long requestId, Long receiver, Long sender, String title, String text, String comment) {
+    @Column(name = "request_status_id")
+    private Long requestStatus;
+
+    public Request(Long requestId, Long receiver, Account sender, String title, String text, String comment) {
         this.requestId = requestId;
         this.receiver = receiver;
         this.sender = sender;
