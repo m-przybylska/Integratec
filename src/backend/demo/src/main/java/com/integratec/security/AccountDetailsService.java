@@ -10,16 +10,19 @@ import com.integratec.model.repositories.AccountRepository;
 
 @Service
 public class AccountDetailsService implements UserDetailsService {
+
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    public AccountDetailsService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
         return accountRepository.findAccountByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));
-    }
-    public void createAccount(UserDetails account) {
-        accountRepository.save((Account) account);
     }
 }

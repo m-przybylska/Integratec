@@ -33,7 +33,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     public void setPassword(String password) {
