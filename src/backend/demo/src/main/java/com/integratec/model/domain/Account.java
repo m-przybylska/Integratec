@@ -35,15 +35,4 @@ public class Account {
     @Column(name = "surname")
     private String surname;
 
-    public Account(String login, String password){
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public Account(Long Id, String name, String surname){
-        this.accountId = Id;
-        this.name = name;
-        this.surname = surname;
-    }
-
 }

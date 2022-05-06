@@ -20,8 +20,10 @@ public class Config {
     CommandLineRunner commandLineRunner(AccountRepository accountRepository, RequestRepository requestRepository,
                                         AccountController controller, RequestController requestController) throws Exception {
         return args -> {
-            /*Account account = new Account(1L, "login1", "pass");
-            accountRepository.save(account);*/
+            Request request2 = new Request(2L, 5L, 6L, "testowy request", "test", "works",new Date(), 2L,3L, 2L);
+            requestRepository.save(request2);
+            Account account = new Account(1L, "login1", "pass", "agata", "kowalska");
+            accountRepository.save(account);
         };
 
     }
