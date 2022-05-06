@@ -37,7 +37,7 @@ public class RequestController {
         return ResponseEntity.ok(requestService.getRequests(key, value));
     }
 
-    @PostMapping("/requests")
+    @PostMapping
     public Request postRequests(@Valid @RequestBody Request request) {
         return requestService.postRequest(request);
     }

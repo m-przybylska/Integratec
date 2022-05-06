@@ -29,8 +29,21 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    public Account(String login, String password) {
-        this.login = login;
-        this.password = password;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    public Account(String login, String password){
+        this.name = name;
+        this.surname = surname;
     }
+
+    public Account(Long Id, String name, String surname){
+        this.accountId = Id;
+        this.name = name;
+        this.surname = surname;
+    }
+
 }

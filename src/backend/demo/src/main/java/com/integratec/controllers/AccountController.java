@@ -35,7 +35,7 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getAccounts(key, value));
     }
 
-    @PostMapping("/accounts")
+    @PostMapping
     public Account postAccount(@Valid @RequestBody Account newAccount) {
         return accountService.postAccount(newAccount);
     }
