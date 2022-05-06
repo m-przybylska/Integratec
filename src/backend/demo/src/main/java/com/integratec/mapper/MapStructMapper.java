@@ -1,4 +1,4 @@
-package mapper;
+package com.integratec.mapper;
 
 import com.integratec.model.domain.Account;
 import com.integratec.model.domain.DTO.AccountGetDto;

@@ -4,7 +4,7 @@ import com.integratec.model.domain.Account;
 import com.integratec.model.domain.DTO.AccountGetDto;
 import com.integratec.model.domain.DTO.AccountPostDto;
 import com.integratec.services.AccountService;
-import mapper.MapStructMapperImpl;
+import com.integratec.mapper.MapStructMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
