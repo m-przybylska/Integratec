@@ -7,7 +7,9 @@ DROP TABLE IF EXISTS RequestPriority;
 CREATE TABLE `Account` (
 `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `login` varchar(30) NOT NULL,
-`password` varchar(30) NOT NULL
+`password` varchar(30) NOT NULL,
+`name` varchar(30),
+`surname` varchar(30)
 );
 
 CREATE TABLE `RequestCategory` (
@@ -44,11 +46,11 @@ CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `
 CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
 );
 
-insert into Account(login, password)
+insert into Account(login, password, name, surname)
 values
-("Stanley_Kubirick", "password123"),
-("Quentin_Tarantino", "password123"),
-("Sergio_Leone", "password123");
+("Stanley_Kubirick", "password123", "Stanley", "Kubirick"),
+("Quentin_Tarantino", "password123", "Quentin", "Tarantino"),
+("Sergio_Leone", "password123", "Sergio", "Leone");
 
 insert into RequestCategory(request_category)
 values

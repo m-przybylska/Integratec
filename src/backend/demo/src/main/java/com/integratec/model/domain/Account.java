@@ -35,5 +35,4 @@ public class Account {
     @Column(name = "surname")
     private String surname;
 
-
 }

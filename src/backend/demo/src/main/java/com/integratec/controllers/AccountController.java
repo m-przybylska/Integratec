@@ -42,7 +42,6 @@ public class AccountController {
     @PostMapping
     public Account postAccount(@Valid @RequestBody AccountPostDto newAccount) {
         return accountService.postAccount(mapstructMapper.userPostDtoToUser(newAccount));
-    }
 
     @PutMapping("/{accountId}")
     public Account updateAccount(@PathVariable("accountId") Long accountId, @RequestBody Account account) {
