@@ -2,7 +2,6 @@ package com.integratec.services;
 
 import java.util.List;
 
-
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.RequestRepository;
 
