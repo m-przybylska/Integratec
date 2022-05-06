@@ -22,7 +22,7 @@ public class Config {
         return args -> {
             Request request2 = new Request(2L, 5L, 6L, "testowy request", "test", "works",new Date(), 2L,3L, 2L);
             requestRepository.save(request2);
-            Account account = new Account(1L, "login1", "pass");
+            Account account = new Account(1L, "login1", "pass", "agata", "kowalska");
             accountRepository.save(account);
         };
 

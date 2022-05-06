@@ -3,7 +3,10 @@ package com.integratec.controllers;
 import java.util.List;
 
 import com.integratec.model.domain.Account;
+import com.integratec.model.domain.DTO.AccountGetDto;
+import com.integratec.model.domain.DTO.AccountPostDto;
 import com.integratec.services.AccountService;
+import mapper.MapStructMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ import javax.validation.Valid;
 public class AccountController {
 
     private final AccountService accountService;
+    MapStructMapperImpl mapstructMapper = new MapStructMapperImpl();
 
     @Autowired
     public AccountController(AccountService accountService) {
@@ -31,13 +35,13 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAccount(String key, Object value) {
-        return ResponseEntity.ok(accountService.getAccounts(key, value));
+    public ResponseEntity<List<AccountGetDto>> getAccount(String key, Object value) {
+        return ResponseEntity.ok(mapstructMapper.usersToUsersGetDto(accountService.getAccounts(key, value)));
     }
 
-    @PostMapping("/accounts")
-    public Account postAccount(@Valid @RequestBody Account newAccount) {
-        return accountService.postAccount(newAccount);
+    @PostMapping
+    public Account postAccount(@Valid @RequestBody AccountPostDto newAccount) {
+        return accountService.postAccount(mapstructMapper.userPostDtoToUser(newAccount));
     }
 
     @PutMapping("/{accountId}")
