@@ -20,98 +20,114 @@ class Kanban extends PureComponent {
 		);
 	};
 
+	// componentDidMount = () => {
+	// 	let statusNew = this.props.statusesList.find((element) => {
+	// 		if (element.requestStatus === "new") return element.requestStatusId;
+	// 	});
+
+	// 	this.state.statusNewId = statusNew.requestStatusId;
+	// };
+
 	render() {
+		const { requestsList, statusesList } = this.props;
+
 		// this.props.setRequestsList();
-		let requestsList = this.props.requestsList;
+		// let requestsList = this.props.requestsList;
 		console.log(requestsList);
-		console.log(this.props.statusesList);
+		console.log(statusesList);
 
-		let statusNew = this.props.statusesList.find((element) => {
-			if (element.requestStatus === "new") return element.requestStatusId;
-		});
+		if (statusesList.length !== 0) {
+			let statusNew = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "new") return element.requestStatusId;
+			});
 
-		// console.log(statusNew.requestStatusId);
+			console.log(statusNew.requestStatusId);
 
-		// let statusTodo = this.props.statusesList.find((element) => {
-		// 	if (element.requestStatus === "received") return element.requestStatusId;
-		// });
+			let statusTodo = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "received")
+					return element.requestStatusId;
+			});
 
-		// let statusInProgress = this.props.statusesList.find((element) => {
-		// 	if (element.requestStatus === "in progress")
-		// 		return element.requestStatusId;
-		// });
+			let statusInProgress = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "in progress")
+					return element.requestStatusId;
+			});
 
-		// let statusDone = this.props.statusesList.find((element) => {
-		// 	if (element.requestStatus === "resolved") return element.requestStatusId;
-		// });
+			let statusDone = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "resolved")
+					return element.requestStatusId;
+			});
 
-		let newRequestsList = requestsList.filter(
-			(item) => item.requestStatus == 1 //statusNew.requestStatusId
-		);
-		let todoRequestsList = requestsList.filter(
-			(item) => item.requestStatus == 2 //statusTodo.requestStatusId
-		);
-		let inProgressRequestsList = requestsList.filter(
-			(item) => item.requestStatus == 3 //statusInProgress.requestStatusId
-		);
-		let doneRequestsList = requestsList.filter(
-			(item) => item.requestStatus == 6 //statusDone.requestStatusId
-		);
+			let newRequestsList = requestsList.filter(
+				(item) => item.requestStatus == statusNew.requestStatusId
+			);
+			let todoRequestsList = requestsList.filter(
+				(item) => item.requestStatus == statusTodo.requestStatusId
+			);
+			let inProgressRequestsList = requestsList.filter(
+				(item) => item.requestStatus == statusInProgress.requestStatusId
+			);
+			let doneRequestsList = requestsList.filter(
+				(item) => item.requestStatus == statusDone.requestStatusId
+			);
 
-		console.log(doneRequestsList);
+			console.log(doneRequestsList);
 
-		return (
-			<div className="Kanban">
-				<PopupBackGround
-					setPopup={this.props.setPopup}
-					popupIsVisible={this.props.popupIsVisible}
-				/>
-
-				<CustomPopup
-					popupIsVisible={this.props.popupIsVisible}
-					popupType={this.props.popupType}
-					popupData={this.props.popupData}
-					popupColor={this.props.popupColor}
-					categoriesList={this.props.categoriesList}
-					prioritiesList={this.props.prioritiesList}
-					statusesList={this.props.statusesList}
-				/>
-				<div className="Kanban-Container">
-					<KanbanColumn
-						columnType="new"
-						contentList={newRequestsList}
+			return (
+				<div className="Kanban">
+					<PopupBackGround
 						setPopup={this.props.setPopup}
+						popupIsVisible={this.props.popupIsVisible}
+					/>
+
+					<CustomPopup
+						popupIsVisible={this.props.popupIsVisible}
+						popupType={this.props.popupType}
+						popupData={this.props.popupData}
+						popupColor={this.props.popupColor}
 						categoriesList={this.props.categoriesList}
 						prioritiesList={this.props.prioritiesList}
 						statusesList={this.props.statusesList}
 					/>
-					<KanbanColumn
-						columnType="todo"
-						contentList={todoRequestsList}
-						setPopup={this.props.setPopup}
-						categoriesList={this.props.categoriesList}
-						prioritiesList={this.props.prioritiesList}
-						statusesList={this.props.statusesList}
-					/>
-					<KanbanColumn
-						columnType="progress"
-						contentList={inProgressRequestsList}
-						setPopup={this.props.setPopup}
-						categoriesList={this.props.categoriesList}
-						prioritiesList={this.props.prioritiesList}
-						statusesList={this.props.statusesList}
-					/>
-					<KanbanColumn
-						columnType="done"
-						contentList={doneRequestsList}
-						setPopup={this.props.setPopup}
-						categoriesList={this.props.categoriesList}
-						prioritiesList={this.props.prioritiesList}
-						statusesList={this.props.statusesList}
-					/>
+					<div className="Kanban-Container">
+						<KanbanColumn
+							columnType="new"
+							contentList={newRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="todo"
+							contentList={todoRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="progress"
+							contentList={inProgressRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="done"
+							contentList={doneRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+					</div>
 				</div>
-			</div>
-		);
+			);
+		} else {
+			return null;
+		}
 	}
 }
 

@@ -64,6 +64,8 @@ class KanbanColumn extends PureComponent {
 								data={item}
 								color={this.state.color}
 								setPopup={this.props.setPopup}
+								prioritiesList={this.props.prioritiesList}
+								categoriesList={this.props.categoriesList}
 							/>
 						);
 					})}
