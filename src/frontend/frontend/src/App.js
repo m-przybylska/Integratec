@@ -108,6 +108,31 @@ class App extends PureComponent {
 		);
 	};
 
+	postRequest = () => {
+		const request = {
+			comment: "komentarz 1",
+			receiver: 2,
+			requestCategory: 2,
+			requestPriority: 1,
+			requestStatus: 1,
+			sendDate: "2022-04-22",
+			sender: {
+				accountId: 1,
+				login: "Stanley_Kubirick",
+				password: "password123",
+				name: "Stanley",
+				surname: "Kubirick",
+			},
+			text: "skonczyly sie ciasteczka:(",
+			title: "ciasteczka",
+		};
+
+		axios.post(`http://localhost:8080/requests`, { request }).then((res) => {
+			console.log(res);
+			console.log(res.data);
+		});
+	};
+
 	render() {
 		return (
 			<div className="App">
@@ -131,7 +156,7 @@ class App extends PureComponent {
 							}
 						/>
 					</Routes>
-					{/* <button onClick={this.setRequestsList}>Click this</button> */}
+					<button onClick={this.postRequest}>Click this</button>
 					{/* <RequestsList /> */}
 				</Router>
 			</div>
