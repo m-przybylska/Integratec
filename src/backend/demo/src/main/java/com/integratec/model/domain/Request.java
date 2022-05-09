@@ -1,6 +1,5 @@
 package com.integratec.model.domain;
 
-import com.integratec.model.repositories.RequestPriorityRepository;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
