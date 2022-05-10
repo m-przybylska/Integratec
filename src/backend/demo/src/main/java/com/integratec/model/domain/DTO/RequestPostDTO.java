@@ -22,7 +22,7 @@ public class RequestPostDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty("request_account_id")
+    @JsonProperty("request_id")
     private Long requestId;
 
     @NotNull
