@@ -3,6 +3,7 @@ package com.integratec.config;
 import com.integratec.controllers.AccountController;
 import com.integratec.controllers.RequestController;
 import com.integratec.model.domain.Account;
+import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.RequestRepository;
