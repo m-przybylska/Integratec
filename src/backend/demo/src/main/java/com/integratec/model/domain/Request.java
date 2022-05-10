@@ -26,12 +26,15 @@ public class Request {
     @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
     @Column(name = "reciver_id")
     private Long receiver;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(insertable=false, updatable=false, name = "sender_id")
+    private Account sender;
 
     @NotNull(message = "senderId cannot be null")
     @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sender_id")
-    private Account sender;
+    @Column(name = "sender_id")
+    private Long senderLong;
 
     @NotEmpty(message = "title cannot be empty")
     @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")

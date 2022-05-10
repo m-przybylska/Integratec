@@ -48,11 +48,9 @@ public class MapStructMapperImpl implements MapStructMapper{
         }
 
         Request request = new Request();
-        Account account = new Account();
-        account.setAccountId(requestPostDTO.getSender());
         request.setRequestId(requestPostDTO.getRequestId());
         request.setReceiver(requestPostDTO.getReceiver());
-        request.setSender(account);
+        request.setSenderLong(requestPostDTO.getSender());
         request.setTitle(requestPostDTO.getTitle());
         request.setText(requestPostDTO.getText());
         request.setComment(requestPostDTO.getComment());
