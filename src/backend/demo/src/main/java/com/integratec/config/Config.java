@@ -23,7 +23,7 @@ public class Config {
         return args -> {
             Account account = new Account(1L, "login1", "pass", "agata", "kowalska");
             accountRepository.save(account);
-            RequestPostDTO requestPostDTO = new RequestPostDTO(1L, 2L, 3L, "cofj", "lfjsla", "jlfs",new Date(2000,11,11), null, null, null);
+            RequestPostDTO requestPostDTO = new RequestPostDTO(1L, 3L, 3L, "cofj", "lfjsla", "jlfs",new Date(2000,11,11), 1L, 1L, null);
             requestController.postRequest(requestPostDTO);
         };
 
