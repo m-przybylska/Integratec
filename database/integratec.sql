@@ -3,13 +3,14 @@ DROP TABLE IF EXISTS Account;
 DROP TABLE IF EXISTS RequestCategory;
 DROP TABLE IF EXISTS RequestStatus;
 DROP TABLE IF EXISTS RequestPriority;
+DROP TRIGGER IF EXISTS RequestCategoryTrigger;
 
 CREATE TABLE `Account` (
 `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `login` varchar(30) NOT NULL,
 `password` varchar(30) NOT NULL,
-`name` varchar(30),
-`surname` varchar(30)
+`name` varchar(30) NOT NULL,
+`surname` varchar(30) NOT NULL
 );
 
 CREATE TABLE `RequestCategory` (
@@ -46,11 +47,25 @@ CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `
 CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
 );
 
+DELIMITER //
+CREATE TRIGGER RequestCategoryTrigger
+BEFORE INSERT ON request
+FOR EACH ROW
+BEGIN
+IF NEW.request_category_id = 6 OR NEW.request_category_id = 7
+OR NEW.request_category_id = 8 OR NEW.request_category_id = 14
+OR NEW.request_category_id = 15 THEN SET NEW.reciver_id = 2;
+ELSE
+SET NEW.reciver_id = 1;
+END IF;
+END//
+DELIMITER ;
+
 insert into Account(login, password, name, surname)
 values
-("Stanley_Kubirick", "password123", "Stanley", "Kubirick"),
-("Quentin_Tarantino", "password123", "Quentin", "Tarantino"),
-("Sergio_Leone", "password123", "Sergio", "Leone");
+("Stanley_Kubirick", "password123", "Stan", "Kub"),
+("Quentin_Tarantino", "passwasdford123", "Que", "Tar"),
+("Sergio_Leone", "passwasdford123", "Ser", "Leo");
 
 insert into RequestCategory(request_category)
 values
@@ -77,21 +92,18 @@ values
 ("this week"),
 ("this month");
 
-insert into RequestStatus(request_status)
-  values
-  ("new"),
-  ("received"),
-  ("in progress"),
-  ("action needed"),
-  ("reminder"),
-  ("resolved");
+insert into Request(title, sender_id, reciver_id, text, comment, send_date, request_category_id, request_priority_id)
+values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1"),
+("title1", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "7", "1"),
+("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1"),
+("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1");
 
-insert into Request(title, sender_id, reciver_id, text, comment, send_date, request_status_id, request_category_id, request_priority_id)
-values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", 1, 2, 1),
-("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", 1, 2, 1),
-("monitor", "2", "4", "", "", "2022-04-19", 1, 2, 1),
-("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05", 1, 2, 1),
-("owoce", "5", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 1, 2, 1),
-("faktura", "6", "2", "simple text", "komentarz komentatrz", "2022-04-22", 1, 2, 1),
-("rekrutacja", "1", "8", " ", "jutro sie tym zajme", "2022-04-22", 1, 2, 1),
-("wyjazd", "4", "3", "text 2", "jutro sie tym zajme", "2022-04-22", 1, 2, 1);
+insert into Request(title, sender_id, reciver_id, text, comment, send_date)
+values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22"),
+("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10"),
+("monitor", "2", "3", "", "", "2022-04-19"),
+("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05"),
+("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18"),
+("faktura", "3", "2", "simple text", "komentarz komentatrz", "2022-04-22"),
+("rekrutacja", "1", "3", " ", "jutro sie tym zajme", "2022-04-22"),
+("wyjazd", "3", "3", "text 2", "jutro sie tym zajme", "2022-04-22");
