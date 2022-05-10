@@ -35,6 +35,12 @@ public class RequestGetDTO {
     @JsonProperty("sender_id")
     private Long sender;
 
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("surname")
+    private String surname;
+
     @NotEmpty
     @Size(min = 3, max = 70)
     @JsonProperty("title")

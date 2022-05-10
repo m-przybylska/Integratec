@@ -72,6 +72,8 @@ public class MapStructMapperImpl implements MapStructMapper{
             reqestsGetDtos.get(i).setRequestId(requests.get(i).getRequestId());
             reqestsGetDtos.get(i).setReceiver(requests.get(i).getReceiver());
             reqestsGetDtos.get(i).setSender(requests.get(i).getSender().getAccountId());
+            reqestsGetDtos.get(i).setName(requests.get(i).getSender().getName());
+            reqestsGetDtos.get(i).setSurname(requests.get(i).getSender().getSurname());
             reqestsGetDtos.get(i).setTitle(requests.get(i).getTitle());
             reqestsGetDtos.get(i).setText(requests.get(i).getText());
             reqestsGetDtos.get(i).setComment(requests.get(i).getComment());
