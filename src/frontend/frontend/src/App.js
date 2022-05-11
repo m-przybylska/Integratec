@@ -111,7 +111,18 @@ class App extends PureComponent {
 		};
 
 		axios
-			.post("http://localhost:8080/requests", { newRequest })
+			.post("http://localhost:8080/requests", {
+				comment: "string",
+				receiver_id: 1,
+				request_category_id: 1,
+				request_id: 1,
+				request_priority_id: 1,
+				request_status_id: null,
+				send_date: "2022-05-11",
+				sender_id: 1,
+				text: "string",
+				title: "string",
+			})
 			.then((res) => {
 				console.log(res);
 				console.log(res.data);
