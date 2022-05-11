@@ -27,7 +27,7 @@ public class RequestPostDTO {
 
     @NotNull
     @Range(min = 1, max = 999)
-    @JsonProperty("reciver_id")
+    @JsonProperty("receiver_id")
     private Long receiver;
 
     @NotNull

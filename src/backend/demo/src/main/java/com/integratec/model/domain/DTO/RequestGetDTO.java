@@ -22,12 +22,12 @@ public class RequestGetDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty("request_account_id")
+    @JsonProperty("request_id")
     private Long requestId;
 
     @NotNull
     @Range(min = 1, max = 999)
-    @JsonProperty("reciver_id")
+    @JsonProperty("receiver_id")
     private Long receiver;
 
     @NotNull

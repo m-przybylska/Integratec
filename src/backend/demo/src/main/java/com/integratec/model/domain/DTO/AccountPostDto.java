@@ -20,7 +20,6 @@ public class AccountPostDto {
     @JsonProperty("user_account_id")
     private Long accountId;
 
-
     @Size(min = 4, max = 30)
     @JsonProperty("login")
     private String login;

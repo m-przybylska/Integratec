@@ -24,7 +24,7 @@ public class Request {
 
     @NotNull(message = "receiverId cannot be null ")
     @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
-    @Column(name = "reciver_id")
+    @Column(name = "receiver_id")
     private Long receiver;
     
     @OneToOne(cascade = CascadeType.ALL)
