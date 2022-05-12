@@ -1,9 +1,6 @@
 package com.integratec.controllers;
 
 import com.integratec.mapper.MapStructMapperImpl;
-import com.integratec.model.domain.Account;
-import com.integratec.model.domain.DTO.AccountGetDto;
-import com.integratec.model.domain.DTO.AccountPostDto;
 import com.integratec.model.domain.DTO.RequestGetDTO;
 import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;

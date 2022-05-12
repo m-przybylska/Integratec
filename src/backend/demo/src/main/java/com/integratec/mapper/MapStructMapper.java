@@ -7,7 +7,7 @@ import com.integratec.model.domain.DTO.RequestGetDTO;
 import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
 import org.mapstruct.Mapper;
-import java.util.List;
+
 import java.util.List;
 
 @Mapper(componentModel = "spring")
