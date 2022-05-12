@@ -101,18 +101,18 @@ class App extends PureComponent {
 			comment: "string",
 			receiver_id: 1,
 			request_category_id: 1,
-			request_id: 1,
+			request_id: 3,
 			request_priority_id: 1,
 			request_status_id: 1,
 			send_date: "11-05-2022",
-			sender_id: 1,
+			sender_id: 3,
 			text: "string",
 			title: "string",
 		};
 
 		axios
 			.post("http://localhost:8080/requests", {
-				comment: "string",
+				comment: "comment",
 				receiver_id: 1,
 				request_category_id: 1,
 				request_id: 1,
@@ -120,6 +120,42 @@ class App extends PureComponent {
 				request_status_id: null,
 				send_date: "2022-05-11",
 				sender_id: 1,
+				text: "string",
+				title: "string",
+			})
+			.then((res) => {
+				console.log(res);
+				console.log(res.data);
+			})
+			.catch((error) => {
+				if (error.response) {
+					console.log(error.response);
+				} else if (error.request) {
+					console.log(error.request);
+				} else if (error.message) {
+					console.log(error.message);
+				}
+			});
+	};
+
+	putRequest = () => {
+		axios
+			.put("http://localhost:8080/requests", {
+				comment: "dziala",
+				receiver: 1,
+				requestCategory: 1,
+				requestId: 1,
+				requestPriority: 1,
+				requestStatus: 1,
+				sendDate: "2022-05-12",
+				sender: {
+					accountId: 1,
+					login: "string",
+					name: "string",
+					password: "string",
+					surname: "string",
+				},
+				senderLong: 1,
 				text: "string",
 				title: "string",
 			})
@@ -157,7 +193,8 @@ class App extends PureComponent {
 							}
 						/>
 					</Routes>
-					<button onClick={this.postRequest}>Click this</button>
+					<button onClick={this.postRequest}>Click this to post</button>
+					<button onClick={this.putRequest}>Click this to put</button>
 				</Router>
 			</div>
 		);
