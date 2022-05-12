@@ -26,9 +26,9 @@ public class Request {
     @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
     @Column(name = "receiver_id")
     private Long receiver;
-    
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(insertable=false, updatable=false, name = "sender_id")
+    @JoinColumn(insertable = false, updatable = false, name = "sender_id")
     private Account sender;
 
     @NotNull(message = "senderId cannot be null")

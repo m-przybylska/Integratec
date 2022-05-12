@@ -10,12 +10,12 @@ import com.integratec.model.domain.Request;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapStructMapperImpl implements MapStructMapper{
+public class MapStructMapperImpl implements MapStructMapper {
 
     @Override
     public List<AccountGetDto> usersToUsersGetDto(List<Account> accounts) {
         List<AccountGetDto> accountGetDtos = new ArrayList<>();
-        for(int i = 0; i < accounts.size(); i++){
+        for (int i = 0; i < accounts.size(); i++) {
             accountGetDtos.add(i, new AccountGetDto());
             accountGetDtos.get(i).setAccountId(accounts.get(i).getAccountId());
             accountGetDtos.get(i).setName(accounts.get(i).getName());
@@ -26,24 +26,24 @@ public class MapStructMapperImpl implements MapStructMapper{
 
     @Override
     public Account userPostDtoToUser(AccountPostDto userPostDto) {
-        if ( userPostDto == null ) {
+        if (userPostDto == null) {
             return null;
         }
 
         Account user = new Account();
 
-        user.setAccountId(userPostDto.getAccountId() );
-        user.setLogin( userPostDto.getLogin() );
-        user.setPassword( userPostDto.getPassword() );
-        user.setName( userPostDto.getName() );
-        user.setSurname( userPostDto.getSurname() );
+        user.setAccountId(userPostDto.getAccountId());
+        user.setLogin(userPostDto.getLogin());
+        user.setPassword(userPostDto.getPassword());
+        user.setName(userPostDto.getName());
+        user.setSurname(userPostDto.getSurname());
 
         return user;
     }
 
     @Override
-    public Request requestPostDTO(RequestPostDTO requestPostDTO){
-        if( requestPostDTO == null){
+    public Request requestPostDTO(RequestPostDTO requestPostDTO) {
+        if (requestPostDTO == null) {
             return null;
         }
 
@@ -63,9 +63,10 @@ public class MapStructMapperImpl implements MapStructMapper{
     }
 
     @Override
-    public List<RequestGetDTO> requestsToRequestsGetDto(List<Request> requests){ List<AccountGetDto> accountGetDtos = new ArrayList<>();
+    public List<RequestGetDTO> requestsToRequestsGetDto(List<Request> requests) {
+        List<AccountGetDto> accountGetDtos = new ArrayList<>();
         List<RequestGetDTO> reqestsGetDtos = new ArrayList<>();
-        for(int i = 0; i < requests.size(); i++){
+        for (int i = 0; i < requests.size(); i++) {
             reqestsGetDtos.add(i, new RequestGetDTO());
             reqestsGetDtos.get(i).setRequestId(requests.get(i).getRequestId());
             reqestsGetDtos.get(i).setReceiver(requests.get(i).getReceiver());
