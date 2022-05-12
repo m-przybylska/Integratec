@@ -69,47 +69,7 @@ class App extends PureComponent {
 			});
 	};
 
-	// // Tablicę takich requestów chcę dostać z GET:
-	// requestGET = {
-	// 	title: "ciasteczka",
-	// 	sender_id: 1,
-	// 	sender_name: "Kate",
-	// 	sender_surname: "Bond",
-	// 	receiver_id: 2,
-	// 	send_date: "03/07/2022",
-	// 	text: "skonczyly sie ciasteczka:(",
-	// 	comment: "komentarz",
-	// 	request_category_id: 2,
-	// 	request_priority_id: 1,
-	// 	request_status_id: 1,
-	// };
-
-	// // A to chcę przekazać na backend w POST
-	// requestPOST = {
-	// 	title: "ciasteczka",
-	// 	sender_id: 1,
-	// 	receiver_id: 2,
-	// 	send_date: "03/07/2022",
-	// 	text: "skonczyly sie ciasteczka:(",
-	// 	request_category_id: 2,
-	// 	request_priority_id: 1,
-	// 	request_status_id: 1,
-	// };
-
 	postRequest = () => {
-		const newRequest = {
-			comment: "string",
-			receiver_id: 1,
-			request_category_id: 1,
-			request_id: 3,
-			request_priority_id: 1,
-			request_status_id: 1,
-			send_date: "11-05-2022",
-			sender_id: 3,
-			text: "string",
-			title: "string",
-		};
-
 		axios
 			.post("http://localhost:8080/requests", {
 				comment: "comment",
