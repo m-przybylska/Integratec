@@ -32,7 +32,7 @@ CREATE TABLE `Request` (
 `request_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `title` varchar(70) NOT NULL,
 `sender_id` int NOT NULL,
-`reciver_id` int NOT NULL,
+`receiver_id` int NOT NULL,
 `text` varchar(1000),
 `comment` varchar(500),
 `send_date` date,
@@ -47,17 +47,17 @@ CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `
 CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
 );
 
-DELIMITER //
+DELIMITER // 
 CREATE TRIGGER RequestCategoryTrigger
 BEFORE INSERT ON request
 FOR EACH ROW
 BEGIN
-IF NEW.request_category_id = 6 OR NEW.request_category_id = 7
-OR NEW.request_category_id = 8 OR NEW.request_category_id = 14
-OR NEW.request_category_id = 15 THEN SET NEW.reciver_id = 2;
-ELSE
-SET NEW.reciver_id = 1;
-END IF;
+IF NEW.request_category_id = 6 OR NEW.request_category_id = 7 
+OR NEW.request_category_id = 8 OR NEW.request_category_id = 14 
+OR NEW.request_category_id = 15 THEN SET NEW.receiver_id = 2;
+ELSE 
+SET NEW.receiver_id = 1;
+END IF; 
 END//
 DELIMITER ;
 
@@ -92,16 +92,22 @@ values
 ("this week"),
 ("this month");
 
-insert into Request(title, sender_id, reciver_id, text, comment, send_date, request_category_id, request_priority_id)
+insert into RequestStatus(request_status)
+values
+("done"),
+("in progress"),
+("to do");
+
+insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id) 
 values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1"),
 ("title1", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "7", "1"),
 ("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1"),
 ("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1");
 
-insert into Request(title, sender_id, reciver_id, text, comment, send_date)
-values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22"),
-("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10"),
-("monitor", "2", "3", "", "", "2022-04-19"),
+insert into Request(title, sender_id, receiver_id, text, comment, send_date) 
+values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22"),  
+("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10"), 
+("monitor", "2", "3", "", "", "2022-04-19"), 
 ("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05"),
 ("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18"),
 ("faktura", "3", "2", "simple text", "komentarz komentatrz", "2022-04-22"),
