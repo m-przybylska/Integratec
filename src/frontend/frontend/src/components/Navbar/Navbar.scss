@@ -1,38 +1,43 @@
-@import "../../assets/scss/colors.scss";
+@import '../../assets/scss/colors.scss';
+
 .Navbar {
-  position: fixed;
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding: 22px 30px;
-  background-color: $color-black;
-  z-index: 1;
-  &-leftSide {
-    &-logo {
-    }
-  }
-  &-rightSide {
-    display: flex;
-    align-items: center;
-    &-option {
-      position: relative;
-      color: $color-white;
-      margin: 12px 60px 12px 10px;
-      cursor: pointer;
-      &:hover {
-        color: $color-gelb-dark;
-        &::before {
-          content: "\f45c";
-          font-family: "Line Awesome Free";
-          font-weight: 900;
-          position: absolute;
-          font-size: 10px;
-          top: 50%;
-          right: calc(100% + 2px);
-          transform: translateY(-50%);
-        }
-      }
-    }
-  }
+	position: fixed;
+	min-width: 100%;
+	display: flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 22px 30px;
+	background-color: $color-black;
+	z-index: 2;
+
+	&-leftSide {
+		&-logo {}
+	}
+
+	&-rightSide {
+		display: flex;
+		align-items: center;
+
+		&-option {
+			position: relative;
+			color: $color-white;
+			margin: 12px 60px 12px 10px;
+			cursor: pointer;
+
+			&:hover {
+				color: $color-gelb-dark;
+
+				&::before {
+					content: '\f45c';
+					font-family: 'Line Awesome Free';
+					font-weight: 900;
+					position: absolute;
+					font-size: 10px;
+					top: 50%;
+					right: calc(100% + 2px);
+					transform: translateY(-50%);
+				}
+			}
+		}
+	}
 }

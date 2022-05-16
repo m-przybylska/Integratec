@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import CreatePopup from "../CreatePopup";
 import "./PopupBackGround.scss";
 
 class PopupBackGround extends PureComponent {
@@ -17,7 +16,7 @@ class PopupBackGround extends PureComponent {
             ? "PopupBackGround"
             : "PopupBackGround hidden"
         }
-        onClick={() => this.props.setPopupVisibility()}
+        onClick={() => this.props.setPopup("", {}, "iteragenta")}
       ></div>
     );
   }

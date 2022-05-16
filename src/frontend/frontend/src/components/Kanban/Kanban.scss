@@ -1,10 +1,50 @@
 @import "../../assets/scss/colors.scss";
 
 .Kanban {
-  position: relative;
-  min-width: 100%;
-  min-height: 100vh;
-  background-color: $color-white;
-  box-sizing: border-box;
-  //   padding: 0 30px;
+	position: relative;
+	min-width: 100%;
+	min-height: 100vh;
+	background-color: $color-white;
+	box-sizing: border-box;
+	flex-direction: column;
+
+	&-Container {
+		display: flex;
+		justify-content: center;
+		min-width: 100%;
+		max-height: 100vh;
+		box-sizing: border-box;
+		padding: 117px 30px 24px 30px;
+		overflow: hidden;
+
+		&-Column {
+			margin-top: 10px;
+			margin-bottom: 30px;
+
+			&-Title {
+				position: fixed;
+				min-height: 29px;
+				max-height: 29px;
+				padding-top: 0px;
+				margin-left: 10px;
+				text-align: left;
+				font-weight: bold;
+				z-index: 0;
+			}
+
+			&-Content {
+				max-height: 95%; //TODO: change this?
+				margin-top: 50px;
+				margin-right: 12px;
+				margin-bottom: 30px;
+				overflow-y: scroll;
+				scrollbar-width: none;
+			}
+
+			&-Content::-webkit-scrollbar {
+				display: none;
+				/* for Chrome, Safari, and Opera */
+			}
+		}
+	}
 }

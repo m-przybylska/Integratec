@@ -1,0 +1,95 @@
+@import "../../assets/scss/colors.scss";
+
+.Request {
+  font-size: 14px;
+  max-width: 289px;
+  min-width: 289px;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  // background-color: $color-iteragenta-light;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    padding: 15px 17px;
+    border: 1px solid $color-black;
+  }
+
+  &.grey {
+    background-color: $color-grey;
+  }
+
+  &.iteragenta {
+    background-color: $color-iteragenta-light;
+  }
+
+  &.gelb {
+    background-color: $color-gelb-light;
+  }
+
+  &.mint {
+    background-color: $color-mint-light;
+  }
+
+  &-First-Part {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-Created {
+    align-items: center;
+    &-Header,
+    &-Date {
+      margin: 0;
+    }
+  }
+  &-User {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    &-Name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+    }
+
+    .la-user {
+      font-size: 36px;
+      margin-right: 10px;
+    }
+  }
+
+  &-Title {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 56px;
+    min-height: 56px;
+    margin-bottom: 14px;
+  }
+
+  &-Tags {
+    display: flex;
+    text-transform: uppercase;
+    color: $color-white;
+
+    // justify-content: space-between;
+    &-Priority,
+    &-Category {
+      padding: 2px 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-Priority {
+      background-color: $color-iteragenta-dark;
+      margin-right: 12px; // or set some margins for both? I set this like that because right now we know there are only this two tags
+    }
+
+    &-Category {
+      background-color: $color-mint-dark;
+    }
+  }
+}

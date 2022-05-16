@@ -3,25 +3,44 @@ package com.integratec.model.domain;
 import java.util.Collection;
 import java.util.List;
 
+import lombok.*;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "account")
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
+@NoArgsConstructor
 public class Account implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_account_id")
-    private Long user_account_id;
+    private Long accountId;
+
+    @NotNull(message = "Login cannot be null")
+    @Size(min = 4, message = "Login should be at least 4 characters long")  //TODO random value, prolly some regex
     @Column(name = "login")
     private String login;
+
+    @NotNull(message = "Password cannot be null")  //TODO prolly some regex to match too
     @Column(name = "password")
     private String password;
 
-    public Account() {
-    }
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
     public Account(String login, String password) {
         this.login = login;
         this.password = password;
@@ -69,4 +88,6 @@ public class Account implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

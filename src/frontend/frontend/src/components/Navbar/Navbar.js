@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
 import "./Navbar.scss";
 import logo from "../../assets/images/logo.svg";
 
@@ -20,7 +19,7 @@ class Navbar extends PureComponent {
           <div className="Navbar-rightSide-option">my requests</div>
           <div
             className="Navbar-rightSide-option"
-            onClick={() => this.props.setPopupVisibility()}
+            onClick={() => this.props.setPopup("addTask", null, "iteragenta")}
           >
             add task
           </div>
