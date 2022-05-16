@@ -100,7 +100,7 @@ class App extends PureComponent {
 
 	putRequest = () => {
 		axios
-			.put("http://localhost:8080/requests", {
+			.put("http://localhost:8080/requests/1", {
 				comment: "dziala",
 				receiver: 1,
 				requestCategory: 1,
