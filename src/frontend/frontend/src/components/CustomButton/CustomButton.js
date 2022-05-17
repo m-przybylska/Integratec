@@ -29,13 +29,14 @@ class CustomButton extends PureComponent {
   }
 
   handleClickOutside(event) {
+    console.log(event.target.className);
     if (
-      event.target.className != "CustomButton-Button-Category" ||
-      event.target.className != "CustomButton-Button-Status" ||
-      event.target.className != "CustomButton-Button-Priority"
+      event.target.className != "CustomButton-List-Item" &&
+      (event.target.className != "CustomButton-Button-Category" ||
+        event.target.className != "CustomButton-Button-Status" ||
+        event.target.className != "CustomButton-Button-Priority")
     )
       this.setState({ showList: false });
-    //console.log(event.target.className);
   }
 
   setDataFromType = () => {
