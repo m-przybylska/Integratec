@@ -11,7 +11,31 @@ class CustomButton extends PureComponent {
       buttonClassName: "",
       contentsList: [],
       showList: false,
+      currentValue: this.props.contentSelected,
     };
+    this.wrapperRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentWillMount = () => {
+    this.setState({ currentValue: this.props.contentSelected });
+  };
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    if (
+      event.target.className != "CustomButton-Button-Category" ||
+      event.target.className != "CustomButton-Button-Status" ||
+      event.target.className != "CustomButton-Button-Priority"
+    )
+      this.setState({ showList: false });
+    //console.log(event.target.className);
   }
 
   setDataFromType = () => {
@@ -75,8 +99,11 @@ class CustomButton extends PureComponent {
       <div
         className={this.state.buttonClassName}
         onClick={() => this.setState({ showList: !this.state.showList })}
+        ref={this.wrapperRef}
       >
-        {this.props.contentSelected}
+        {this.state.currentValue
+          ? this.state.currentValue
+          : this.props.contentSelected}
         <div
           className={
             this.state.showList
@@ -86,7 +113,14 @@ class CustomButton extends PureComponent {
         >
           {this.state.contentsList
             ? this.state.contentsList.map((item) => {
-                return <div className="CustomButton-List-Item">{item}</div>;
+                return (
+                  <div
+                    className="CustomButton-List-Item"
+                    onClick={() => this.setState({ currentValue: item })}
+                  >
+                    {item}
+                  </div>
+                );
               })
             : null}
         </div>
