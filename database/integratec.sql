@@ -99,11 +99,11 @@ values
 ("in progress"),
 ("to do");
 
-insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request status) 
+insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id) 
 values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1", "1"),
 ("title1", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "7", "1", "2"),
 ("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1", "3"),
-("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4")
+("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4"),
 ("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", "1", "2", "3"), 
 ("karta sportowa", "3", "2", "prosze o karte sportow¹ od maja", "zrobione", "2022-04-05", "1", "2", "3"),
 ("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18", "3", "2", "3"),
