@@ -8,7 +8,7 @@ DROP TRIGGER IF EXISTS RequestCategoryTrigger;
 CREATE TABLE `Account` (
 `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `login` varchar(30) NOT NULL,
-`password` varchar(30) NOT NULL,
+`password` varchar(60) NOT NULL,
 `name` varchar(30) NOT NULL,
 `surname` varchar(30) NOT NULL
 );
@@ -63,9 +63,9 @@ DELIMITER ;
 
 insert into Account(login, password, name, surname)
 values
-("Stanley_Kubirick", "password123", "Stan", "Kub"),
-("Quentin_Tarantino", "passwasdford123", "Que", "Tar"),
-("Sergio_Leone", "passwasdford123", "Ser", "Leo");
+("Stanley_Kubirick", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Stan", "Kub"),
+("Quentin_Tarantino", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Que", "Tar"),
+("Sergio_Leone", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Ser", "Leo");
 
 insert into RequestCategory(request_category)
 values
@@ -99,16 +99,15 @@ values
 ("in progress"),
 ("to do");
 
-insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request status) 
+insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id) 
 values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1", "1"),
 ("title1", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "7", "1", "2"),
 ("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1", "3"),
-("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4")
+("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4"),
 ("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", "1", "2", "3"), 
-("karta sportowa", "3", "2", "prosze o karte sportową od maja", "zrobione", "2022-04-05", "1", "2", "3"),
+("karta sportowa", "3", "2", "prosze o karte sportow� od maja", "zrobione", "2022-04-05", "1", "2", "3"),
 ("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18", "3", "2", "3"),
 ("faktura", "3", "2", "simple text", "komentarz komentatrz", "2022-04-22", "1", "2", "3"),
 ("rekrutacja", "1", "3", "zepsuty komputer ", "jutro sie tym zajme", "2022-04-22", "2", "2", "3"),
 ("wyjazd", "3", "3", "text 2", "jutro sie tym zajme", "2022-04-22", "1", "1", "1");
-
 
