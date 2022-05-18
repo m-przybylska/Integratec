@@ -44,8 +44,7 @@ class Kanban extends PureComponent {
 			console.log(statusNew.requestStatusId);
 
 			let statusTodo = this.props.statusesList.find((element) => {
-				if (element.requestStatus === "received")
-					return element.requestStatusId;
+				if (element.requestStatus === "to do") return element.requestStatusId;
 			});
 
 			let statusInProgress = this.props.statusesList.find((element) => {
@@ -54,23 +53,25 @@ class Kanban extends PureComponent {
 			});
 
 			let statusDone = this.props.statusesList.find((element) => {
-				if (element.requestStatus === "resolved")
-					return element.requestStatusId;
+				if (element.requestStatus === "done") return element.requestStatusId;
 			});
 
 			let newRequestsList = requestsList.filter(
-				(item) => item.requestStatus == statusNew.requestStatusId
+				(item) => item.request_status_id == statusNew.requestStatusId
 			);
 			let todoRequestsList = requestsList.filter(
-				(item) => item.requestStatus == statusTodo.requestStatusId
+				(item) => item.request_status_id == statusTodo.requestStatusId
 			);
 			let inProgressRequestsList = requestsList.filter(
-				(item) => item.requestStatus == statusInProgress.requestStatusId
+				(item) => item.request_status_id == statusInProgress.requestStatusId
 			);
 			let doneRequestsList = requestsList.filter(
-				(item) => item.requestStatus == statusDone.requestStatusId
+				(item) => item.request_status_id == statusDone.requestStatusId
 			);
 
+			console.log(newRequestsList);
+			console.log(todoRequestsList);
+			console.log(inProgressRequestsList);
 			console.log(doneRequestsList);
 
 			return (

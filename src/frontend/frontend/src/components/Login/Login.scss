@@ -1,0 +1,21 @@
+@import "../../assets/scss/colors.scss";
+
+.Login {
+    font-size: 14px;
+    max-width: 534px;
+    min-width: 534px;
+    max-width: 332px;
+    min-width: 332px;
+    align-self: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    background-color: $color-black;
+    font-weight: bold;
+}

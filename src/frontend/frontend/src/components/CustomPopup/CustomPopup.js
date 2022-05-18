@@ -97,7 +97,7 @@ class CustomPopup extends PureComponent {
 								<div className="CustomPopup-previewRequest-FirstPart-User">
 									<i className="las la-user" />
 									<div className="CustomPopup-previewRequest-FirstPart-User-Name">
-										{this.props.popupData.sender.name}
+										{this.props.popupData.name}
 									</div>
 								</div>
 								<div className="CustomPopup-previewRequest-FirstPart-Date">
@@ -111,7 +111,7 @@ class CustomPopup extends PureComponent {
 								</div>
 								<div className="CustomPopup-previewRequest-SecondPart-Buttons">
 									<CustomButton
-										contentSelected={this.props.popupData.requestPriority}
+										contentSelected={this.props.popupData.request_priority_id}
 										prioritiesList={this.props.prioritiesList}
 										categoriesList={this.props.categoriesList}
 										statusesList={this.props.statusesList}
@@ -119,7 +119,7 @@ class CustomPopup extends PureComponent {
 										isTag={false}
 									/>
 									<CustomButton
-										contentSelected={this.props.popupData.requestCategory}
+										contentSelected={this.props.popupData.request_category_id}
 										prioritiesList={this.props.prioritiesList}
 										categoriesList={this.props.categoriesList}
 										statusesList={this.props.statusesList}
@@ -127,7 +127,7 @@ class CustomPopup extends PureComponent {
 										isTag={false}
 									/>
 									<CustomButton
-										contentSelected={this.props.popupData.requestStatus}
+										contentSelected={this.props.popupData.request_status_id}
 										prioritiesList={this.props.prioritiesList}
 										categoriesList={this.props.categoriesList}
 										statusesList={this.props.statusesList}

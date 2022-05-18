@@ -3,13 +3,14 @@ DROP TABLE IF EXISTS Account;
 DROP TABLE IF EXISTS RequestCategory;
 DROP TABLE IF EXISTS RequestStatus;
 DROP TABLE IF EXISTS RequestPriority;
+DROP TRIGGER IF EXISTS RequestCategoryTrigger;
 
 CREATE TABLE `Account` (
                            `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            `login` varchar(30) NOT NULL,
-                           `password` varchar(30) NOT NULL,
-                           `name` varchar(30),
-                           `surname` varchar(30)
+                           `password` varchar(60) NOT NULL,
+                           `name` varchar(30) NOT NULL,
+                           `surname` varchar(30) NOT NULL
 );
 
 CREATE TABLE `RequestCategory` (
@@ -31,7 +32,7 @@ CREATE TABLE `Request` (
                            `request_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            `title` varchar(70) NOT NULL,
                            `sender_id` int NOT NULL,
-                           `reciver_id` int NOT NULL,
+                           `receiver_id` int NOT NULL,
                            `text` varchar(1000),
                            `comment` varchar(500),
                            `send_date` date,
@@ -46,17 +47,33 @@ CREATE TABLE `Request` (
                            CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
 );
 
+DELIMITER //
+CREATE TRIGGER RequestCategoryTrigger
+    BEFORE INSERT ON request
+    FOR EACH ROW
+BEGIN
+    IF NEW.request_category_id = 6 OR NEW.request_category_id = 7
+        OR NEW.request_category_id = 8 OR NEW.request_category_id = 14
+        OR NEW.request_category_id = 15 THEN SET NEW.receiver_id = 2;
+    ELSE
+        SET NEW.receiver_id = 1;
+    END IF;
+END//
+DELIMITER ;
+
 insert into Account(login, password, name, surname)
 values
-("Stanley_Kubirick", "password123", "Stanley", "Kubirick"),
-("Quentin_Tarantino", "password123", "Quentin", "Tarantino"),
-("John_Kovalsky", "password123", "Stanley", "Kubirick"),
-("Sheldon_Cooper", "password123", "Sheldon", "Cooper"),
-("Howard_Wolowitz", "password123", "Howard", "Wolowitz"),
-("Amy Farah", "password123", "Amy", "Farah"),
-("Leonard_Hofstadter", "password123", "Leonard", "Hofstadter"),
-("Raj_Koothrappali", "password123", "Raj", "Koothrappali"),
-("Sergio_Leone", "password123", "Sergio", "Leone");
+("Stanley_Kubirick", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Stanley", "Kubirick"),
+("Quentin_Tarantino", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Quentin", "Tarantino"),
+("Sheldon_Cooper", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Sheldon", "Cooper"),
+("Penny_Hofstadter", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Penny", "Hofstadter"),
+("Amy_Farah", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Amy", "Farah"),
+("Bernadette_Rostenkowski", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Bernadette", "Rostenkowski-Wolowitz"),
+("Leonard_Hofstadter", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Leonard", "Hofstadter"),
+("Barry_Kripke", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Barry", "Kripke"),
+("Howard_Wolowitz", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Howard", "Wolowitz"),
+("Raj_Koothrappali", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Raj", "Koothrappali"),
+("Sergio_Leone", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Ser", "Leo");
 
 insert into RequestCategory(request_category)
 values
@@ -86,30 +103,28 @@ values
 insert into RequestStatus(request_status)
 values
 ("new"),
-("received"),
+("done"),
 ("in progress"),
-("action needed"),
-("reminder"),
-("resolved");
+("to do");
 
-insert into Request(title, sender_id, reciver_id, text, comment, send_date, request_status_id, request_category_id, request_priority_id)
-values ("ciasteczka", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", 1, 2, 1),
-       ("ciasteczka", "2", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", 3, 1, 2),
-       ("monitor", "3", "4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "2022-04-19", 6, 2, 1),
-       ("karta sportowa", "4", "2", "prosze o karte sportową od maja", "ok", "2022-04-05", 6, 3, 3),
-       ("owoce", "5", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 3, 4, 4),
-       ("faktura", "6", "2", "simple text", "komentarz komentatrz", "2022-04-22", 3, 5, 1),
-       ("rekrutacja", "7", "8", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "jutro sie tym zajme", "2022-04-22", 1, 6, 2),
-       ("karta sportowa", "8", "2", "prosze o karte sportową od maja", "", "2022-04-05", 3, 12, 3),
-       ("owoce", "9", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 3, 15, 4),
-       ("faktura", "1", "2", "simple text", "komentarz komentatrz", "2022-04-22", 3, 11, 3),
-       ("rekrutacja", "2", "8", "Lorem ipsum dolor sit amet", "jutro sie tym zajme", "2022-04-22", 1, 10, 3),
-       ("karta sportowa", "3", "2", "prosze o karte sportową od maja", "", "2022-04-05", 2, 9, 2),
-       ("owoce", "4", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 3, 8, 1),
-       ("faktura", "5", "2", "simple text", "komentarz komentatrz", "2022-04-22", 3, 8, 2),
-       ("rekrutacja", "6", "8", " ", "jutro sie tym zajme", "2022-04-22", 2, 2, 3),
-       ("karta sportowa", "7", "2", "prosze o karte sportową od maja", "", "2022-04-05", 1, 7, 4),
-       ("owoce", "8", "6", "koncza sie owowce", "komentarz 4", "2022-03-18", 3, 2, 1),
-       ("faktura", "9", "2", "simple text", "komentarz komentatrz", "2022-04-22", 3, 14, 2),
-       ("rekrutacja", "1", "8", " ", "jutro sie tym zajme", "2022-04-22", 6, 13, 1),
-       ("wyjazd", "2", "3", "text 2", "jutro sie tym zajme", "2022-04-22", 3, 2, 1);
+insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id)
+values ("Ciasteczka", "3", "1", "Skonczyly sie ciasteczka :(", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "6", "1", "1"),
+       ("Urlop", "4", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "7", "1", "2"),
+       ("Mulitsport", "5", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "8", "1", "3"),
+       ("Wyjazd do Monachium", "6", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "15", "1", "4"),
+       ("Nowy laptop", "7", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-10", "1", "2", "1"),
+       ("Karta benefit", "8", "1", "Prosze o karte sportową od maja", "zrobione", "2022-04-05", "1", "2", "3"),
+       ("Owoce", "9", "2", "Koncza sie owowce, moze gruszki tym razem?", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-03-18", "3", "2", "3"),
+       ("Faktura", "10", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "1", "2", "4"),
+       ("Rekrutacja", "11", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "jutro sie tym zajme", "2022-04-22", "2", "2", "1"),
+       ("Karta sportowa", "3", "1", "Prosze o karte sportową od maja", "zrobione", "2022-04-05", "1", "2", "3"),
+       ("Szkolenie", "4", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-03-18", "3", "2", "2"),
+       ("Spotkanie z klientem", "5", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "1", "2", "3"),
+       ("Rekrutacja", "6", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "jutro sie tym zajme", "2022-04-22", "2", "2", "4"),
+       ("Owoce", "9", "2", "Koncza sie owowce, moze gruszki tym razem?", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-03-18", "3", "2", "3"),
+       ("Faktura", "10", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "1", "2", "4"),
+       ("Rekrutacja", "11", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "jutro sie tym zajme", "2022-04-22", "2", "2", "1"),
+       ("Karta sportowa", "3", "1", "Prosze o karte sportową od maja", "zrobione", "2022-04-05", "1", "2", "3"),
+       ("Szkolenie", "4", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-03-18", "3", "2", "2"),
+       ("Spotkanie z klientem", "5", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "1", "2", "3"),
+       ("Zepsuta Klawiatura", "7", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "jutro sie tym zajme", "2022-04-22", "1", "1", "1");

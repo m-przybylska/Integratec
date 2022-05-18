@@ -1,5 +1,8 @@
 package com.integratec.controllers;
 
+import com.integratec.mapper.MapStructMapperImpl;
+import com.integratec.model.domain.DTO.RequestGetDTO;
+import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
 import com.integratec.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import java.util.List;
 public class RequestController {
 
     private final RequestService requestService;
+    MapStructMapperImpl mapstructMapper = new MapStructMapperImpl();
 
     @Autowired
     public RequestController(RequestService requestService) {
@@ -25,13 +29,13 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Request>> getRequests(String key, Object value) {
-        return ResponseEntity.ok(requestService.getRequests(key, value));
+    public ResponseEntity<List<RequestGetDTO>> getRequest(String key, Object value) {
+        return ResponseEntity.ok(mapstructMapper.requestsToRequestsGetDto(requestService.getRequests(key, value)));
     }
 
     @PostMapping
-    public Request postRequests(@Valid @RequestBody Request request) {
-        return requestService.postRequest(request);
+    public Request postRequest(@Valid @RequestBody RequestPostDTO newRequest) {
+        return requestService.postRequest(mapstructMapper.requestPostDTO(newRequest));
     }
 
     @PutMapping("/{requestId}")

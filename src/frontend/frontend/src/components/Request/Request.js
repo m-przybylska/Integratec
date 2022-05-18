@@ -16,23 +16,27 @@ class Request extends PureComponent {
 
 	render() {
 		// const { name, title, priority, category } = this.props.data;
-		const name = this.props.data.sender.name;
-		const surname = this.props.data.sender.surname;
+		const name = this.props.data.name;
+		const surname = this.props.data.surname;
 		const fullName = name + " " + surname;
 		const title = this.props.data.title;
-		const date = this.props.data.sendDate;
+		const date = this.props.data.send_date;
 
 		if (
 			this.props.prioritiesList.length > 0 &&
 			this.props.categoriesList.length > 0
 		) {
 			const priorityObj = this.props.prioritiesList.find((element) => {
-				return element.requestPriorityId === this.props.data.requestPriority;
+				return (
+					element.requestPriorityId === this.props.data.request_priority_id
+				);
 			});
 			const priorityName = priorityObj.requestPriority;
 
 			const categoryObj = this.props.categoriesList.find((element) => {
-				return element.requestCategoryId === this.props.data.requestCategory;
+				return (
+					element.requestCategoryId === this.props.data.request_category_id
+				);
 			});
 			const categoryName = categoryObj.requestCategory;
 
