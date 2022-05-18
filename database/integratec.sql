@@ -105,8 +105,9 @@ values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-
 ("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1", "3"),
 ("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4"),
 ("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", "1", "2", "3"), 
-("karta sportowa", "3", "2", "prosze o karte sportow¹ od maja", "zrobione", "2022-04-05", "1", "2", "3"),
+("karta sportowa", "3", "2", "prosze o karte sportowï¿½ od maja", "zrobione", "2022-04-05", "1", "2", "3"),
 ("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18", "3", "2", "3"),
 ("faktura", "3", "2", "simple text", "komentarz komentatrz", "2022-04-22", "1", "2", "3"),
 ("rekrutacja", "1", "3", "zepsuty komputer ", "jutro sie tym zajme", "2022-04-22", "2", "2", "3"),
 ("wyjazd", "3", "3", "text 2", "jutro sie tym zajme", "2022-04-22", "1", "1", "1");
+
