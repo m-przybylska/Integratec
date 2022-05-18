@@ -1,7 +1,5 @@
 package com.integratec.services;
 
-import java.util.List;
-
 import com.integratec.model.domain.Account;
 import com.integratec.model.repositories.AccountRepository;
 import com.integratec.model.repositories.specification.AccountSpecification;
@@ -9,6 +7,8 @@ import com.integratec.model.repositories.specification.SearchCriteria;
 import com.integratec.model.repositories.specification.SearchOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -45,4 +45,3 @@ public class AccountService {
         return accountRepository.save(account);
     }
 }
-

@@ -1,16 +1,11 @@
 package com.integratec.model.domain;
 
-import java.util.Collection;
-import java.util.List;
 
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "account")
@@ -19,8 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class Account implements UserDetails {
-
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_account_id")
@@ -40,54 +34,5 @@ public class Account implements UserDetails {
 
     @Column(name = "surname")
     private String surname;
-
-    public Account(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "read");
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    public void setUsername(String login) {
-        this.login = login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
 
 }

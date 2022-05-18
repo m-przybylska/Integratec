@@ -39,8 +39,8 @@ public class RequestController {
     }
 
     @PutMapping("/{requestId}")
-    public Request updateRequest(@PathVariable("requestId") Long requestId, @RequestBody RequestPostDTO request) {
-        return requestService.updateRequest(requestId, mapstructMapper.requestPostDTO(request));
+    public Request updateRequest(@PathVariable("requestId") Long requestId, @RequestBody Request request) {
+        return requestService.updateRequest(requestId, request);
     }
 
 }
