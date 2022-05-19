@@ -95,9 +95,9 @@ values
 insert into request_status(request_status)
 values
 ("new"),
-("done"),
+("to do"),
 ("in progress"),
-("to do");
+("done");
 
 insert into request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id)
 values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1", "1"),
