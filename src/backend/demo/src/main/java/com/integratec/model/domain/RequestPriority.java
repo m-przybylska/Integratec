@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "requestpriority")
+@Table(name = "request_priority")
 @Getter
 @Setter
 @AllArgsConstructor

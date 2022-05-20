@@ -147,14 +147,7 @@ class App extends PureComponent {
 				requestPriority: 1,
 				requestStatus: 1,
 				sendDate: "2022-05-12",
-				sender: {
-					accountId: 1,
-					login: "string",
-					name: "string",
-					password: "string",
-					surname: "string",
-				},
-				senderLong: 1,
+				sender_id: 1,
 				text: "string",
 				title: "string",
 			})
