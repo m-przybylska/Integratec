@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "requeststatus")
+@Table(name = "request_status")
 @Getter
 @Setter
 @AllArgsConstructor
