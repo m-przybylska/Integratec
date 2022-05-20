@@ -1,13 +1,11 @@
 package com.integratec.model.domain;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "requestcategory")
+@Table(name = "request_category")
 @Getter
 @Setter
 @AllArgsConstructor

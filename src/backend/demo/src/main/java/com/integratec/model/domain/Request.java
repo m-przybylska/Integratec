@@ -1,6 +1,5 @@
 package com.integratec.model.domain;
 
-import com.integratec.model.repositories.RequestPriorityRepository;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,13 +24,17 @@ public class Request {
 
     @NotNull(message = "receiverId cannot be null ")
     @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
-    @Column(name = "reciver_id")
+    @Column(name = "receiver_id")
     private Long receiver;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(insertable = false, updatable = false, name = "sender_id")
+    private Account sender;
 
     @NotNull(message = "senderId cannot be null")
     @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
     @Column(name = "sender_id")
-    private Long sender;
+    private Long senderLong;
 
     @NotEmpty(message = "title cannot be empty")
     @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
@@ -51,19 +54,16 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_category_id")
-    private RequestCategory requestCategory;
+    @Column(name = "request_category_id")
+    private Long requestCategory;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_priority_id")
-    private RequestPriority requestPriority;
+    @Column(name = "request_priority_id")
+    private Long requestPriority;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_status_id")
-    private RequestStatus requestStatus;
+    @Column(name = "request_status_id")
+    private Long requestStatus;
 
-    public Request(Long requestId, Long receiver, Long sender, String title, String text, String comment) {
+    public Request(Long requestId, Long receiver, Account sender, String title, String text, String comment) {
         this.requestId = requestId;
         this.receiver = receiver;
         this.sender = sender;
