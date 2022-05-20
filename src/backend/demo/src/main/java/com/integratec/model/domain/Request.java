@@ -1,10 +1,14 @@
 package com.integratec.model.domain;
 
 import lombok.*;
-
-import java.util.Date;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "request")
@@ -15,33 +19,52 @@ import javax.persistence.*;
 @ToString
 public class Request {
     @Id
-    @SequenceGenerator(name = "requestSequence", sequenceName = "requestSequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestSequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long requestId;
-    @Column(name = "Receiver")
+
+    @NotNull(message = "receiverId cannot be null ")
+    @Range(min = 1, max = 999, message = "the receiverId size must be in the range 1-999")
+    @Column(name = "receiver_id")
     private Long receiver;
-    @Column(name = "Sender")
-    private Long sender;
-    @Column(name = "Title")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(insertable = false, updatable = false, name = "sender_id")
+    private Account sender;
+
+    @NotNull(message = "senderId cannot be null")
+    @Range(min = 1, max = 999, message = "the senderId size must be in the range 1-999")
+    @Column(name = "sender_id")
+    private Long senderLong;
+
+    @NotEmpty(message = "title cannot be empty")
+    @Size(min = 3, max = 70, message = "the title size must be in the range 3-70")
+    @Column(name = "title")
     private String title;
-    @Column(name = "Text")
+
+    @Size(max = 1000, message = "the maximum size for text is 1000")
+    @Column(name = "text")
     private String text;
-    @Column(name = "Comment")
+
+    @Size(max = 500, message = "the maximum size for comment is 500")
+    @Column(name = "comment")
     private String comment;
-    @Column(name = "SendDate")
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "send_date")
     @Temporal(TemporalType.DATE)
     private Date sendDate;
-    @Column(name = "TaskList")
-    private Long taskList;
-    @Column(name = "RequestStatusStatus")
-    private Long requestStatus;
-    @Column(name = "RequestCategoryCategory")
+
+    @Column(name = "request_category_id")
     private Long requestCategory;
-    @Column(name = "RequestPriority")
+
+    @Column(name = "request_priority_id")
     private Long requestPriority;
 
-    public Request(Long requestid, Long receiver, Long sender, String title, String text, String comment) {
-        this.requestId = requestid;
+    @Column(name = "request_status_id")
+    private Long requestStatus;
+
+    public Request(Long requestId, Long receiver, Account sender, String title, String text, String comment) {
+        this.requestId = requestId;
         this.receiver = receiver;
         this.sender = sender;
         this.title = title;
