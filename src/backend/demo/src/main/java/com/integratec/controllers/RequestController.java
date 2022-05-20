@@ -1,40 +1,46 @@
 package com.integratec.controllers;
 
-import java.util.List;
-
+import com.integratec.mapper.MapStructMapperImpl;
+import com.integratec.model.domain.DTO.RequestGetDTO;
+import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
 import com.integratec.services.RequestService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/requests")
 @CrossOrigin("*")
+@Validated
+
 public class RequestController {
 
     private final RequestService requestService;
+    MapStructMapperImpl mapstructMapper = new MapStructMapperImpl();
 
     @Autowired
-    public RequestController(RequestService requestService)
-    {
+    public RequestController(RequestService requestService) {
         this.requestService = requestService;
     }
 
-    @GetMapping("/requests")
-	public ResponseEntity<List<Request>> getRequests(){
-        System.out.println(requestService.getRequests());
-		return ResponseEntity.ok(requestService.getRequests());
-	}
-
-    @PostMapping("/requests")
-    public Request postRequest(@RequestBody Request newRequest){
-        return requestService.postRequest(newRequest);
+    @GetMapping
+    public ResponseEntity<List<RequestGetDTO>> getRequest(String key, Object value) {
+        return ResponseEntity.ok(mapstructMapper.requestsToRequestsGetDto(requestService.getRequests(key, value)));
     }
+
+    @PostMapping
+    public Request postRequest(@Valid @RequestBody RequestPostDTO newRequest) {
+        return requestService.postRequest(mapstructMapper.requestPostDTO(newRequest));
+    }
+
+    @PutMapping("/{requestId}")
+    public Request updateRequest(@PathVariable("requestId") Long requestId, @RequestBody RequestPostDTO request) {
+        return requestService.updateRequest(requestId, mapstructMapper.requestPostDTO(request));
+    }
+
 }
