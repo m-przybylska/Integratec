@@ -29,6 +29,34 @@ const AccountProfiles = () => {
 	});
 };
 
+const RequestsList = () => {
+	const [requestsList, setRequestsList] = useState([]);
+
+	const fetchRequestsList = () => {
+		axios.get("http://localhost:8080/requests").then((res) => {
+			setRequestsList(res.data);
+		});
+	};
+
+	useEffect(() => {
+		fetchRequestsList();
+	}, []);
+
+	return requestsList.map((request, index) => {
+		return (
+			<div key={index}>
+				<a>
+					Sender: {request.sender.login}
+					Title: {request.title}, Priority:{" "}
+					{request.requestPriority.requestPriority}, Category:{" "}
+					{request.requestCategory.requestCategory}, Status:{" "}
+					{request.requestStatus.requestStatus}
+				</a>
+			</div>
+		);
+	});
+};
+
 class App extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -38,8 +66,38 @@ class App extends PureComponent {
 			popupType: "",
 			popupData: {},
 			popupColor: "iteragenta",
+			requestsList: [],
+			categoriesList: [],
+			prioritiesList: [],
+			statusesList: [],
 		};
 	}
+
+	componentDidMount = () => {
+		axios.get("http://localhost:8080/requests").then((res) => {
+			// console.log(res);
+			this.setState({ requestsList: res.data });
+			console.log(this.state.requestsList);
+		});
+
+		axios.get("http://localhost:8080/statuses").then((res) => {
+			// console.log(res);
+			this.setState({ statusesList: res.data });
+			console.log(this.state.statusesList);
+		});
+
+		axios.get("http://localhost:8080/categories").then((res) => {
+			// console.log(res);
+			this.setState({ categoriesList: res.data });
+			console.log(this.state.categoriesList);
+		});
+
+		axios.get("http://localhost:8080/priorities").then((res) => {
+			// console.log(res);
+			this.setState({ prioritiesList: res.data });
+			console.log(this.state.prioritiesList);
+		});
+	};
 
 	setPopup = (type, data, color) => {
 		this.setState(
@@ -48,25 +106,6 @@ class App extends PureComponent {
 				this.setState({ popupIsVisible: !this.state.popupIsVisible });
 			}
 		);
-	};
-
-	componentDidMount = () => {
-		axios
-			.get("http://localhost:8080/requests")
-			.then((res) => {
-				console.log(res.data);
-				this.setState({ requestsList: res.data });
-				console.log(this.state.requestsList);
-			})
-			.catch((error) => {
-				if (error.response) {
-					console.log(error.response);
-				} else if (error.request) {
-					console.log(error.request);
-				} else if (error.message) {
-					console.log(error.message);
-				}
-			});
 	};
 
 	postRequest = () => {
@@ -142,6 +181,10 @@ class App extends PureComponent {
 									popupData={this.state.popupData}
 									popupColor={this.state.popupColor}
 									setPopup={this.setPopup}
+									requestsList={this.state.requestsList}
+									categoriesList={this.state.categoriesList}
+									prioritiesList={this.state.prioritiesList}
+									statusesList={this.state.statusesList}
 								/>
 							}
 						/>

@@ -6,72 +6,130 @@ import CustomPopup from "../CustomPopup/CustomPopup";
 import KanbanColumn from "../KanbanColumn/KanbanColumn";
 
 class Kanban extends PureComponent {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = { previewPopupIsVisible: false };
-    this.setPreviewPopupVisibility = this.setPreviewPopupVisibility.bind(this);
-  }
+		this.state = { previewPopupIsVisible: false };
+		this.setPreviewPopupVisibility = this.setPreviewPopupVisibility.bind(this);
+	}
 
-  setPreviewPopupVisibility = () => {
-    this.setState(
-      { previewPopupIsVisible: !this.state.previewPopupIsVisible },
-      () => console.log(this.state.previewPopupIsVisible)
-    );
-  };
+	setPreviewPopupVisibility = () => {
+		this.setState(
+			{ previewPopupIsVisible: !this.state.previewPopupIsVisible },
+			() => console.log(this.state.previewPopupIsVisible)
+		);
+	};
 
-  render() {
-    let newRequestsList = TestingData.requestsList.filter(
-      (item) => item.status == "new"
-    );
-    let todoRequestsList = TestingData.requestsList.filter(
-      (item) => item.status == "todo"
-    );
-    let inProgressRequestsList = TestingData.requestsList.filter(
-      (item) => item.status == "progress"
-    );
-    let doneRequestsList = TestingData.requestsList.filter(
-      (item) => item.status == "done"
-    );
+	// componentDidMount = () => {
+	// 	let statusNew = this.props.statusesList.find((element) => {
+	// 		if (element.requestStatus === "new") return element.requestStatusId;
+	// 	});
 
-    return (
-      <div className="Kanban">
-        <PopupBackGround
-          setPopup={this.props.setPopup}
-          popupIsVisible={this.props.popupIsVisible}
-        />
-        <CustomPopup
-          popupIsVisible={this.props.popupIsVisible}
-          popupType={this.props.popupType}
-          popupData={this.props.popupData}
-          popupColor={this.props.popupColor}
-        />
+	// 	this.state.statusNewId = statusNew.requestStatusId;
+	// };
 
-        <div className="Kanban-Container">
-          <KanbanColumn
-            columnType="new"
-            contentList={newRequestsList}
-            setPopup={this.props.setPopup}
-          />
-          <KanbanColumn
-            columnType="todo"
-            contentList={todoRequestsList}
-            setPopup={this.props.setPopup}
-          />
-          <KanbanColumn
-            columnType="progress"
-            contentList={inProgressRequestsList}
-            setPopup={this.props.setPopup}
-          />
-          <KanbanColumn
-            columnType="done"
-            contentList={doneRequestsList}
-            setPopup={this.props.setPopup}
-          />
-        </div>
-      </div>
-    );
-  }
+	render() {
+		const { requestsList, statusesList } = this.props;
+
+		// this.props.setRequestsList();
+		// let requestsList = this.props.requestsList;
+		console.log(requestsList);
+		console.log(statusesList);
+
+		if (statusesList.length !== 0) {
+			let statusNew = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "new") return element.requestStatusId;
+			});
+
+			console.log(statusNew.requestStatusId);
+
+			let statusTodo = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "to do") return element.requestStatusId;
+			});
+
+			let statusInProgress = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "in progress")
+					return element.requestStatusId;
+			});
+
+			let statusDone = this.props.statusesList.find((element) => {
+				if (element.requestStatus === "done") return element.requestStatusId;
+			});
+
+			let newRequestsList = requestsList.filter(
+				(item) => item.request_status_id == statusNew.requestStatusId
+			);
+			let todoRequestsList = requestsList.filter(
+				(item) => item.request_status_id == statusTodo.requestStatusId
+			);
+			let inProgressRequestsList = requestsList.filter(
+				(item) => item.request_status_id == statusInProgress.requestStatusId
+			);
+			let doneRequestsList = requestsList.filter(
+				(item) => item.request_status_id == statusDone.requestStatusId
+			);
+
+			console.log(newRequestsList);
+			console.log(todoRequestsList);
+			console.log(inProgressRequestsList);
+			console.log(doneRequestsList);
+
+			return (
+				<div className="Kanban">
+					<PopupBackGround
+						setPopup={this.props.setPopup}
+						popupIsVisible={this.props.popupIsVisible}
+					/>
+
+					<CustomPopup
+						popupIsVisible={this.props.popupIsVisible}
+						popupType={this.props.popupType}
+						popupData={this.props.popupData}
+						popupColor={this.props.popupColor}
+						categoriesList={this.props.categoriesList}
+						prioritiesList={this.props.prioritiesList}
+						statusesList={this.props.statusesList}
+					/>
+					<div className="Kanban-Container">
+						<KanbanColumn
+							columnType="new"
+							contentList={newRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="todo"
+							contentList={todoRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="progress"
+							contentList={inProgressRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+						<KanbanColumn
+							columnType="done"
+							contentList={doneRequestsList}
+							setPopup={this.props.setPopup}
+							categoriesList={this.props.categoriesList}
+							prioritiesList={this.props.prioritiesList}
+							statusesList={this.props.statusesList}
+						/>
+					</div>
+				</div>
+			);
+		} else {
+			return null;
+		}
+	}
 }
 
 export default Kanban;

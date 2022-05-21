@@ -36,27 +36,33 @@
     display: flex;
     justify-content: space-between;
   }
+
   &-Created {
     align-items: center;
+
     &-Header,
     &-Date {
       margin: 0;
+      // font-size: 12px;
     }
+
   }
+
   &-User {
     display: flex;
     align-items: center;
     margin-bottom: 14px;
+
     &-Name {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 100px;
+      max-width: 120px;
     }
 
     .la-user {
-      font-size: 36px;
-      margin-right: 10px;
+      font-size: 24px;
+      margin-right: 4px;
     }
   }
 
