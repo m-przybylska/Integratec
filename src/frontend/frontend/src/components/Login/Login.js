@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import './Login.scss';
 import logo from '../../assets/images/logo.svg';
 
+import bcrypt from 'bcryptjs';
+
 class Login extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -22,11 +24,17 @@ class Login extends PureComponent {
 	};
 
 	handleSignIn = () => {
+		const hashedPassword = bcrypt.hashSync(
+			this.state.inputPassword,
+			'$2a$10$CwTycUXWue0Thq9StjUM0u'
+		);
 		console.log(
 			'Clicked sign in, username is: ',
 			this.state.inputUsername,
 			' password id: ',
-			this.state.inputPassword
+			this.state.inputPassword,
+			' hashed password is: ',
+			hashedPassword
 		);
 	};
 
