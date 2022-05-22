@@ -13,6 +13,20 @@ CREATE TABLE `account` (
 `surname` varchar(30) NOT NULL
 );
 
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL
+);
+
+CREATE TABLE `user_role` (
+  `user_account_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  KEY `user_fk_idx` (`user_account_id`),
+  KEY `role_fk_idx` (`role_id`),
+  CONSTRAINT `role_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+  CONSTRAINT `user_fk` FOREIGN KEY (`user_account_id`) REFERENCES `account` (`user_account_id`)
+);
+
 CREATE TABLE `request_category` (
 `request_category_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `request_category` varchar(30) NOT NULL
@@ -67,6 +81,17 @@ values
 ("Quentin_Tarantino", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Que", "Tar"),
 ("Sergio_Leone", "$2a$10$rLQX0KuS9fdOQ3jfxuzN5uBPaWv4HHLptrrf2EQDD9uexBu7SUn3e", "Ser", "Leo");
 
+insert into roles(name)
+ values
+ ("HR_employee"),
+ ("other_employee");
+
+ insert into user_role(user_account_id, role_id)
+ values
+ ("1", "1"),
+ ("2", "2"),
+ ("3", "1");
+
 insert into request_category(request_category)
 values
 ("kitchen"),
@@ -95,9 +120,9 @@ values
 insert into request_status(request_status)
 values
 ("new"),
-("to do"),
+("done"),
 ("in progress"),
-("done");
+("to do");
 
 insert into request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id)
 values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "6", "1", "1"),
