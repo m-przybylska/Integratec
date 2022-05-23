@@ -20,7 +20,12 @@ class Request extends PureComponent {
 		const surname = this.props.data.surname;
 		const fullName = name + ' ' + surname;
 		const title = this.props.data.title;
-		const date = this.props.data.send_date;
+		const date_timestamp = this.props.data.send_date;
+		const date = new Intl.DateTimeFormat('en-GB', {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+		}).format(date_timestamp);
 
 		if (
 			this.props.prioritiesList.length > 0 &&

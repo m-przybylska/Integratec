@@ -136,6 +136,19 @@ class App extends PureComponent {
 					console.log(error.message);
 				}
 			});
+
+		const timestamp = Date.now(); // This would be the timestamp you want to format
+		console.log(timestamp);
+		console.log(
+			new Intl.DateTimeFormat('en-GB', {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+			}).format(timestamp)
+		);
 	};
 
 	putRequest = () => {

@@ -101,7 +101,12 @@ class CustomPopup extends PureComponent {
 									</div>
 								</div>
 								<div className='CustomPopup-previewRequest-FirstPart-Date'>
-									CREATED <br></br> {this.props.popupData.send_date}
+									CREATED <br></br>{' '}
+									{new Intl.DateTimeFormat('en-GB', {
+										year: 'numeric',
+										month: '2-digit',
+										day: '2-digit',
+									}).format(this.props.popupData.send_date)}
 								</div>
 							</div>
 
