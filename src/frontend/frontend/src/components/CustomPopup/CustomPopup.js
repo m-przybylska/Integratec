@@ -96,7 +96,9 @@ class CustomPopup extends PureComponent {
 								<div className='CustomPopup-previewRequest-FirstPart-User'>
 									<i className='las la-user' />
 									<div className='CustomPopup-previewRequest-FirstPart-User-Name'>
-										{this.props.popupData.name}
+										{this.props.popupData.name +
+											' ' +
+											this.props.popupData.surname}
 									</div>
 								</div>
 								<div className='CustomPopup-previewRequest-FirstPart-Date'>

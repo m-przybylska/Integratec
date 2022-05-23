@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import './Request.scss';
+import Tooltip from '@mui/material/Tooltip';
 import CustomButton from '../CustomButton/CustomButton';
 // import * as TestingData from "../../assets/data/TestingData";
 
@@ -59,7 +60,9 @@ class Request extends PureComponent {
 					<div className='Request-First-Part'>
 						<div className='Request-User'>
 							<i className='las la-user' />
-							<div className='Request-User-Name'>{fullName}</div>
+							<Tooltip title={fullName} placement='top' arrow>
+								<div className='Request-User-Name'>{fullName}</div>
+							</Tooltip>
 						</div>
 						<div className='Request-Created'>
 							<p className='Request-Created-Header'>CREATED</p>
