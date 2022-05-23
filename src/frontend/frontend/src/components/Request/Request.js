@@ -31,7 +31,7 @@ class Request extends PureComponent {
 					element.request_priority_id === this.props.data.request_priority_id
 				);
 			});
-			const priorityName = priorityObj.requestPriority;
+			const priorityName = priorityObj.request_priority;
 
 			const categoryObj = this.props.categoriesList.find((element) => {
 				return (

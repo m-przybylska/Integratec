@@ -14,9 +14,9 @@ import javax.persistence.*;
 public class RequestStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long requestStatusId;
+    private Long request_status_id;
 
     @Column(name = "request_status")
-    private String requestStatus;
+    private String request_status;
 
 }

@@ -35,7 +35,7 @@ class Kanban extends PureComponent {
 				if (element.request_status === 'new') return element.request_status_id;
 			});
 
-			console.log(statusNew.request_status_id);
+			console.log(statusNew);
 
 			let statusTodo = this.props.statusesList.find((element) => {
 				if (element.request_status === 'to do')
