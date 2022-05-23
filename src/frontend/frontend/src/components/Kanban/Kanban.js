@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import './Kanban.scss';
 import PopupBackGround from '../PopupBackGround/PopupBackGround';
-import * as TestingData from '../../assets/data/TestingData';
 import CustomPopup from '../CustomPopup/CustomPopup';
 import KanbanColumn from '../KanbanColumn/KanbanColumn';
 
@@ -52,16 +51,16 @@ class Kanban extends PureComponent {
 			});
 
 			let newRequestsList = requestsList.filter(
-				(item) => item.request_status_id == statusNew.request_status_id
+				(item) => item.request_status_id === statusNew.request_status_id
 			);
 			let todoRequestsList = requestsList.filter(
-				(item) => item.request_status_id == statusTodo.request_status_id
+				(item) => item.request_status_id === statusTodo.request_status_id
 			);
 			let inProgressRequestsList = requestsList.filter(
-				(item) => item.request_status_id == statusInProgress.request_status_id
+				(item) => item.request_status_id === statusInProgress.request_status_id
 			);
 			let doneRequestsList = requestsList.filter(
-				(item) => item.request_status_id == statusDone.request_status_id
+				(item) => item.request_status_id === statusDone.request_status_id
 			);
 
 			console.log(newRequestsList);

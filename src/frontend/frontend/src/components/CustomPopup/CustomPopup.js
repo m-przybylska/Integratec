@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import './CustomPopup.scss';
 import CustomButton from '../CustomButton/CustomButton';
-import * as TestingData from '../../assets/data/TestingData';
 
 class CustomPopup extends PureComponent {
 	constructor(props) {
@@ -33,7 +32,7 @@ class CustomPopup extends PureComponent {
 			return (
 				<div
 					className={
-						this.props.popupType == 'addTask'
+						this.props.popupType === 'addTask'
 							? this.props.popupIsVisible
 								? `CustomPopup addTask ${this.props.popupColor}`
 								: `CustomPopup addTask ${this.props.popupColor} hidden`
@@ -42,7 +41,7 @@ class CustomPopup extends PureComponent {
 							: `CustomPopup ${this.props.popupColor} hidden`
 					}
 				>
-					{this.props.popupType == 'addTask' ? (
+					{this.props.popupType === 'addTask' ? (
 						<React.Fragment>
 							{console.log(this.props.popupData)}
 							{console.log(this.props.prioritiesList)}
