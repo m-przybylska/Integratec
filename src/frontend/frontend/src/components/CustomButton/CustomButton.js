@@ -100,6 +100,7 @@ class CustomButton extends PureComponent {
 	};
 
 	render() {
+		console.log(this.props.prioritiesList);
 		this.setDataFromType();
 		if (this.state.hasError) {
 			return <h1>Something went wrong.</h1>;
