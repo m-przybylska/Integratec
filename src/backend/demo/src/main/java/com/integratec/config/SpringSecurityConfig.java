@@ -52,11 +52,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors()
                 .and()
-                .authorizeRequests().antMatchers("/register**")
-                .permitAll() .anyRequest().authenticated()
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .formLogin() .loginPage("/login")
-                .permitAll()
+                .formLogin().permitAll()
                 .and()
                 .logout() .invalidateHttpSession(true)
                 .clearAuthentication(true) .permitAll();
