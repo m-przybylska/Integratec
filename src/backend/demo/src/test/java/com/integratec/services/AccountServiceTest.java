@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class AccountServiceTest {
@@ -32,22 +33,39 @@ class AccountServiceTest {
     }
 
     @Test
-    void getAccounts() {
-        //when
-        //accountServiceTest.getAccounts();
-        //then
-        //verify(accountRepository).findAll();
+    void testGettingAllAccounts() {
+        accountServiceTest.getAccounts(null, null);
+        verify(accountRepository).findAll();
     }
 
+
     @Test
-    void postAccount() {
-        //given
+    void testUpdatingAccount() {
         Account account1 = new Account(
                 "test1",
                 "test1");
-        //when
+        account1.setAccountId(1L);
+        Account account2 = new Account(
+                "test2",
+                "test2");
+        account2.setAccountId(1L);
         accountServiceTest.postAccount(account1);
-        //then
+        accountServiceTest.updateAccount(1L,account2);
+
+        ArgumentCaptor<Account> accountArgumentCaptor = ArgumentCaptor.forClass(Account.class);
+        verify(accountRepository, times(2)).save(accountArgumentCaptor.capture());
+        Account capturedAccount = accountArgumentCaptor.getValue();
+        assertThat(capturedAccount).isEqualTo(account2);
+    }
+
+    @Test
+    void testPostingAccount() {
+        Account account1 = new Account(
+                "test1",
+                "test1");
+
+        accountServiceTest.postAccount(account1);
+
         ArgumentCaptor<Account> accountArgumentCaptor = ArgumentCaptor.forClass(Account.class);
         verify(accountRepository).save(accountArgumentCaptor.capture());
         Account capturedAccount = accountArgumentCaptor.getValue();

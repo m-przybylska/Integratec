@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class RequestServiceTest {
@@ -32,29 +33,52 @@ class RequestServiceTest {
     }
 
     @Test
-    void getRequests() {
-        //when
-        //requestServiceTest.getRequests();
-        //then
-       // verify(requestRepository).findAll();
+    void testGettingRequests() {
+        requestServiceTest.getRequests(null, null);
+        verify(requestRepository).findAll();
     }
 
     @Test
-    void postRequest() {
-//        //given
-//        Request request = new Request(
-//                1L,
-//                2L,
-//                3L,
-//                "test",
-//                "test",
-//                "test");
-//        //when
-//        requestServiceTest.postRequest(request);
-//        //then
-//        ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
-//        verify(requestRepository).save(requestArgumentCaptor.capture());
-//        Request capturedRequest = requestArgumentCaptor.getValue();
-//        assertThat(capturedRequest).isEqualTo(request);
+    void testPostingRequest() {
+        Request request = new Request();
+        request.setRequestId(1L);
+        request.setReceiver(2L);
+        request.setSenderLong(3L);
+        request.setText("text");
+        request.setTitle("titel");
+        request.setComment("comment");
+
+        requestServiceTest.postRequest(request);
+
+        ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
+        verify(requestRepository).save(requestArgumentCaptor.capture());
+        Request capturedRequest = requestArgumentCaptor.getValue();
+        assertThat(capturedRequest).isEqualTo(request);
+    }
+
+    @Test
+    void testUpdatingRequest() {
+        Request request = new Request();
+        request.setRequestId(1L);
+        request.setReceiver(2L);
+        request.setSenderLong(3L);
+        request.setText("text");
+        request.setTitle("titel");
+        request.setComment("comment");
+
+        Request requestUpdate = new Request();
+        requestUpdate.setRequestId(1L);
+        requestUpdate.setReceiver(2L);
+        requestUpdate.setText("text");
+        requestUpdate.setSenderLong(3L);
+        requestUpdate.setTitle("titel");
+        requestUpdate.setComment("comment");
+
+        requestServiceTest.postRequest(request);
+        requestServiceTest.updateRequest(1L,requestUpdate);
+        ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
+        verify(requestRepository, times(2)).save(requestArgumentCaptor.capture());
+        Request capturedRequest = requestArgumentCaptor.getValue();
+        assertThat(capturedRequest).isEqualTo(requestUpdate);
     }
 }

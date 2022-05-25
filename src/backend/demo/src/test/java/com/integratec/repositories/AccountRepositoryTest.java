@@ -5,6 +5,7 @@ import com.integratec.model.repositories.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.constraints.Null;
@@ -17,7 +18,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class AccountRepositoryTest {
     @Autowired
     AccountRepository accountRepository;
-
+    @Autowired
+    TestEntityManager entityManager;
     @Test
     void findByLogin()
     {
@@ -56,6 +58,7 @@ public class AccountRepositoryTest {
         accountRepository.save(account);
 
         assertThat(account.getLogin()).isEqualTo("Logi");
+
     }
 
     @Test()
