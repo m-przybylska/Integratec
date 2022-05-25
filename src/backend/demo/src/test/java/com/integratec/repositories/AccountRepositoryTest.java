@@ -13,16 +13,28 @@ import java.util.Optional;
 
 import static org.aspectj.bridge.MessageUtil.fail;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertFalse;
 
 @DataJpaTest
 public class AccountRepositoryTest {
     @Autowired
     AccountRepository accountRepository;
-    @Autowired
-    TestEntityManager entityManager;
+
+
     @Test
-    void findByLogin()
-    {
+    public void testFindByLoginNonExistentEntity() {
+        Optional<Account> account = accountRepository.findAccountByLogin("doesNotExist");
+        assertFalse(account.isPresent());
+    }
+
+    @Test
+    public void testFindByIdNonExistentEntity() {
+        Optional<Account> account = accountRepository.findById(1L);
+        assertFalse(account.isPresent());
+    }
+
+    @Test
+    void findById() {
         Account account = new Account();
         account.setAccountId(1L);
         account.setLogin("Login");
@@ -30,96 +42,26 @@ public class AccountRepositoryTest {
         account.setSurname("Surname");
         account.setName("Name");
 
-        accountRepository.save(account);
+        account = accountRepository.save(account);
 
-        Optional<Account> byLogin = accountRepository.findAccountByLogin(account.getLogin());
+        assertThat(accountRepository.findById(account.getAccountId())).hasValue(account);
 
-        if (byLogin.isPresent())
-        {
-            assertThat(byLogin.get().getLogin()).isEqualTo(account.getLogin());
-        }
-        else
-        {
-            fail("Account is not present.");
-        }
     }
-
-
     @Test
-    void testSavingAccountWithLoginLengthEqualsMinLength()
-    {
+    void findByLogin() {
         Account account = new Account();
         account.setAccountId(1L);
-        account.setLogin("Logi");
+        account.setLogin("Login");
         account.setPassword("Password");
         account.setSurname("Surname");
         account.setName("Name");
 
-        accountRepository.save(account);
+        account = accountRepository.save(account);
 
-        assertThat(account.getLogin()).isEqualTo("Logi");
+        assertThat(accountRepository.findAccountByLogin(account.getLogin())).hasValue(account);
 
     }
 
-    @Test()
-    void testSavingAccountWithLoginLengthBelowAboveMinLength()
-    {
-        try
-        {
-            Account account = new Account();
-            account.setAccountId(1L);
-            account.setLogin("Log");
-            account.setPassword("Password");
-            account.setSurname("Surname");
-            account.setName("Name");
 
-            accountRepository.save(account);
-
-            assertThat(account.getLogin()).isEqualTo("Log");
-        } catch (DataIntegrityViolationException e)
-        {
-            assertThat(e.getMessage()).startsWith("could not execute statement");
-        }
-    }
-
-    @Test()
-    void testSavingAccountWithLoginBeingNull()
-    {
-        try
-        {
-            Account account = new Account();
-            account.setAccountId(1L);
-            account.setPassword("Password");
-            account.setSurname("Surname");
-            account.setName("Name");
-
-            accountRepository.save(account);
-
-            assertThat(account.getLogin()).isEqualTo(null);
-        } catch (DataIntegrityViolationException e)
-        {
-            assertThat(e.getMessage()).startsWith("could not execute statement");
-        }
-    }
-
-    @Test()
-    void testSavingAccountWithPasswordBeingNull()
-    {
-        try
-        {
-            Account account = new Account();
-            account.setAccountId(1L);
-            account.setLogin("Login");
-            account.setSurname("Surname");
-            account.setName("Name");
-
-            accountRepository.save(account);
-
-            assertThat(account.getPassword()).isEqualTo(null);
-        } catch (DataIntegrityViolationException e)
-        {
-            assertThat(e.getMessage()).startsWith("could not execute statement");
-        }
-    }
 
 }
