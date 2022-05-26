@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import './Request.scss';
 import Tooltip from '@mui/material/Tooltip';
 import CustomButton from '../CustomButton/CustomButton';
-// import * as TestingData from "../../assets/data/TestingData";
 
 class Request extends PureComponent {
 	constructor(props) {

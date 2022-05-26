@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import './CustomButton.scss';
-import * as TestingData from '../../assets/data/TestingData';
 
 class CustomButton extends PureComponent {
 	constructor(props) {
@@ -139,7 +138,7 @@ class CustomButton extends PureComponent {
 				case 'create':
 					this.setState({
 						buttonClassName: 'CustomButton-Button-Create',
-						contentsList: TestingData.createList, // change this to...?
+						contentsList: ['created'],
 					});
 					break;
 				default:
