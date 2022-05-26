@@ -69,6 +69,7 @@ class Kanban extends PureComponent {
 						categoriesList={this.props.categoriesList}
 						prioritiesList={this.props.prioritiesList}
 						statusesList={this.props.statusesList}
+						addNewRequest={this.props.addNewRequest}
 					/>
 					<div className='Kanban-Container'>
 						<KanbanColumn

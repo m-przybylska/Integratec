@@ -64,13 +64,13 @@ class App extends PureComponent {
 				comment: 'comment',
 				receiver_id: 1,
 				request_category_id: 1,
-				request_id: 1,
+				request_id: 20,
 				request_priority_id: 1,
-				request_status_id: null,
+				request_status_id: 1,
 				send_date: '2022-05-11',
 				sender_id: 1,
-				text: 'string',
-				title: 'string',
+				text: 'Jakis opis',
+				title: 'Nudzi mi sie',
 			})
 			.then((res) => {
 				console.log(res);
@@ -85,19 +85,35 @@ class App extends PureComponent {
 					console.log(error.message);
 				}
 			});
+	};
 
-		const timestamp = Date.now(); // This would be the timestamp you want to format
-		console.log(timestamp);
-		console.log(
-			new Intl.DateTimeFormat('en-GB', {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit',
-			}).format(timestamp)
-		);
+	addNewRequest = (request) => {
+		axios
+			.post('http://localhost:8080/requests', {
+				comment: '',
+				receiver_id: 1,
+				request_category_id: request.request_category_id,
+				request_id: null,
+				request_priority_id: request.request_priority_id,
+				request_status_id: null,
+				send_date: '2022-05-11',
+				sender_id: 1,
+				text: request.text,
+				title: request.title,
+			})
+			.then((res) => {
+				console.log(res);
+				console.log(res.data);
+			})
+			.catch((error) => {
+				if (error.response) {
+					console.log(error.response);
+				} else if (error.request) {
+					console.log(error.request);
+				} else if (error.message) {
+					console.log(error.message);
+				}
+			});
 	};
 
 	putRequest = () => {
@@ -148,6 +164,7 @@ class App extends PureComponent {
 									categoriesList={this.state.categoriesList}
 									prioritiesList={this.state.prioritiesList}
 									statusesList={this.state.statusesList}
+									addNewRequest={this.addNewRequest}
 								/>
 							}
 						/>

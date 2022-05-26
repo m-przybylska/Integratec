@@ -6,25 +6,25 @@
   margin-bottom: 30px;
 
   &-Title {
-    position: fixed;
+    position: absolute;
     min-height: 29px;
     max-height: 29px;
     padding-top: 0px;
     margin-left: 10px;
     text-align: left;
     font-weight: bold;
-    z-index: 0;
+    // z-index: 0;
   }
 
   &-TitleWithBefore {
-    position: fixed;
+    position: absolute;
     min-height: 29px;
     max-height: 29px;
     padding-top: 0px;
     margin-left: 10px;
     text-align: left;
     font-weight: bold;
-    z-index: 0;
+    // z-index: 0;
 
     &::before {
       content: "";
