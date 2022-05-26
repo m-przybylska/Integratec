@@ -18,7 +18,9 @@ class RequestServiceTest {
 
     @Mock
     private RequestRepository requestRepository;
+    @Mock
     private AutoCloseable autoCloseable;
+    @Mock
     private RequestService requestServiceTest;
 
     @BeforeEach

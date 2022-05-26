@@ -18,7 +18,9 @@ class AccountServiceTest {
 
     @Mock
     private AccountRepository accountRepository;
+    @Mock
     private AutoCloseable autoCloseable;
+    @Mock
     private AccountService accountServiceTest;
 
     @BeforeEach

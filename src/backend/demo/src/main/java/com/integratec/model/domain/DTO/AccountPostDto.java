@@ -1,12 +1,12 @@
 package com.integratec.model.domain.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
@@ -21,10 +21,12 @@ public class AccountPostDto {
     private Long accountId;
 
     @Size(min = 4, max = 30)
+    @NotNull
     @JsonProperty("login")
     private String login;
 
     @Size(min = 4, max = 30)
+    @NotNull
     @JsonProperty("password")
     private String password;
 
