@@ -22,19 +22,10 @@ class Kanban extends PureComponent {
 	render() {
 		const { requestsList, statusesList } = this.props;
 
-		// this.props.setRequestsList();
-		// let requestsList = this.props.requestsList;
-		// console.log(requestsList);
-		// console.log(statusesList);
-		console.log(statusesList.length);
-		console.log(requestsList.length);
 		if (statusesList.length !== 0 && statusesList.length !== 514) {
-			console.log(statusesList);
 			let statusNew = this.props.statusesList.find((element) => {
 				if (element.request_status === 'new') return element.request_status_id;
 			});
-
-			console.log(statusNew);
 
 			let statusTodo = this.props.statusesList.find((element) => {
 				if (element.request_status === 'to do')
@@ -62,11 +53,6 @@ class Kanban extends PureComponent {
 			let doneRequestsList = requestsList.filter(
 				(item) => item.request_status_id === statusDone.request_status_id
 			);
-
-			console.log(newRequestsList);
-			console.log(todoRequestsList);
-			console.log(inProgressRequestsList);
-			console.log(doneRequestsList);
 
 			return (
 				<div className='Kanban'>

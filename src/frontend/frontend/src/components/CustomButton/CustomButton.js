@@ -22,6 +22,7 @@ class CustomButton extends PureComponent {
 		this.setState({ currentValue: this.props.contentSelected });
 	};
 	componentDidMount() {
+		this.setDataFromType();
 		document.addEventListener('mousedown', this.handleClickOutside);
 	}
 
@@ -30,7 +31,7 @@ class CustomButton extends PureComponent {
 	}
 
 	handleClickOutside(event) {
-		console.log(event.target.className);
+		// console.log(event.target.className);
 		if (
 			event.target.className !== 'CustomButton-List-Item' &&
 			(event.target.className !== 'CustomButton-Button-Category' ||
@@ -46,45 +47,93 @@ class CustomButton extends PureComponent {
 				case 'priority':
 					this.setState({
 						buttonClassName: 'CustomButton-Tag-Priority',
-						// contentsList: this.props.prioritiesList,
 					});
 					break;
 				case 'category':
 					this.setState({
 						buttonClassName: 'CustomButton-Tag-Category',
-						// contentsList: this.props.categoriesList,
 					});
 					break;
 				case 'status':
 					this.setState({
 						buttonClassName: 'CustomButton-Tag-Status',
-						// contentsList: this.props.statusesList,
 					});
 					break;
 				default:
 					break;
 			}
 		} else {
+			let stringsList = [];
+			let contentSelectedObject = null;
+			let contentSelectedString = '';
 			switch (this.props.buttonType) {
 				case 'priority':
+					for (const item of this.props.prioritiesList) {
+						stringsList.push(item.request_priority);
+					}
+
+					if (this.props.contentSelected === 'priority')
+						contentSelectedString = 'priority';
+					else {
+						contentSelectedObject = this.props.prioritiesList.find(
+							(element) => {
+								if (element.request_priority_id === this.props.contentSelected)
+									return element;
+							}
+						);
+						contentSelectedString = contentSelectedObject.request_priority;
+					}
+
 					this.setState({
 						buttonClassName: 'CustomButton-Button-Priority',
-						// contentsList: this.props.prioritiesList,
-						contentsList: TestingData.prioritiesList,
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
 					});
 					break;
 				case 'category':
+					for (const item of this.props.categoriesList) {
+						stringsList.push(item.request_category);
+					}
+
+					if (this.props.contentSelected === 'category')
+						contentSelectedString = 'category';
+					else {
+						contentSelectedObject = this.props.categoriesList.find(
+							(element) => {
+								if (element.request_category_id === this.props.contentSelected)
+									return element;
+							}
+						);
+
+						contentSelectedString = contentSelectedObject.request_category;
+					}
+
 					this.setState({
 						buttonClassName: 'CustomButton-Button-Category',
-						// contentsList: this.props.categoriesList,
-						contentsList: TestingData.categoriesList,
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
 					});
 					break;
 				case 'status':
+					for (const item of this.props.statusesList) {
+						stringsList.push(item.request_status);
+					}
+
+					if (this.props.contentSelected === 'status')
+						contentSelectedString = 'status';
+					else {
+						contentSelectedObject = this.props.statusesList.find((element) => {
+							if (element.request_status_id === this.props.contentSelected)
+								return element;
+						});
+
+						contentSelectedString = contentSelectedObject.request_status;
+					}
+
 					this.setState({
 						buttonClassName: 'CustomButton-Button-Status',
-						// contentsList: this.props.statusesList,
-						contentsList: TestingData.statusesList,
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
 					});
 					break;
 				case 'create':
@@ -100,11 +149,10 @@ class CustomButton extends PureComponent {
 	};
 
 	render() {
-		console.log(this.props.prioritiesList);
-		this.setDataFromType();
 		if (this.state.hasError) {
 			return <h1>Something went wrong.</h1>;
 		}
+
 		return (
 			<Tooltip title={this.state.currentValue} placement='top' arrow>
 				<div
@@ -123,9 +171,10 @@ class CustomButton extends PureComponent {
 						}
 					>
 						{this.state.contentsList
-							? this.state.contentsList.map((item) => {
+							? this.state.contentsList.map((item, i) => {
 									return (
 										<div
+											key={i}
 											className='CustomButton-List-Item'
 											onClick={() => this.setState({ currentValue: item })}
 										>
@@ -139,83 +188,6 @@ class CustomButton extends PureComponent {
 			</Tooltip>
 		);
 	}
-	// render() {
-	// 	if (this.state.hasError) {
-	// 		return <h1>Something went wrong.</h1>;
-	// 	}
-	// 	// console.log(this.props.prioritiesList);
-	// 	// if (
-	// 	// 	this.props.prioritiesList.length > 0 &&
-	// 	// 	this.props.categoriesList.length > 0 &&
-	// 	// 	this.props.statusesList.length > 0
-	// 	// ) {
-	// 	this.setDataFromType();
-
-	// 	const selectedContentObj = "";
-	// 	const selectedContentName = "";
-
-	// 	// switch (this.buttonType) {
-	// 	// 	case "priority":
-	// 	// 		selectedContentObj = this.contentsList.find((element) => {
-	// 	// 			return (
-	// 	// 				element.requestPriorityId === this.props.data.contentSelected
-	// 	// 			);
-	// 	// 		});
-	// 	// 		selectedContentName = selectedContentObj.requestPriority;
-	// 	// 		break;
-	// 	// 	case "category":
-	// 	// 		selectedContentObj = this.contentsList.find((element) => {
-	// 	// 			return (
-	// 	// 				element.requestPriorityId === this.props.data.contentSelected
-	// 	// 			);
-	// 	// 		});
-	// 	// 		selectedContentName = selectedContentObj.requestPriority;
-	// 	// 		break;
-	// 	// 	case "status":
-	// 	// 		selectedContentObj = this.contentsList.find((element) => {
-	// 	// 			return (
-	// 	// 				element.requestPriorityId === this.props.data.contentSelected
-	// 	// 			);
-	// 	// 		});
-	// 	// 		selectedContentName = selectedContentObj.requestPriority;
-	// 	// 		break;
-	// 	// 	case "create":
-	// 	// 		selectedContentObj = this.contentsList.find((element) => {
-	// 	// 			return (
-	// 	// 				element.requestPriorityId === this.props.data.contentSelected
-	// 	// 			);
-	// 	// 		});
-	// 	// 		selectedContentName = selectedContentObj.requestPriority;
-	// 	// 		break;
-	// 	// 	default:
-	// 	// 		break;
-	// 	// }
-
-	// 	return (
-	// 		<div
-	// 			className={this.state.buttonClassName}
-	// 			onClick={() => this.setState({ showList: !this.state.showList })}
-	// 		>
-	// 			{this.props.contentSelected}
-	// 			<div
-	// 				className={
-	// 					this.state.showList
-	// 						? "CustomButton-List"
-	// 						: "CustomButton-List hidden"
-	// 				}
-	// 			>
-	// 				{this.state.contentsList
-	// 					? this.state.contentsList.map((item) => {
-	// 							return <div className="CustomButton-List-Item">{item}</div>;
-	// 					  })
-	// 					: null}
-	// 			</div>
-	// 		</div>
-	// 	);
-	// } else {
-	// 	return null;
-	// }
-	//}
 }
 
 export default CustomButton;

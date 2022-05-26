@@ -75,11 +75,17 @@ class Request extends PureComponent {
 							contentSelected={priorityName}
 							buttonType='priority'
 							isTag={true}
+							prioritiesList={this.props.prioritiesList}
+							categoriesList={this.props.categoriesList}
+							statusesList={this.props.statusesList}
 						/>
 						<CustomButton
 							contentSelected={categoryName}
 							buttonType='category'
 							isTag={true}
+							prioritiesList={this.props.prioritiesList}
+							categoriesList={this.props.categoriesList}
+							statusesList={this.props.statusesList}
 						/>
 					</div>
 				</div>

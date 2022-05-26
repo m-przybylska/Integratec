@@ -15,20 +15,12 @@ class CustomPopup extends PureComponent {
 		if (this.state.hasError) {
 			return <h1>Something went wrong.</h1>;
 		}
-		console.log(this.props.popupData);
-		console.log(this.props.prioritiesList);
-		console.log(this.props.categoriesList);
-		console.log(this.props.statusesList);
 
 		if (
 			this.props.prioritiesList.length > 0 &&
 			this.props.categoriesList.length > 0 &&
 			this.props.statusesList.length > 0
 		) {
-			console.log(this.props.popupData);
-			console.log(this.props.prioritiesList);
-			console.log(this.props.categoriesList);
-			console.log(this.props.statusesList);
 			return (
 				<div
 					className={
@@ -43,10 +35,6 @@ class CustomPopup extends PureComponent {
 				>
 					{this.props.popupType === 'addTask' ? (
 						<React.Fragment>
-							{console.log(this.props.popupData)}
-							{console.log(this.props.prioritiesList)}
-							{console.log(this.props.categoriesList)}
-							{console.log(this.props.statusesList)}
 							<div className='CustomPopup-addTask-FirstPart'>
 								<input
 									className='CustomPopup-addTask-FirstPart-Subject'
@@ -87,11 +75,6 @@ class CustomPopup extends PureComponent {
 						</React.Fragment>
 					) : Object.keys(this.props.popupData).length !== 0 ? (
 						<React.Fragment>
-							{console.log(this.props.popupData)}
-							{console.log(this.props.prioritiesList)}
-							{console.log(this.props.categoriesList)}
-							{console.log(this.props.statusesList)}
-
 							<div className='CustomPopup-previewRequest-FirstPart'>
 								<div className='CustomPopup-previewRequest-FirstPart-User'>
 									<i className='las la-user' />
