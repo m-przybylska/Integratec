@@ -61,7 +61,7 @@ public class RequestControllerTest {
         request.setText("Text");
         request.setComment("comment");
 
-        mockMvc.perform(put("/requests/{requestId}")
+        mockMvc.perform(put("/requests/{requestId}", "1")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk());
