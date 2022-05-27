@@ -52,7 +52,7 @@ class Login extends PureComponent {
 
 	render() {
 		return (
-			<div className='Login'>
+			<form className='Login'>
 				<div className='Login-Logo'>
 					<img src={logo} className='Navbar-leftSide-logo' alt='' />
 				</div>
@@ -84,7 +84,7 @@ class Login extends PureComponent {
 						Forgot password?
 					</div>
 				</div>
-			</div>
+			</form>
 		);
 	}
 }
