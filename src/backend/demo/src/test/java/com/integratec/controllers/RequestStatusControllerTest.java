@@ -1,6 +1,7 @@
 package com.integratec.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.integratec.security.AccountDetailsService;
 import com.integratec.services.RequestCategoryService;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RequestStatusControllerTest {
 
     @MockBean
-    private UserDetailsService userDetailsService;
+    private AccountDetailsService accountDetailsService;
 
     @MockBean
     private RequestStatusController requestStatusController;

@@ -1,6 +1,7 @@
 package com.integratec.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.integratec.security.AccountDetailsService;
 import com.integratec.services.AccountService;
 import com.integratec.services.RequestCategoryService;
 import org.junit.Before;
@@ -28,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RequestCategoryControllerTest {
 
     @MockBean
-    private UserDetailsService userDetailsService;
+    private AccountDetailsService accountDetailsService;
 
     @MockBean
     private RequestCategoryService requestCategoryService;

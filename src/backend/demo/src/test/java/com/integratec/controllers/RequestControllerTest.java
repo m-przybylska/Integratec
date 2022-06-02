@@ -3,6 +3,7 @@ package com.integratec.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
+import com.integratec.security.AccountDetailsService;
 import com.integratec.services.AccountService;
 import com.integratec.services.RequestService;
 import org.junit.Before;
@@ -32,7 +33,7 @@ public class RequestControllerTest {
     private RequestService requestService;
 
     @MockBean
-    private UserDetailsService userDetailsService;
+    private AccountDetailsService accountDetailsService;
 
     @Autowired
     private MockMvc mockMvc;

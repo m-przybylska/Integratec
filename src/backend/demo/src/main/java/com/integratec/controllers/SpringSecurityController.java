@@ -10,19 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SpringSecurityController {
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/login")
-    public String login(HttpServletRequest request, HttpSession session) {
-        session.setAttribute(
-                "error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION")
-        );
-        return "login";
-    }
-
     private String getErrorMessage(HttpServletRequest request, String key) {
         Exception exception = (Exception) request.getSession().getAttribute(key);
         String error;
