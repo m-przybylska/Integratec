@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -29,6 +30,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
@@ -39,7 +49,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,12 +62,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests().antMatchers("/register**")
-                .permitAll(); //.anyRequest()//.authenticated()
-                //.and()
-                //.formLogin() .loginPage("/login")
-                //.permitAll()
-                //.and()
-                //.logout() .invalidateHttpSession(true)
-                //.clearAuthentication(true) .permitAll();
+                .permitAll().antMatchers("/").hasAnyAuthority("HR_employee", "other_employee")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin() .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout() .invalidateHttpSession(true)
+                .clearAuthentication(true) .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
     }
 }

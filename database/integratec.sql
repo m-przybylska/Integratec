@@ -1,8 +1,10 @@
 DROP TABLE IF EXISTS request;
+DROP TABLE IF EXISTS user_role_assignment;
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS request_category;
 DROP TABLE IF EXISTS request_status;
 DROP TABLE IF EXISTS request_priority;
+DROP TABLE IF EXISTS user_role;
 DROP TRIGGER IF EXISTS request_category_trigger;
 
 CREATE TABLE `account` (
@@ -45,6 +47,20 @@ KEY `k_request_priority` (`request_priority_id`),
 CONSTRAINT `k_request_status` FOREIGN KEY (`request_status_id`) REFERENCES `request_status` (`request_status_id`),
 CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `request_category` (`request_category_id`),
 CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `request_priority` (`request_priority_id`)
+);
+
+CREATE TABLE `user_role` (
+  `role_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `role_name` varchar(45) NOT NULL
+);
+
+CREATE TABLE `user_role_assignment`(
+`user_account_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  KEY `role_fk` (`role_id`),
+  KEY `user_fk` (`user_account_id`),
+  CONSTRAINT `role_fk` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`role_id`),
+  CONSTRAINT `user_fk` FOREIGN KEY (`user_account_id`) REFERENCES account (`user_account_id`)
 );
 
 DELIMITER //
@@ -104,10 +120,20 @@ values ("bulaala", "1", "2", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-
 ("title1", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "7", "1", "2"),
 ("title2", "1", "3", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "8", "1", "3"),
 ("title13", "1", "1", "skonczyly sie ciasteczka:(", "komentarz 1", "2022-04-22", "15", "1", "4"),
-("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", "1", "2", "3"), 
+("ciasteczka", "1", "2", "naprawde skonczyly sie ciasteczka:(", "komentarz 2", "2022-04-10", "1", "2", "3"),
 ("karta sportowa", "3", "2", "prosze o karte sportow� od maja", "zrobione", "2022-04-05", "1", "2", "3"),
 ("owoce", "3", "3", "koncza sie owowce", "komentarz 4", "2022-03-18", "3", "2", "3"),
 ("faktura", "3", "2", "simple text", "komentarz komentatrz", "2022-04-22", "1", "2", "3"),
 ("rekrutacja", "1", "3", "zepsuty komputer ", "jutro sie tym zajme", "2022-04-22", "2", "2", "3"),
 ("wyjazd", "3", "3", "text 2", "jutro sie tym zajme", "2022-04-22", "1", "1", "1");
 
+insert into user_role(role_name)
+ values
+ ("HR_employee"),
+ ("other_employee");
+
+insert into user_role_assignment(user_account_id, role_id)
+ values
+ ("1", "1"),
+ ("2", "2"),
+ ("3", "1");
