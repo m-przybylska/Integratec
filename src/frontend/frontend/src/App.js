@@ -1,33 +1,11 @@
-import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useState, useEffect, PureComponent } from "react";
-import axios from "axios";
-import Kanban from "./components/Kanban/Kanban";
-import * as Constants from "./assets/data/Constants";
-
-const AccountProfiles = () => {
-	const [accountProfiles, setAccountProfiles] = useState([]);
-
-	const fetchAccountProfiles = () => {
-		axios.get(Constants.serverURL).then((res) => {
-			setAccountProfiles(res.data);
-		});
-	};
-
-	useEffect(() => {
-		fetchAccountProfiles();
-	}, []);
-
-	return accountProfiles.map((accountProfile, index) => {
-		return (
-			<div key={index}>
-				<h1>{accountProfile.login}</h1>
-				<h1>{accountProfile.password}</h1>
-			</div>
-		);
-	});
-};
+import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import axios from 'axios';
+import Kanban from './components/Kanban/Kanban';
+import Login from './components/Login/Login';
+import * as Constants from './assets/data/Constants';
 
 class App extends PureComponent {
 	constructor(props) {
@@ -35,11 +13,41 @@ class App extends PureComponent {
 
 		this.state = {
 			popupIsVisible: false,
-			popupType: "",
+			popupType: '',
 			popupData: {},
-			popupColor: "iteragenta",
+			popupColor: 'iteragenta',
+			requestsList: [],
+			categoriesList: [],
+			prioritiesList: [],
+			statusesList: [],
 		};
 	}
+
+	componentDidMount = () => {
+		axios.get('http://localhost:8080/requests').then((res) => {
+			// console.log(res);
+			this.setState({ requestsList: res.data });
+			console.log(this.state.requestsList);
+		});
+
+		axios.get('http://localhost:8080/statuses').then((res) => {
+			// console.log(res);
+			this.setState({ statusesList: res.data });
+			console.log(this.state.statusesList);
+		});
+
+		axios.get('http://localhost:8080/categories').then((res) => {
+			// console.log(res);
+			this.setState({ categoriesList: res.data });
+			console.log(this.state.categoriesList);
+		});
+
+		axios.get('http://localhost:8080/priorities').then((res) => {
+			// console.log(res);
+			this.setState({ prioritiesList: res.data });
+			console.log(this.state.prioritiesList);
+		});
+	};
 
 	setPopup = (type, data, color) => {
 		this.setState(
@@ -50,13 +58,23 @@ class App extends PureComponent {
 		);
 	};
 
-	componentDidMount = () => {
+	postRequest = () => {
 		axios
-			.get("http://localhost:8080/requests")
+			.post('http://localhost:8080/requests', {
+				comment: 'comment',
+				receiver_id: 1,
+				request_category_id: 1,
+				request_id: 20,
+				request_priority_id: 1,
+				request_status_id: 1,
+				send_date: '2022-05-11',
+				sender_id: 1,
+				text: 'Jakis opis',
+				title: 'Nudzi mi sie',
+			})
 			.then((res) => {
+				console.log(res);
 				console.log(res.data);
-				this.setState({ requestsList: res.data });
-				console.log(this.state.requestsList);
 			})
 			.catch((error) => {
 				if (error.response) {
@@ -69,19 +87,19 @@ class App extends PureComponent {
 			});
 	};
 
-	postRequest = () => {
+	addNewRequest = (request) => {
 		axios
-			.post("http://localhost:8080/requests", {
-				comment: "comment",
+			.post('http://localhost:8080/requests', {
+				comment: '',
 				receiver_id: 1,
-				request_category_id: 1,
-				request_id: 1,
-				request_priority_id: 1,
+				request_category_id: request.request_category_id,
+				request_id: null,
+				request_priority_id: request.request_priority_id,
 				request_status_id: null,
-				send_date: "2022-05-11",
+				send_date: '2022-05-11',
 				sender_id: 1,
-				text: "string",
-				title: "string",
+				text: request.text,
+				title: request.title,
 			})
 			.then((res) => {
 				console.log(res);
@@ -100,17 +118,17 @@ class App extends PureComponent {
 
 	putRequest = () => {
 		axios
-			.put("http://localhost:8080/requests/1", {
-				comment: "dziala",
+			.put('http://localhost:8080/requests/1', {
+				comment: 'dziala',
 				receiver: 1,
 				requestCategory: 1,
 				requestId: 1,
 				requestPriority: 1,
 				requestStatus: 1,
-				sendDate: "2022-05-12",
+				sendDate: '2022-05-12',
 				sender_id: 1,
-				text: "string",
-				title: "string",
+				text: 'string',
+				title: 'string',
 			})
 			.then((res) => {
 				console.log(res);
@@ -129,12 +147,12 @@ class App extends PureComponent {
 
 	render() {
 		return (
-			<div className="App">
+			<div className='App'>
 				<Router>
 					<Navbar setPopup={this.setPopup} />
 					<Routes>
 						<Route
-							path="/"
+							path='/'
 							element={
 								<Kanban
 									popupIsVisible={this.state.popupIsVisible}
@@ -142,9 +160,15 @@ class App extends PureComponent {
 									popupData={this.state.popupData}
 									popupColor={this.state.popupColor}
 									setPopup={this.setPopup}
+									requestsList={this.state.requestsList}
+									categoriesList={this.state.categoriesList}
+									prioritiesList={this.state.prioritiesList}
+									statusesList={this.state.statusesList}
+									addNewRequest={this.addNewRequest}
 								/>
 							}
 						/>
+						<Route path='/login' element={<Login />} />
 					</Routes>
 					<button onClick={this.postRequest}>Click this to post</button>
 					<button onClick={this.putRequest}>Click this to put</button>
