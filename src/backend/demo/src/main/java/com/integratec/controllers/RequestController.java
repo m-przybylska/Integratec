@@ -1,6 +1,7 @@
 package com.integratec.controllers;
 
 import com.integratec.mapper.MapStructMapperImpl;
+import com.integratec.model.domain.Account;
 import com.integratec.model.domain.DTO.RequestGetDTO;
 import com.integratec.model.domain.DTO.RequestPostDTO;
 import com.integratec.model.domain.Request;
@@ -33,7 +34,11 @@ public class RequestController {
     @GetMapping
     public ResponseEntity<List<RequestGetDTO>> getRequest(String key, Object value) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("other_employee"))) {
+        if(auth == null){
+            //TODO zwrocic 401
+        }
+        Account account = (Account)auth.getPrincipal();
+        if (account != null && account.getRoles().stream().anyMatch(a -> a.getName().equals("other_employee"))) {
             //reutrn z filtrami
         }
         return ResponseEntity.ok(mapstructMapper.requestsToRequestsGetDto(requestService.getRequests(key, value)));
