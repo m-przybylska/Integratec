@@ -72,6 +72,7 @@
       &-User {
         display: flex;
         align-items: center;
+        white-space: nowrap;
 
         .la-user {
           font-size: 36px;
@@ -80,6 +81,14 @@
 
         &-Name {
           font-size: 24px;
+          max-width: 360px;
+          overflow-x: scroll;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+            /* for Chrome, Safari, and Opera */
+          }
         }
       }
 

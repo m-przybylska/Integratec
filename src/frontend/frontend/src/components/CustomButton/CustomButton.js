@@ -1,216 +1,192 @@
-import React, { PureComponent } from "react";
-import "./CustomButton.scss";
-import * as TestingData from "../../assets/data/TestingData";
+import React, { PureComponent } from 'react';
+import Tooltip from '@mui/material/Tooltip';
+import './CustomButton.scss';
 
 class CustomButton extends PureComponent {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      hasError: false,
-      buttonClassName: "",
-      contentsList: [],
-      showList: false,
-      currentValue: this.props.contentSelected,
-    };
-    this.wrapperRef = React.createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+		this.state = {
+			hasError: false,
+			buttonClassName: '',
+			contentsList: [],
+			showList: false,
+			currentValue: this.props.contentSelected,
+		};
+		this.wrapperRef = React.createRef();
+		this.handleClickOutside = this.handleClickOutside.bind(this);
+	}
 
-  componentWillMount = () => {
-    this.setState({ currentValue: this.props.contentSelected });
-  };
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
-  }
+	componentWillMount = () => {
+		this.setState({ currentValue: this.props.contentSelected });
+	};
+	componentDidMount() {
+		this.setDataFromType();
+		document.addEventListener('mousedown', this.handleClickOutside);
+	}
 
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  }
+	componentWillUnmount() {
+		document.removeEventListener('mousedown', this.handleClickOutside);
+	}
 
-  handleClickOutside(event) {
-    console.log(event.target.className);
-    if (
-      event.target.className != "CustomButton-List-Item" &&
-      (event.target.className != "CustomButton-Button-Category" ||
-        event.target.className != "CustomButton-Button-Status" ||
-        event.target.className != "CustomButton-Button-Priority")
-    )
-      this.setState({ showList: false });
-  }
+	handleClickOutside(event) {
+		// console.log(event.target.className);
+		if (
+			event.target.className !== 'CustomButton-List-Item' &&
+			(event.target.className !== 'CustomButton-Button-Category' ||
+				event.target.className !== 'CustomButton-Button-Status' ||
+				event.target.className !== 'CustomButton-Button-Priority')
+		)
+			this.setState({ showList: false });
+	}
 
-  setDataFromType = () => {
-    if (this.props.isTag == true) {
-      switch (this.props.buttonType) {
-        case "priority":
-          this.setState({
-            buttonClassName: "CustomButton-Tag-Priority",
-            // contentsList: this.props.prioritiesList,
-          });
-          break;
-        case "category":
-          this.setState({
-            buttonClassName: "CustomButton-Tag-Category",
-            // contentsList: this.props.categoriesList,
-          });
-          break;
-        case "status":
-          this.setState({
-            buttonClassName: "CustomButton-Tag-Status",
-            // contentsList: this.props.statusesList,
-          });
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (this.props.buttonType) {
-        case "priority":
-          this.setState({
-            buttonClassName: "CustomButton-Button-Priority",
-            // contentsList: this.props.prioritiesList,
-            contentsList: TestingData.prioritiesList,
-          });
-          break;
-        case "category":
-          this.setState({
-            buttonClassName: "CustomButton-Button-Category",
-            // contentsList: this.props.categoriesList,
-            contentsList: TestingData.categoriesList,
-          });
-          break;
-        case "status":
-          this.setState({
-            buttonClassName: "CustomButton-Button-Status",
-            // contentsList: this.props.statusesList,
-            contentsList: TestingData.statusesList,
-          });
-          break;
-        case "create":
-          this.setState({
-            buttonClassName: "CustomButton-Button-Create",
-            contentsList: TestingData.createList, // change this to...?
-          });
-        default:
-          break;
-      }
-    }
-  };
+	setDataFromType = () => {
+		if (this.props.isTag === true) {
+			switch (this.props.buttonType) {
+				case 'priority':
+					this.setState({
+						buttonClassName: 'CustomButton-Tag-Priority',
+					});
+					break;
+				case 'category':
+					this.setState({
+						buttonClassName: 'CustomButton-Tag-Category',
+					});
+					break;
+				case 'status':
+					this.setState({
+						buttonClassName: 'CustomButton-Tag-Status',
+					});
+					break;
+				default:
+					break;
+			}
+		} else {
+			let stringsList = [];
+			let contentSelectedObject = null;
+			let contentSelectedString = '';
+			switch (this.props.buttonType) {
+				case 'priority':
+					for (const item of this.props.prioritiesList) {
+						stringsList.push(item.request_priority);
+					}
 
-  render() {
-    this.setDataFromType();
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-    return (
-      <div
-        className={this.state.buttonClassName}
-        onClick={() => this.setState({ showList: !this.state.showList })}
-        ref={this.wrapperRef}
-      >
-        {this.state.currentValue
-          ? this.state.currentValue
-          : this.props.contentSelected}
-        <div
-          className={
-            this.state.showList
-              ? "CustomButton-List"
-              : "CustomButton-List hidden"
-          }
-        >
-          {this.state.contentsList
-            ? this.state.contentsList.map((item) => {
-                return (
-                  <div
-                    className="CustomButton-List-Item"
-                    onClick={() => this.setState({ currentValue: item })}
-                  >
-                    {item}
-                  </div>
-                );
-              })
-            : null}
-        </div>
-      </div>
-    );
-  }
-  // render() {
-  // 	if (this.state.hasError) {
-  // 		return <h1>Something went wrong.</h1>;
-  // 	}
-  // 	// console.log(this.props.prioritiesList);
-  // 	// if (
-  // 	// 	this.props.prioritiesList.length > 0 &&
-  // 	// 	this.props.categoriesList.length > 0 &&
-  // 	// 	this.props.statusesList.length > 0
-  // 	// ) {
-  // 	this.setDataFromType();
+					if (this.props.contentSelected === 'priority')
+						contentSelectedString = 'priority';
+					else {
+						contentSelectedObject = this.props.prioritiesList.find(
+							(element) => {
+								if (element.request_priority_id === this.props.contentSelected)
+									return element;
+							}
+						);
+						contentSelectedString = contentSelectedObject.request_priority;
+					}
 
-  // 	const selectedContentObj = "";
-  // 	const selectedContentName = "";
+					this.setState({
+						buttonClassName: 'CustomButton-Button-Priority',
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
+					});
+					break;
+				case 'category':
+					for (const item of this.props.categoriesList) {
+						stringsList.push(item.request_category);
+					}
 
-  // 	// switch (this.buttonType) {
-  // 	// 	case "priority":
-  // 	// 		selectedContentObj = this.contentsList.find((element) => {
-  // 	// 			return (
-  // 	// 				element.requestPriorityId === this.props.data.contentSelected
-  // 	// 			);
-  // 	// 		});
-  // 	// 		selectedContentName = selectedContentObj.requestPriority;
-  // 	// 		break;
-  // 	// 	case "category":
-  // 	// 		selectedContentObj = this.contentsList.find((element) => {
-  // 	// 			return (
-  // 	// 				element.requestPriorityId === this.props.data.contentSelected
-  // 	// 			);
-  // 	// 		});
-  // 	// 		selectedContentName = selectedContentObj.requestPriority;
-  // 	// 		break;
-  // 	// 	case "status":
-  // 	// 		selectedContentObj = this.contentsList.find((element) => {
-  // 	// 			return (
-  // 	// 				element.requestPriorityId === this.props.data.contentSelected
-  // 	// 			);
-  // 	// 		});
-  // 	// 		selectedContentName = selectedContentObj.requestPriority;
-  // 	// 		break;
-  // 	// 	case "create":
-  // 	// 		selectedContentObj = this.contentsList.find((element) => {
-  // 	// 			return (
-  // 	// 				element.requestPriorityId === this.props.data.contentSelected
-  // 	// 			);
-  // 	// 		});
-  // 	// 		selectedContentName = selectedContentObj.requestPriority;
-  // 	// 		break;
-  // 	// 	default:
-  // 	// 		break;
-  // 	// }
+					if (this.props.contentSelected === 'category')
+						contentSelectedString = 'category';
+					else {
+						contentSelectedObject = this.props.categoriesList.find(
+							(element) => {
+								if (element.request_category_id === this.props.contentSelected)
+									return element;
+							}
+						);
 
-  // 	return (
-  // 		<div
-  // 			className={this.state.buttonClassName}
-  // 			onClick={() => this.setState({ showList: !this.state.showList })}
-  // 		>
-  // 			{this.props.contentSelected}
-  // 			<div
-  // 				className={
-  // 					this.state.showList
-  // 						? "CustomButton-List"
-  // 						: "CustomButton-List hidden"
-  // 				}
-  // 			>
-  // 				{this.state.contentsList
-  // 					? this.state.contentsList.map((item) => {
-  // 							return <div className="CustomButton-List-Item">{item}</div>;
-  // 					  })
-  // 					: null}
-  // 			</div>
-  // 		</div>
-  // 	);
-  // } else {
-  // 	return null;
-  // }
-  //}
+						contentSelectedString = contentSelectedObject.request_category;
+					}
+
+					this.setState({
+						buttonClassName: 'CustomButton-Button-Category',
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
+					});
+					break;
+				case 'status':
+					for (const item of this.props.statusesList) {
+						stringsList.push(item.request_status);
+					}
+
+					if (this.props.contentSelected === 'status')
+						contentSelectedString = 'status';
+					else {
+						contentSelectedObject = this.props.statusesList.find((element) => {
+							if (element.request_status_id === this.props.contentSelected)
+								return element;
+						});
+
+						contentSelectedString = contentSelectedObject.request_status;
+					}
+
+					this.setState({
+						buttonClassName: 'CustomButton-Button-Status',
+						contentsList: stringsList,
+						currentValue: contentSelectedString,
+					});
+					break;
+				case 'create':
+					this.setState({
+						buttonClassName: 'CustomButton-Button-Create',
+						contentsList: ['created'],
+					});
+					break;
+				default:
+					break;
+			}
+		}
+	};
+
+	render() {
+		if (this.state.hasError) {
+			return <h1>Something went wrong.</h1>;
+		}
+
+		return (
+			<Tooltip title={this.state.currentValue} placement='top' arrow>
+				<div
+					className={this.state.buttonClassName}
+					onClick={() => this.setState({ showList: !this.state.showList })}
+					ref={this.wrapperRef}
+				>
+					{this.state.currentValue
+						? this.state.currentValue
+						: this.props.contentSelected}
+					<div
+						className={
+							this.state.showList
+								? 'CustomButton-List'
+								: 'CustomButton-List hidden'
+						}
+					>
+						{this.state.contentsList
+							? this.state.contentsList.map((item, i) => {
+									return (
+										<div
+											key={i}
+											className='CustomButton-List-Item'
+											onClick={() => this.setState({ currentValue: item })}
+										>
+											{item}
+										</div>
+									);
+							  })
+							: null}
+					</div>
+				</div>
+			</Tooltip>
+		);
+	}
 }
 
 export default CustomButton;

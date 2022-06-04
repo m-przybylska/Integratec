@@ -1,61 +1,11 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useState, useEffect, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import axios from "axios";
 import Kanban from "./components/Kanban/Kanban";
+import Login from "./components/Login/Login";
 import * as Constants from "./assets/data/Constants";
-
-const AccountProfiles = () => {
-  const [accountProfiles, setAccountProfiles] = useState([]);
-
-  const fetchAccountProfiles = () => {
-    axios.get(Constants.serverURL).then((res) => {
-      setAccountProfiles(res.data);
-    });
-  };
-
-  useEffect(() => {
-    fetchAccountProfiles();
-  }, []);
-
-  return accountProfiles.map((accountProfile, index) => {
-    return (
-      <div key={index}>
-        <h1>{accountProfile.login}</h1>
-        <h1>{accountProfile.password}</h1>
-      </div>
-    );
-  });
-};
-
-const RequestsList = () => {
-  const [requestsList, setRequestsList] = useState([]);
-
-  const fetchRequestsList = () => {
-    axios.get("http://localhost:8080/requests").then((res) => {
-      setRequestsList(res.data);
-    });
-  };
-
-  useEffect(() => {
-    fetchRequestsList();
-  }, []);
-
-  return requestsList.map((request, index) => {
-    return (
-      <div key={index}>
-        <a>
-          Sender: {request.sender.login}
-          Title: {request.title}, Priority:{" "}
-          {request.requestPriority.requestPriority}, Category:{" "}
-          {request.requestCategory.requestCategory}, Status:{" "}
-          {request.requestStatus.requestStatus}
-        </a>
-      </div>
-    );
-  });
-};
 
 class App extends PureComponent {
   constructor(props) {
@@ -114,13 +64,42 @@ class App extends PureComponent {
         comment: "comment",
         receiver_id: 1,
         request_category_id: 1,
-        request_id: 1,
+        request_id: 20,
         request_priority_id: 1,
+        request_status_id: 1,
+        send_date: "2022-05-11",
+        sender_id: 1,
+        text: "Jakis opis",
+        title: "Nudzi mi sie",
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+  };
+
+  addNewRequest = (request) => {
+    axios
+      .post("http://localhost:8080/requests", {
+        comment: "",
+        receiver_id: 1,
+        request_category_id: request.request_category_id,
+        request_id: null,
+        request_priority_id: request.request_priority_id,
         request_status_id: null,
         send_date: "2022-05-11",
         sender_id: 1,
-        text: "string",
-        title: "string",
+        text: request.text,
+        title: request.title,
       })
       .then((res) => {
         console.log(res);
@@ -184,12 +163,12 @@ class App extends PureComponent {
                   requestsList={this.state.requestsList}
                   categoriesList={this.state.categoriesList}
                   prioritiesList={this.state.prioritiesList}
-                  statusesList={
-                    this.state.statusesList ? this.state.statusesList : []
-                  }
+                  statusesList={this.state.statusesList}
+                  addNewRequest={this.addNewRequest}
                 />
               }
             />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <button onClick={this.postRequest}>Click this to post</button>
           <button onClick={this.putRequest}>Click this to put</button>

@@ -14,9 +14,9 @@ import javax.persistence.*;
 public class RequestPriority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long requestPriorityId;
+    private Long request_priority_id;
 
     @Column(name = "request_priority")
-    private String requestPriority;
+    private String request_priority;
 
 }

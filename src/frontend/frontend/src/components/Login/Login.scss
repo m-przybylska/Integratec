@@ -1,11 +1,11 @@
 @import "../../assets/scss/colors.scss";
 
 .Login {
-    font-size: 14px;
     max-width: 534px;
     min-width: 534px;
-    max-width: 332px;
-    min-width: 332px;
+    max-height: 332px;
+    min-height: 332px;
+    
     align-self: center;
     margin: 0;
     position: absolute;
@@ -14,8 +14,104 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 16px 18px;
+    padding: 22px 23px;
     margin-bottom: 14px;
     background-color: $color-black;
     font-weight: bold;
+
+    &-Logo {
+        margin-bottom: 20px;
+    }
+
+    &-Authorization {
+        display: flex;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        color: $color-white;
+        font-size: 20px;
+        margin-bottom: 26px;
+        
+        .la-user {  
+            font-size: 36px;
+            margin-right: 4px;
+            font-weight: bold;
+        }
+
+        &-Text {
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+    }
+
+    &-Input {
+        max-width: 489px;
+        min-width: 489px;
+        max-height: 40px;
+        min-height: 40px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        font-size: 18px;
+        
+        &::placeholder {
+            color: $color-grey;
+            font-size: 18px;
+          }
+    }
+
+    &-Buttons {
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        
+        &-SignIn {
+            border: none;
+            padding: 2px 6px;
+        
+            background-color: $color-iteragenta-dark;
+
+            max-width: 127px;
+            min-width: 127px;
+            max-height: 37px;
+            min-height: 37px;
+        
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 1.4;
+
+            vertical-align: middle;
+        
+            cursor: pointer;
+        
+            &:hover {
+                padding: 1px 5px;
+                border: 1px solid $color-black;
+            }
+        }
+
+        &-ForgotPassword {
+            
+            border: none;
+            padding: 2px 6px;
+
+            max-height: 37px;
+            min-height: 37px;
+
+            text-align: center;
+            font-weight: lighter;
+            font-size: 20px;
+            line-height: 1.4;
+            
+            vertical-align: middle;
+
+            cursor: pointer;
+        
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        
+    }
 }

@@ -5,59 +5,59 @@ DROP TABLE IF EXISTS request_status;
 DROP TABLE IF EXISTS request_priority;
 DROP TRIGGER IF EXISTS request_category_trigger;
 
-CREATE TABLE `Account` (
-                           `user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                           `login` varchar(30) NOT NULL,
-                           `password` varchar(60) NOT NULL,
-                           `name` varchar(30) NOT NULL,
-                           `surname` varchar(30) NOT NULL
+CREATE TABLE `account` (
+`user_account_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`login` varchar(30) NOT NULL,
+`password` varchar(60) NOT NULL,
+`name` varchar(30) NOT NULL,
+`surname` varchar(30) NOT NULL
 );
 
-CREATE TABLE `RequestCategory` (
-                                   `request_category_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                   `request_category` varchar(30) NOT NULL
+CREATE TABLE `request_category` (
+`request_category_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`request_category` varchar(30) NOT NULL
 );
 
-CREATE TABLE `RequestStatus` (
-                                 `request_status_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                 `request_status` varchar(30) NOT NULL
+CREATE TABLE `request_status` (
+`request_status_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`request_status` varchar(30) NOT NULL
 );
 
-CREATE TABLE `RequestPriority` (
-                                   `request_priority_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                   `request_priority` varchar(30) NOT NULL
+CREATE TABLE `request_priority` (
+`request_priority_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`request_priority` varchar(30) NOT NULL
 );
 
-CREATE TABLE `Request` (
-                           `request_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                           `title` varchar(70) NOT NULL,
-                           `sender_id` int NOT NULL,
-                           `receiver_id` int NOT NULL,
-                           `text` varchar(1000),
-                           `comment` varchar(500),
-                           `send_date` date,
-                           `request_status_id` int,
-                           `request_category_id` int,
-                           `request_priority_id` int,
-                           KEY `k_request_status` (`request_status_id`),
-                           KEY `k_request_category` (`request_category_id`),
-                           KEY `k_request_priority` (`request_priority_id`),
-                           CONSTRAINT `k_request_status` FOREIGN KEY (`request_status_id`) REFERENCES `RequestStatus` (`request_status_id`),
-                           CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `RequestCategory` (`request_category_id`),
-                           CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `RequestPriority` (`request_priority_id`)
+CREATE TABLE `request` (
+`request_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`title` varchar(70) NOT NULL,
+`sender_id` int NOT NULL,
+`receiver_id` int NOT NULL,
+`text` varchar(1000),
+`comment` varchar(500),
+`send_date` date,
+`request_status_id` int,
+`request_category_id` int,
+`request_priority_id` int,
+KEY `k_request_status` (`request_status_id`),
+KEY `k_request_category` (`request_category_id`),
+KEY `k_request_priority` (`request_priority_id`),
+CONSTRAINT `k_request_status` FOREIGN KEY (`request_status_id`) REFERENCES `request_status` (`request_status_id`),
+CONSTRAINT `k_request_category` FOREIGN KEY (`request_category_id`) REFERENCES `request_category` (`request_category_id`),
+CONSTRAINT `k_request_priority` FOREIGN KEY (`request_priority_id`) REFERENCES `request_priority` (`request_priority_id`)
 );
 
 DELIMITER //
-CREATE TRIGGER RequestCategoryTrigger
-    BEFORE INSERT ON request
-    FOR EACH ROW
+CREATE TRIGGER request_category_trigger
+BEFORE INSERT ON request
+FOR EACH ROW
 BEGIN
-    IF NEW.request_category_id = 6 OR NEW.request_category_id = 7
-        OR NEW.request_category_id = 8 OR NEW.request_category_id = 14
-        OR NEW.request_category_id = 15 THEN SET NEW.receiver_id = 2;
-    ELSE
-        SET NEW.receiver_id = 1;
-    END IF;
+IF NEW.request_category_id = 6 OR NEW.request_category_id = 7
+OR NEW.request_category_id = 8 OR NEW.request_category_id = 14
+OR NEW.request_category_id = 15 THEN SET NEW.receiver_id = 2;
+ELSE
+SET NEW.receiver_id = 1;
+END IF;
 END//
 DELIMITER ;
 
@@ -103,7 +103,7 @@ values
 insert into request_status(request_status)
 values
 ("new"),
-("done"),
+("to do"),
 ("in progress"),
 ("done");
 
