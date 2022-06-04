@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "requestcategory")
+@Table(name = "request_category")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,9 +14,9 @@ import javax.persistence.*;
 public class RequestCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long requestCategoryId;
+    private Long request_category_id;
 
     @Column(name = "request_category")
-    private String requestCategory;
+    private String request_category;
 
 }
