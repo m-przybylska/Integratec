@@ -39,7 +39,8 @@ public class RequestController {
         }
         Account account = (Account)auth.getPrincipal();
         if (account != null && account.getRoles().stream().anyMatch(a -> a.getName().equals("other_employee"))) {
-            //reutrn z filtrami
+            key = "comment";
+            value = "komentarz 1";
         }
         return ResponseEntity.ok(mapstructMapper.requestsToRequestsGetDto(requestService.getRequests(key, value)));
     }
