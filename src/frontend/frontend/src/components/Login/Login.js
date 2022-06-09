@@ -13,6 +13,7 @@ class Login extends PureComponent {
       inputUsername: "",
       inputPassword: "",
       username: "",
+      redirect: false,
     };
     this.setPreviewPopupVisibility = this.setPreviewPopupVisibility.bind(this);
   }
@@ -33,8 +34,13 @@ class Login extends PureComponent {
       .then((res) => {
         console.log(res.data);
         this.props.setAuthorization(res.data.split(" ")[1]);
-        window.localStorage.setItem("username", res.data.split(" ")[0]);
-        this.setState({ username: res.data.split(" ")[0] });
+        window.localStorage.setItem("user_id", res.data.split(" ")[2]);
+        this.setState(
+          { username: res.data.split(" ")[0], redirect: true },
+          () => {
+            window.location.replace("/");
+          }
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -91,13 +97,13 @@ class Login extends PureComponent {
           onChange={(evt) => this.updateInputPassword(evt)}
         />
         <div className="Login-Buttons">
-          <NavLink
+          <div
             to="/"
             className="Login-Buttons-SignIn"
             onClick={this.handleSignIn}
           >
             Sign in
-          </NavLink>
+          </div>
           <div
             className="Login-Buttons-ForgotPassword"
             onClick={this.handleForgotPassword}

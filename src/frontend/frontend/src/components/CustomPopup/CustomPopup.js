@@ -35,6 +35,7 @@ class CustomPopup extends PureComponent {
   componentDidMount = () => {
     this.resetState();
   };
+
   updateAddTaskSubject = (e) => {
     const val = e.target.value;
 
@@ -63,12 +64,6 @@ class CustomPopup extends PureComponent {
   updateAddTaskPriority = (val) => {
     this.setState({
       addTaskPriority: val,
-    });
-  };
-
-  updateAddTaskCreate = (val) => {
-    this.setState({
-      addTaskCreate: val,
     });
   };
 
@@ -209,44 +204,85 @@ class CustomPopup extends PureComponent {
       }
     );
   };
+  checkAddTaskValues = () => {
+    if (
+      this.state.addTaskCategory != "" &&
+      this.state.addTaskDescription != "" &&
+      this.state.addTaskSubject != "" &&
+      this.state.addTaskPriority != ""
+    )
+      return true;
+    return false;
+  };
   saveChanges = () => {
-    let categorySelectedObject = this.props.categoriesList.find((element) => {
-      if (this.state.taskCategory == element.request_category) return element;
-    });
-    let statusSelectedObject = this.props.statusesList.find((element) => {
-      if (this.state.taskStatus == element.request_status) return element;
-    });
-    let prioritySelectedObject = this.props.prioritiesList.find((element) => {
-      if (this.state.taskPriority == element.request_priority) return element;
-    });
+    if (this.state.changes) {
+      let categorySelectedObject = this.props.categoriesList.find((element) => {
+        if (this.state.taskCategory == element.request_category) return element;
+      });
+      let statusSelectedObject = this.props.statusesList.find((element) => {
+        if (this.state.taskStatus == element.request_status) return element;
+      });
+      let prioritySelectedObject = this.props.prioritiesList.find((element) => {
+        if (this.state.taskPriority == element.request_priority) return element;
+      });
 
-    let request_category_id = categorySelectedObject
-      ? categorySelectedObject.request_category_id
-      : this.props.popupData.request_category_id;
+      let request_category_id = categorySelectedObject
+        ? categorySelectedObject.request_category_id
+        : this.props.popupData.request_category_id;
 
-    let request_priority_id = prioritySelectedObject
-      ? prioritySelectedObject.request_priority_id
-      : this.props.popupData.request_priority_id;
+      let request_priority_id = prioritySelectedObject
+        ? prioritySelectedObject.request_priority_id
+        : this.props.popupData.request_priority_id;
 
-    let request_status_id = statusSelectedObject
-      ? statusSelectedObject.request_status_id
-      : this.props.popupData.request_status_id;
+      let request_status_id = statusSelectedObject
+        ? statusSelectedObject.request_status_id
+        : this.props.popupData.request_status_id;
 
-    let request_id = 1;
+      let request_id = 1;
 
-    let text = this.state.taskDescription
-      ? this.state.taskDescription
-      : this.props.popupData.text;
-    let title = this.props.popupData.title;
+      let text = this.state.taskDescription
+        ? this.state.taskDescription
+        : this.props.popupData.text;
+      let title = this.props.popupData.title;
 
-    this.props.putRequest(
-      request_category_id,
-      request_priority_id,
-      request_status_id,
-      text,
-      title
-    );
-    this.resetState();
+      this.props.putRequest(
+        request_category_id,
+        request_priority_id,
+        request_status_id,
+        text,
+        title
+      );
+      this.resetState();
+    }
+  };
+
+  addNewTask = () => {
+    console.log(this.checkAddTaskValues);
+    if (
+      this.state.addTaskCategory != "" &&
+      this.state.addTaskDescription != "" &&
+      this.state.addTaskSubject != "" &&
+      this.state.addTaskPriority != ""
+    ) {
+      let prioritySelectedObject = this.props.prioritiesList.find((element) => {
+        if (this.state.addTaskPriority == element.request_priority)
+          return element;
+      });
+
+      let categorySelectedObject = this.props.categoriesList.find((element) => {
+        if (this.state.addTaskCategory == element.request_category)
+          return element;
+      });
+      console.log(categorySelectedObject.request_category_id);
+      let newRequest = {
+        request_category_id: categorySelectedObject.request_category_id,
+        request_priority_id: prioritySelectedObject.request_priority_id,
+        text: this.state.addTaskDescription,
+        title: this.state.addTaskSubject,
+      };
+
+      this.props.addNewRequest(newRequest);
+    }
   };
 
   render() {
@@ -311,7 +347,8 @@ class CustomPopup extends PureComponent {
                   buttonType="create"
                   isTag={false}
                   addTask={true}
-                  updateAddTaskCreate={this.updateAddTaskCreate}
+                  isNotActive={this.checkAddTaskValues() ? false : true}
+                  addNewTask={this.addNewTask}
                 />
               </div>
             </React.Fragment>
@@ -393,6 +430,7 @@ class CustomPopup extends PureComponent {
                   isTag={false}
                   isNotActive={this.state.changes ? false : true}
                   saveChanges={this.saveChanges}
+                  onClick={() => this.props.setPopup("", {}, "iteragenta")}
                 />
               </div>
             </React.Fragment>

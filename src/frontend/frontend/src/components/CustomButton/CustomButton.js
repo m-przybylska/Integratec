@@ -138,7 +138,7 @@ class CustomButton extends PureComponent {
         case "create":
           this.setState({
             buttonClassName: "CustomButton-Button-Create",
-            contentsList: ["created"],
+            currentValue: "Create",
           });
           break;
         case "save":
@@ -159,7 +159,11 @@ class CustomButton extends PureComponent {
 
   saveChanges = () => {
     // if(this.props.isNotActive && this.props.isNotActive == false)
-    this.props.saveChanges();
+    if (this.props.saveChanges) this.props.saveChanges();
+  };
+
+  addNewTask = () => {
+    if (this.props.addNewTask) this.props.addNewTask();
   };
 
   render() {
@@ -178,6 +182,7 @@ class CustomButton extends PureComponent {
           onClick={() => {
             this.showList();
             this.saveChanges();
+            this.addNewTask();
           }}
           ref={this.wrapperRef}
           onChange={
@@ -185,8 +190,6 @@ class CustomButton extends PureComponent {
               ? (e) => this.props.updateAddTaskPriority(e)
               : this.props.updateAddTaskCategory
               ? (e) => this.props.updateAddTaskCategory(e)
-              : this.props.updateAddTaskCreate
-              ? (e) => this.props.updateAddTaskCreate(e)
               : null
           }
         >

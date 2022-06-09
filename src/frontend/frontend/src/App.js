@@ -30,10 +30,6 @@ class App extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    window.localStorage.setItem("authorization", null);
-  }
-
   setAuthorization = (auth) => {
     window.localStorage.setItem("authorization", auth);
     console.log(auth);
@@ -177,7 +173,7 @@ class App extends PureComponent {
           comment: "comment",
           receiver_id: 1,
           request_category_id: 1,
-          request_id: 20,
+          request_id: 21,
           request_priority_id: 1,
           request_status_id: 1,
           send_date: "2022-05-11",
@@ -214,11 +210,11 @@ class App extends PureComponent {
           comment: "",
           receiver_id: 1,
           request_category_id: request.request_category_id,
-          request_id: null,
+          request_id: this.state.requestsList.length + 1,
           request_priority_id: request.request_priority_id,
-          request_status_id: null,
+          request_status_id: 1,
           send_date: "2022-05-11",
-          sender_id: 1,
+          sender_id: parseInt(window.localStorage.user_id),
           text: request.text,
           title: request.title,
         },
@@ -231,6 +227,7 @@ class App extends PureComponent {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        window.location.reload(false);
       })
       .catch((error) => {
         if (error.response) {
@@ -261,7 +258,7 @@ class App extends PureComponent {
           request_priority_id: request_priority_id,
           request_status_id: request_status_id,
           send_date: "2022-05-12",
-          sender_id: 1,
+          sender_id: parseInt(window.localStorage.user_id),
           text: text,
           title: title,
         },
@@ -274,6 +271,7 @@ class App extends PureComponent {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        window.location.reload(false);
       })
       .catch((error) => {
         if (error.response) {
@@ -330,8 +328,6 @@ class App extends PureComponent {
               }
             />
           </Routes>
-          <button onClick={this.postRequest}>Click this to post</button>
-          <button onClick={this.putRequest}>Click this to put</button>
         </Router>
       </div>
     );

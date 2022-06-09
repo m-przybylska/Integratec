@@ -172,19 +172,19 @@
     }
 
     &-Create {
-      background-color: $color-gelb-normal;
-      color: $color-grey;
+      background-color: $color-gelb-dark;
+      color: $color-black;
 
-      &:visited {
-        color: $color-black;
+      &.disabled {
+        cursor: default;
+        background-color: $color-gelb-normal;
+
+        &:hover {
+          border: 0px;
+        }
       }
-
-      &:focus {
-        color: $color-black;
-      }
-
-      &:active {
-        color: $color-black;
+      &:hover {
+        border: 1px solid $color-black;
       }
     }
 

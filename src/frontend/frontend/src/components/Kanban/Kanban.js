@@ -71,6 +71,7 @@ class Kanban extends PureComponent {
             statusesList={this.props.statusesList}
             addNewRequest={this.props.addNewRequest}
             putRequest={this.props.putRequest}
+            setPopup={this.props.setPopup}
           />
           {requestsList.length ? (
             <div className="Kanban-Container">
