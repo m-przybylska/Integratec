@@ -70,6 +70,7 @@ class Kanban extends PureComponent {
             prioritiesList={this.props.prioritiesList}
             statusesList={this.props.statusesList}
             addNewRequest={this.props.addNewRequest}
+            putRequest={this.props.putRequest}
           />
           {requestsList.length ? (
             <div className="Kanban-Container">

@@ -26,14 +26,19 @@ class App extends PureComponent {
       prioritiesList: [],
       statusesList: [],
       authorization: [],
+      request_id: null,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    window.localStorage.setItem("authorization", null);
   }
 
   setAuthorization = (auth) => {
     window.localStorage.setItem("authorization", auth);
     console.log(auth);
     this.setState({ authorization: auth }, () => {
-      console.log(this.state.authorization);
+      console.log(window.localStorage.authorization);
       axios
         .get("http://localhost:8080/requests", {
           // withCredentials: true,
@@ -50,6 +55,9 @@ class App extends PureComponent {
           console.log(res);
           this.setState({ requestsList: res.data });
           console.log(this.state.requestsList);
+        })
+        .catch((err) => {
+          window.localStorage.setItem("authorization", null);
         });
 
       axios
@@ -147,9 +155,14 @@ class App extends PureComponent {
       });
   };
 
-  setPopup = (type, data, color) => {
+  setPopup = (type, data, color, request_id) => {
     this.setState(
-      { popupType: type, popupData: data, popupColor: color },
+      {
+        popupType: type,
+        popupData: data,
+        popupColor: color,
+        request_id: request_id,
+      },
       () => {
         this.setState({ popupIsVisible: !this.state.popupIsVisible });
       }
@@ -158,18 +171,26 @@ class App extends PureComponent {
 
   postRequest = () => {
     axios
-      .post("http://localhost:8080/requests", {
-        comment: "comment",
-        receiver_id: 1,
-        request_category_id: 1,
-        request_id: 20,
-        request_priority_id: 1,
-        request_status_id: 1,
-        send_date: "2022-05-11",
-        sender_id: 1,
-        text: "Jakis opis",
-        title: "Nudzi mi sie",
-      })
+      .post(
+        "http://localhost:8080/requests",
+        {
+          comment: "comment",
+          receiver_id: 1,
+          request_category_id: 1,
+          request_id: 20,
+          request_priority_id: 1,
+          request_status_id: 1,
+          send_date: "2022-05-11",
+          sender_id: 1,
+          text: "Jakis opis",
+          title: "Nudzi mi sie",
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + " " + window.localStorage.authorization,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -187,18 +208,26 @@ class App extends PureComponent {
 
   addNewRequest = (request) => {
     axios
-      .post("http://localhost:8080/requests", {
-        comment: "",
-        receiver_id: 1,
-        request_category_id: request.request_category_id,
-        request_id: null,
-        request_priority_id: request.request_priority_id,
-        request_status_id: null,
-        send_date: "2022-05-11",
-        sender_id: 1,
-        text: request.text,
-        title: request.title,
-      })
+      .post(
+        "http://localhost:8080/requests",
+        {
+          comment: "",
+          receiver_id: 1,
+          request_category_id: request.request_category_id,
+          request_id: null,
+          request_priority_id: request.request_priority_id,
+          request_status_id: null,
+          send_date: "2022-05-11",
+          sender_id: 1,
+          text: request.text,
+          title: request.title,
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + " " + window.localStorage.authorization,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -214,20 +243,34 @@ class App extends PureComponent {
       });
   };
 
-  putRequest = () => {
+  putRequest = (
+    request_category_id,
+    request_priority_id,
+    request_status_id,
+    text,
+    title
+  ) => {
     axios
-      .put("http://localhost:8080/requests/1", {
-        comment: "dziala",
-        receiver: 1,
-        requestCategory: 1,
-        requestId: 1,
-        requestPriority: 1,
-        requestStatus: 1,
-        sendDate: "2022-05-12",
-        sender_id: 1,
-        text: "string",
-        title: "string",
-      })
+      .put(
+        `http://localhost:8080/requests/${this.state.request_id}`,
+        {
+          comment: "",
+          receiver: 1,
+          request_category_id: request_category_id,
+          request_id: this.state.request_id,
+          request_priority_id: request_priority_id,
+          request_status_id: request_status_id,
+          send_date: "2022-05-12",
+          sender_id: 1,
+          text: text,
+          title: title,
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + " " + window.localStorage.authorization,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -271,6 +314,7 @@ class App extends PureComponent {
                     prioritiesList={this.state.prioritiesList}
                     statusesList={this.state.statusesList}
                     addNewRequest={this.addNewRequest}
+                    putRequest={this.putRequest}
                   />
                 )
               }
