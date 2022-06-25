@@ -55,10 +55,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withSubject(((Account) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
-        
+
+        ObjectMapper mapperObj = new ObjectMapper();
+        String JSON = mapperObj.writeValueAsString(((Account) auth.getPrincipal()).getRoles());
+
         String body = ((Account) auth.getPrincipal()).getUsername()
                 + " " + token + " " + ((Account) auth.getPrincipal()).getAccountId()
-                + ((Account) auth.getPrincipal()).getRoles();
+                + JSON;
 
         res.getWriter().write(body);
         res.getWriter().flush();
