@@ -143,12 +143,20 @@ insert into user_role(role_name)
 insert into user_role_assignment(user_account_id, role_id)
  values
  ("1", "1"),
- ("2", "2"),
- ("3", "1");
+ ("2", "1"),
+ ("3", "2"),
+ ("4", "2"),
+ ("5", "2"),
+ ("6", "2"),
+ ("7", "2"),
+ ("8", "2"),
+ ("9", "2"),
+ ("10", "2"),
+ ("11", "2");
  
 insert into Request(title, sender_id, receiver_id, text, comment, send_date, request_category_id, request_priority_id, request_status_id)
 values ("Ciasteczka", "3", "1", "Skonczyly sie ciasteczka :(", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "6", "1", "1"),
-       ("Urlop", "4", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "7", "1", "2"),
+       ("Urlop", "4", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consaccountectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "7", "1", "2"),
        ("Mulitsport", "5", "2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "8", "1", "3"),
        ("Wyjazd do Monachium", "6", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-22", "15", "1", "4"),
        ("Nowy laptop", "7", "1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2022-04-10", "1", "2", "1"),

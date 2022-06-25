@@ -37,11 +37,11 @@ public class RequestController {
         if(auth == null){
             //TODO zwrocic 401
         }
-        Account account = (Account)auth.getPrincipal();
-        if (account != null && account.getRoles().stream().anyMatch(a -> a.getName().equals("other_employee"))) {
-            key = "comment";
-            value = "komentarz 1";
-        }
+//        Account account = (Account)auth.getPrincipal();
+//        if (account != null && account.getRoles().stream().anyMatch(a -> a.getName().equals("other_employee"))) {
+//            key = "comment";
+//            value = "komentarz 1";
+//        }
         return ResponseEntity.ok(mapstructMapper.requestsToRequestsGetDto(requestService.getRequests(key, value)));
     }
 
