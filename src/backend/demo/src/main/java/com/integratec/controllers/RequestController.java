@@ -32,7 +32,7 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RequestGetDTO>> getRequest(String key, Object value) {
+    public ResponseEntity<List<RequestGetDTO>> getRequest(String key, String value) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth == null){
             //TODO zwrocic 401

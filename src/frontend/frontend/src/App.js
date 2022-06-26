@@ -98,6 +98,10 @@ class App extends PureComponent {
     console.log(window.localStorage.authorization);
     axios
       .get("http://localhost:8080/requests", {
+      params: {
+      key: "comment",
+      value: "komentarz 1",
+       },
         // withCredentials: true,
         // credentials: true,
         headers: {
