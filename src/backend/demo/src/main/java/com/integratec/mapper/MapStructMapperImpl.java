@@ -20,6 +20,7 @@ public class MapStructMapperImpl implements MapStructMapper {
             accountGetDtos.get(i).setAccountId(accounts.get(i).getAccountId());
             accountGetDtos.get(i).setName(accounts.get(i).getName());
             accountGetDtos.get(i).setSurname(accounts.get(i).getSurname());
+            //accountGetDtos.get(i).set
         }
         return accountGetDtos;
     }

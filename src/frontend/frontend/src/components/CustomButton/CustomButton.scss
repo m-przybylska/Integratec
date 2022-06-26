@@ -18,20 +18,20 @@
 
     // /* Track */
     // &::-webkit-scrollbar-track {
-    //   box-shadow: inset 0 0 5px $color-grey; 
+    //   box-shadow: inset 0 0 5px $color-grey;
     //   border-radius: 5px;
     // }
-    
+
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: $color-grey; 
+      background: $color-grey;
       // border-style: groove;
       border-radius: 10px;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: $color-black; 
+      background: $color-black;
     }
 
     &-Item {
@@ -39,6 +39,7 @@
       overflow-wrap: break-word;
       display: block;
     }
+
     &.hidden {
       display: none;
     }
@@ -83,7 +84,8 @@
     &-Priority,
     &-Category,
     &-Status,
-    &-Create {
+    &-Create,
+    &-Save {
       // position: relative;
       overflow: auto;
       box-sizing: border-box;
@@ -116,6 +118,9 @@
       .CustomButton-List {
         top: 155px;
         right: 357px;
+        &.addTask {
+          top: 307px;
+        }
       }
       background-color: $color-iteragenta-normal;
       color: $color-white;
@@ -132,6 +137,9 @@
       .CustomButton-List {
         top: 155px;
         right: 189px;
+        &.addTask {
+          top: 307px;
+        }
       }
       background-color: $color-mint-normal;
       color: $color-white;
@@ -148,6 +156,9 @@
       .CustomButton-List {
         top: 155px;
         right: 22px;
+        &.addTask {
+          top: 307px;
+        }
       }
       background-color: $color-gelb-normal;
       color: $color-black;
@@ -161,19 +172,37 @@
     }
 
     &-Create {
-      background-color: $color-gelb-normal;
-      color: $color-grey;
+      background-color: $color-gelb-dark;
+      color: $color-black;
 
-      &:visited {
-        color: $color-black;
+      &.disabled {
+        cursor: default;
+        background-color: $color-gelb-normal;
+
+        &:hover {
+          border: 0px;
+        }
+      }
+      &:hover {
+        border: 1px solid $color-black;
+      }
+    }
+
+    &-Save {
+      background-color: $color-iteragenta-dark;
+      color: $color-white;
+
+      &.disabled {
+        cursor: default;
+        background-color: $color-iteragenta-normal;
+
+        &:hover {
+          border: 0px;
+        }
       }
 
-      &:focus {
-        color: $color-black;
-      }
-
-      &:active {
-        color: $color-black;
+      &:hover {
+        border: 1px solid $color-black;
       }
     }
   }

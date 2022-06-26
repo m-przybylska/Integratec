@@ -46,6 +46,8 @@
     margin-bottom: 30px;
     overflow-y: scroll;
     scrollbar-width: none;
+    max-width: 289px;
+    min-width: 289px;
   }
 
   &-Content::-webkit-scrollbar {
